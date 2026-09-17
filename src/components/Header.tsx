@@ -20,9 +20,9 @@ export function Header({ onContact }: HeaderProps) {
 
         <div className="mt-4 max-w-[640px]">
           <h1 className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f]">
-            Soluciones logísticas<br /><span className="text-[#e66600]">que impulsan tu negocio.</span>
+            <span className="block pb-[1px]">Soluciones logísticas</span><span className="block pb-[1px] text-[#e66600]">que impulsan tu negocio.</span>
           </h1>
-          <p className="mt-3 max-w-[510px] font-exo text-[16px] font-semibold leading-[1.35] text-[#515151]">
+          <p className="mt-3 max-w-[510px] font-exo text-[12px] font-semibold leading-[1.35] text-[#515151]">
             Contamos con la infraestructura, experiencia y capacidad para ofrecerte servicios integrales de logística, transporte y comercio exterior.
           </p>
         </div>
