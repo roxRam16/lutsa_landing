@@ -4,7 +4,6 @@ import { Header } from './components/Header';
 import { HeroServicios } from './components/HeroServicios';
 import { PlaceholderSections } from './components/PlaceholderSections';
 import { ScrollTruckNav } from './components/ScrollTruckNav';
-import { ServiciosSection } from './components/ServiciosSection';
 
 function App() {
   const scrollToContact = useCallback((): void => {
@@ -28,7 +27,6 @@ function App() {
             <p className="mt-5 max-w-lg font-exo text-lg leading-relaxed text-white/80 sm:text-2xl">Experiencia, cercanía y capacidad para mover lo que tu negocio necesita.</p>
           </div>
         </section>
-        <ServiciosSection />
         <PlaceholderSections />
         <ContactoSection />
       </main>
