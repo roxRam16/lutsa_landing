@@ -53,8 +53,16 @@ export function ScrollTruckNav() {
     if (stopEl) {
       const stopRect = stopEl.getBoundingClientRect();
       const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
-      const offset = activeIndex === 0 ? 120 : 0;
-      setTruckTop(`${bulletCenter - offset}px`);
+      // El camión avanza solo un poquito por cada bullet: arranca muy arriba
+      // y va bajando de a poco, en lugar de saltar al centro exacto de cada bullet.
+      // Calculamos la posición como un porcentaje del recorrido total,
+      // pero el camión solo cubre una fracción de ese recorrido para que avance poco.
+      const totalStops = stops.length - 1; // sin contar __fin__
+      const fractionPerStop = 0.85 / totalStops; // 85% del riel repartido en los stops
+      const startOffset = 140; // arranca más arriba en el primer stop
+      const railHeight = railRect.height;
+      const truckPos = startOffset + activeIndex * fractionPerStop * railHeight;
+      setTruckTop(`${truckPos}px`);
     }
 
     updateLineBounds();
@@ -119,7 +127,7 @@ export function ScrollTruckNav() {
                   ref={(el) => { stopRefs.current[index] = el; }}
                   className={`group relative flex items-center gap-3 text-left font-condensed text-[10px] font-medium uppercase leading-[1.05] tracking-tight text-white transition-colors ${isEmpty ? 'pointer-events-none mb-6' : 'hover:text-[#ff8a39]'}`}
                 >
-                  <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : isEmpty ? 'border-[#FFAB49] bg-[#FFAB49]/30 ring-2 ring-[#FFAB49]/20' : 'border-white bg-[#07120d] group-hover:border-[#f0782d]'}`}>
+                  <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : isEmpty ? 'border-[#FFAB49] bg-[#FFAB49]/30 ring-2 ring-[#FFAB49]/20' : 'border-white bg-[#07120d] group-hover:border-[#f0782d]'}`}>
                     {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </span>
                   {!isEmpty && (

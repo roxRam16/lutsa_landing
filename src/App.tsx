@@ -15,7 +15,7 @@ function App() {
     <div className="min-h-screen bg-[#121874]">
       <ScrollTruckNav />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
-      <main className="lg:ml-[240px]">
+      <main className="lg:ml-[260px]">
         <div id="inicio" className="relative">
           <Header onContact={scrollToContact} />
           <HeroServicios />
