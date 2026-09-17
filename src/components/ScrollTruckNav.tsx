@@ -66,10 +66,10 @@ export function ScrollTruckNav() {
         aria-label="Navegación por kilómetros"
       >
         <div
-          className="absolute inset-0 bg-left-top bg-no-repeat"
+          className="absolute inset-0 bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('/carretera.png')",
-            backgroundSize: '100% 100%',
+            backgroundSize: 'cover',
           }}
           aria-hidden="true"
         />
