@@ -3,7 +3,7 @@ type HeaderProps = { onContact: () => void };
 type Metric = {
   icon: string;
   text: string;
-  scale?: number;
+  iconClass?: string;
 };
 
 const metrics: Metric[] = [
@@ -11,7 +11,7 @@ const metrics: Metric[] = [
   { icon: '/seccion01/svg/colaboradores.svg', text: 'colaboradores\ncapacitados.' },
   { icon: '/seccion01/svg/patio_almacen.svg', text: 'de patio y\nalmacén propio.' },
   { icon: '/seccion01/svg/4km.svg', text: 'del Puerto de\nVeracruz.' },
-  { icon: '/seccion01/svg/estacion_diesel.svg', text: 'Estación propia\nde diésel.', scale: 0.6 },
+  { icon: '/seccion01/svg/estacion_diesel.svg', text: 'Estación propia\nde diésel.', iconClass: 'h-7 w-7 sm:h-8 sm:w-8' },
 ];
 
 export function Header({ onContact }: HeaderProps) {
@@ -44,14 +44,14 @@ export function Header({ onContact }: HeaderProps) {
         </div>
 
         <div className="mt-4 -mx-4 bg-gradient-to-r from-[#141c80]/40 via-[#132085]/35 to-[#11166d]/40 px-4 py-4 sm:-mx-8 sm:px-8 sm:py-5 lg:-mx-14 lg:px-14">
-          <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-5 sm:gap-x-10 lg:gap-x-14">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-5 sm:gap-x-12 lg:gap-x-20">
             {metrics.map((metric) => (
               <div key={metric.text} className="flex items-center gap-2 sm:gap-3">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14">
-                  <img src={metric.icon} alt="" className="max-h-full max-w-full object-contain" style={metric.scale ? { transform: `scale(${metric.scale})` } : undefined} />
+                <div className={`flex shrink-0 items-center justify-center ${metric.iconClass ? metric.iconClass : 'h-12 w-12 sm:h-14 sm:w-14'}`}>
+                  <img src={metric.icon} alt="" className="max-h-full max-w-full object-contain" />
                 </div>
-                <p className="font-exo text-[10px] font-bold leading-[1.1] text-white">
-                  {metric.text.split('\n').map((line: string) => <span key={line}>{line}<br /></span>)}
+                <p className="font-exo text-[10px] font-bold leading-[1.15] text-white whitespace-nowrap">
+                  {metric.text.split('\n').map((line: string) => <span key={line} className="block whitespace-nowrap">{line}</span>)}
                 </p>
               </div>
             ))}
