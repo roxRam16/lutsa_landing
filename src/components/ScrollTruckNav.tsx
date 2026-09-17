@@ -1,7 +1,7 @@
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useScrollProgress } from '../hooks/useScrollProgress';
 
-const NAV_WIDTH = 313;
+const NAV_WIDTH = 206;
 
 const stops = [
   { id: 'inicio', label: 'RECORRIDO\nLUTSA' },
@@ -40,7 +40,7 @@ export function ScrollTruckNav() {
           className="absolute inset-0 bg-left-top bg-no-repeat"
           style={{
             backgroundImage: "url('/carretera.png')",
-            backgroundSize: '329px 100%',
+            backgroundSize: '852px 100%',
           }}
           aria-hidden="true"
         />
@@ -57,7 +57,7 @@ export function ScrollTruckNav() {
                 <a
                   key={stop.id}
                   href={`#${stop.id}`}
-                  className="group relative flex items-center gap-3 text-left font-condensed text-[10px] font-bold uppercase leading-[1.05] tracking-tight text-white transition-colors hover:text-[#ff8a39]"
+                  className="group relative flex items-center gap-3 text-left font-condensed text-[10px] font-medium uppercase leading-[1.05] tracking-tight text-white transition-colors hover:text-[#ff8a39]"
                 >
                   <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 border-white bg-[#07120d] transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : 'group-hover:border-[#f0782d]'}`}>
                     {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
