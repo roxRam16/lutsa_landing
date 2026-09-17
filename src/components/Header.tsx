@@ -11,7 +11,16 @@ const metrics: Metric[] = [
   { icon: '/seccion01/svg/colaboradores.svg', text: 'colaboradores\ncapacitados.' },
   { icon: '/seccion01/svg/patio_almacen.svg', text: 'de patio y\nalmacén propio.' },
   { icon: '/seccion01/svg/4km.svg', text: 'del Puerto de\nVeracruz.' },
-  { icon: '/seccion01/svg/estacion_diesel.svg', text: 'Estación propia\nde diésel.', iconClass: 'h-7 w-7 sm:h-8 sm:w-8' },
+  { icon: '/seccion01/svg/estacion_diesel.svg', text: 'Estación propia\nde diésel.', iconClass: 'h-5 w-5 sm:h-6 sm:w-6' },
+];
+
+const infraPoints = [
+  <>Patio y almacén propio (3 hectáreas)</>,
+  <>Resguardo de contenedores (vacíos y cargados)</>,
+  <>Ubicación a minutos del Puerto de Veracruz</>,
+  <>Maquinaria especializada para carga y descarga</>,
+  <>Estación propia de diésel</>,
+  <>Parque logístico MIL519 (en desarrollo), a 4 km del puerto</>,
 ];
 
 export function Header({ onContact }: HeaderProps) {
@@ -56,6 +65,16 @@ export function Header({ onContact }: HeaderProps) {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="mt-5 max-w-[640px]">
+          <div className="orange-gradient inline-flex items-center gap-3 rounded-lg border-2 border-white/70 p-1.5 pr-5 shadow-lg">
+            <span className="flex h-10 w-10 flex-col items-center justify-center rounded border-2 border-[#d65a27] bg-white font-exo text-[10px] font-bold leading-none text-[#153283]">KM<span className="text-lg">20</span></span>
+            <h2 className="font-exo text-lg font-bold uppercase leading-none text-white sm:text-2xl">Infraestructura<br /><span className="text-[#10227f]">y ubicación</span></h2>
+          </div>
+          <ul className="mt-5 grid gap-x-6 gap-y-2 font-exo text-[11px] font-semibold uppercase leading-[1.15] text-white/90 sm:text-xs sm:grid-cols-2">
+            {infraPoints.map((point, index) => <li key={index} className="max-w-[290px]">{point}</li>)}
+          </ul>
         </div>
       </div>
     </header>
