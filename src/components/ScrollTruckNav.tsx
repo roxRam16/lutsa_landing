@@ -36,15 +36,19 @@ export function ScrollTruckNav() {
     if (rail) {
       const railRect = rail.getBoundingClientRect();
 
-      // Posición del camión: interpolar entre el primer y último bullet según progreso de scroll
+      // El camión se posa en el bullet de la sección activa
+      // La cabeza del camión se alinea con el centro del bullet
+      const stopEl = stopRefs.current[activeIndex];
+      if (stopEl) {
+        const stopRect = stopEl.getBoundingClientRect();
+        const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
+        // La cabeza del camión queda en el bullet (parte superior del camión)
+        setTruckTop(`${bulletCenter}px`);
+      }
+
       if (firstEl && lastEl) {
         const firstRect = firstEl.getBoundingClientRect();
         const lastRect = lastEl.getBoundingClientRect();
-        const firstCenter = firstRect.top - railRect.top + BULLET_HEIGHT / 2;
-        const lastCenter = lastRect.top - railRect.top + BULLET_HEIGHT / 2;
-        const truckCenter = firstCenter + (lastCenter - firstCenter) * progress;
-        setTruckTop(`${truckCenter - TRUCK_HEIGHT / 2}px`);
-
         const bulletRadius = BULLET_HEIGHT / 2 + 2;
         setLineBounds({
           top: firstRect.top - railRect.top + bulletRadius,
@@ -137,12 +141,12 @@ export function ScrollTruckNav() {
             />
           </button>
 
-          {/* Camión que se desliza proporcional al scroll */}
+          {/* Camión que se desliza a la sección activa */}
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain"
-            style={{ top: truckTop, left: '76px' }}
+            className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain transition-[top] duration-700 ease-in-out"
+            style={{ top: truckTop, left: '114px' }}
           />
         </div>
       </aside>
