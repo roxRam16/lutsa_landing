@@ -55,7 +55,7 @@ export function ScrollTruckNav() {
     const railHeight = railRect.height;
     const usableHeight = railHeight - TRUCK_HEIGHT + 40; // permitir que empiece más arriba
     const stepSize = usableHeight / (totalStops - 1); // distancia entre cada parada
-    const truckPos = activeIndex * stepSize - 40; // offset negativo para que salga de más arriba
+    const truckPos = activeIndex * stepSize - 80; // offset negativo para que salga de más arriba
     setTruckTop(`${truckPos}px`);
 
     updateLineBounds();
