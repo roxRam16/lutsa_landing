@@ -16,8 +16,8 @@ const stops = [
   { id: '__fin__', label: '' },
 ];
 
-const TRUCK_HEIGHT = 190;
-const TRUCK_WIDTH = 90;
+const TRUCK_HEIGHT = 230;
+const TRUCK_WIDTH = 110;
 const BULLET_HEIGHT = 17;
 
 export function ScrollTruckNav() {
@@ -114,7 +114,7 @@ export function ScrollTruckNav() {
                   ref={(el) => { stopRefs.current[index] = el; }}
                   className={`group relative flex items-center gap-3 text-left font-condensed text-[10px] font-medium uppercase leading-[1.05] tracking-tight text-white transition-colors ${isEmpty ? 'pointer-events-none mb-12' : 'hover:text-[#ff8a39]'}`}
                 >
-                  <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : isEmpty ? 'border-[#f0782d]/50 bg-[#e66600]/25 ring-2 ring-[#ff8a39]/15' : 'border-white bg-[#07120d] group-hover:border-[#f0782d]'}`}>
+                  <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : isEmpty ? 'border-[#FFAB49] bg-[#FFAB49]/30 ring-2 ring-[#FFAB49]/20' : 'border-white bg-[#07120d] group-hover:border-[#f0782d]'}`}>
                     {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </span>
                   {!isEmpty && (
@@ -147,8 +147,8 @@ export function ScrollTruckNav() {
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute z-20 h-[190px] w-[90px] object-contain transition-[top] duration-700 ease-in-out"
-            style={{ top: truckTop, left: '104px' }}
+            className="pointer-events-none absolute z-20 h-[230px] w-[110px] object-contain transition-[top] duration-1200 ease-in-out"
+            style={{ top: truckTop, left: '94px' }}
           />
         </div>
       </aside>
