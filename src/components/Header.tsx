@@ -2,17 +2,15 @@ type HeaderProps = { onContact: () => void };
 
 type Metric = {
   icon: string;
-  value: string;
-  suffix?: string;
   text: string;
 };
 
 const metrics: Metric[] = [
-  { icon: '/seccion01/svg/unidades.svg', value: '+70', text: 'unidades propias\nen operación.' },
-  { icon: '/seccion01/svg/colaboradores.svg', value: '+100', text: 'colaboradores\ncapacitados.' },
-  { icon: '/seccion01/svg/patio_almacen.svg', value: '3', suffix: ' ha', text: 'de patio y\nalmacén propio.' },
-  { icon: '/seccion01/svg/4km.svg', value: '4', suffix: ' km', text: 'del Puerto de\nVeracruz.' },
-  { icon: '/seccion01/svg/estacion_diesel.svg', value: '', text: 'Estación propia\nde diésel.' },
+  { icon: '/seccion01/svg/unidades.svg', text: 'unidades propias\nen operación.' },
+  { icon: '/seccion01/svg/colaboradores.svg', text: 'colaboradores\ncapacitados.' },
+  { icon: '/seccion01/svg/patio_almacen.svg', text: 'de patio y\nalmacén propio.' },
+  { icon: '/seccion01/svg/4km.svg', text: 'del Puerto de\nVeracruz.' },
+  { icon: '/seccion01/svg/estacion_diesel.svg', text: 'Estación propia\nde diésel.' },
 ];
 
 export function Header({ onContact }: HeaderProps) {
@@ -38,17 +36,18 @@ export function Header({ onContact }: HeaderProps) {
             <span className="block pb-[1px]">Soluciones logísticas</span><span className="block pb-[1px] text-[#e66600]">que impulsan tu negocio.</span>
           </h1>
           <p className="mt-3 max-w-[510px] font-exo text-[14px] font-semibold leading-[1.45] text-[#515151]">
-            Contamos con la infraestructura, experiencia y capacidad para ofrecerte servicios integrales de logística, transporte y comercio exterior.
+            Contamos con la infraestructura, experiencia y capacidad<br />
+            para ofrecerte servicios integrales de logística, transporte<br />
+            y comercio exterior.
           </p>
         </div>
 
-        <div className="mt-auto -mx-4 bg-gradient-to-r from-[#141c80]/95 via-[#132085]/90 to-[#11166d]/95 px-4 py-5 sm:-mx-8 sm:px-8 sm:py-6 lg:-mx-14 lg:px-14">
-          <div className="grid grid-cols-2 gap-y-5 sm:grid-cols-5 sm:gap-4">
+        <div className="mt-4 -mx-4 bg-gradient-to-r from-[#141c80]/95 via-[#132085]/90 to-[#11166d]/95 px-4 py-4 sm:-mx-8 sm:px-8 sm:py-5 lg:-mx-14 lg:px-14">
+          <div className="grid grid-cols-2 gap-y-4 sm:grid-cols-5 sm:gap-4">
             {metrics.map((metric) => (
               <div key={metric.text} className="flex items-center gap-2 sm:gap-3">
                 <img src={metric.icon} alt="" className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12" />
-                <p className="font-exo text-[1.5rem] font-bold leading-[1.05] text-white">
-                  <span className="text-[1.5rem] text-[#f0742d]">{metric.value}</span>{metric.suffix}<br />
+                <p className="font-exo text-[12px] font-bold leading-[1.1] text-white">
                   {metric.text.split('\n').map((line: string) => <span key={line}>{line}<br /></span>)}
                 </p>
               </div>
