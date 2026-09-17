@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useActiveSection } from '../hooks/useActiveSection';
-import { useScrollProgress } from '../hooks/useScrollProgress';
 
-const NAV_WIDTH = 240;
+const NAV_WIDTH = 260;
 
 const stops = [
   { id: 'inicio', label: 'RECORRIDO\nLUTSA' },
@@ -21,7 +20,6 @@ const TRUCK_WIDTH = 95;
 const BULLET_HEIGHT = 17;
 
 export function ScrollTruckNav() {
-  const progress = useScrollProgress();
   const activeSection = useActiveSection(stops.filter((s) => s.id !== '__fin__').map((stop) => stop.id));
   const railRef = useRef<HTMLDivElement>(null);
   const stopRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -102,7 +100,7 @@ export function ScrollTruckNav() {
           aria-hidden="true"
         />
         {/* Contenido del riel */}
-        <div ref={railRef} className="relative flex h-full flex-col px-5 py-9" style={{ width: `${NAV_WIDTH}px` }}>
+        <div ref={railRef} className="relative flex h-full flex-col px-5 py-4" style={{ width: `${NAV_WIDTH}px` }}>
           {/* Línea vertical blanca sobre la carretera */}
           <div
             className="absolute left-[28px] w-0.5 bg-white/90"
@@ -154,8 +152,8 @@ export function ScrollTruckNav() {
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute z-20 h-[200px] w-[95px] object-contain transition-[top] duration-3000 ease-in-out"
-            style={{ top: truckTop, left: '101px' }}
+            className="pointer-events-none absolute z-20 h-[200px] w-[95px] object-contain"
+            style={{ top: truckTop, left: '114px', transition: 'top 5000ms cubic-bezier(0.25, 0.1, 0.25, 1)' }}
           />
         </div>
       </aside>
