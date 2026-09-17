@@ -31,22 +31,24 @@ export function ScrollTruckNav() {
 
   useEffect(() => {
     const rail = railRef.current;
-    const stopEl = stopRefs.current[activeIndex];
     const firstEl = stopRefs.current[0];
     const lastEl = stopRefs.current[stops.length - 1];
     if (rail) {
       const railRect = rail.getBoundingClientRect();
-      if (stopEl) {
-        const stopRect = stopEl.getBoundingClientRect();
-        const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
-        setTruckTop(`${bulletCenter - TRUCK_HEIGHT / 2}px`);
-      }
+
+      // Posición del camión: interpolar entre el primer y último bullet según progreso de scroll
       if (firstEl && lastEl) {
         const firstRect = firstEl.getBoundingClientRect();
         const lastRect = lastEl.getBoundingClientRect();
+        const firstCenter = firstRect.top - railRect.top + BULLET_HEIGHT / 2;
+        const lastCenter = lastRect.top - railRect.top + BULLET_HEIGHT / 2;
+        const truckCenter = firstCenter + (lastCenter - firstCenter) * progress;
+        setTruckTop(`${truckCenter - TRUCK_HEIGHT / 2}px`);
+
+        const bulletRadius = BULLET_HEIGHT / 2 + 2;
         setLineBounds({
-          top: firstRect.top - railRect.top + BULLET_HEIGHT / 2,
-          bottom: railRect.bottom - (lastRect.top - railRect.top) - BULLET_HEIGHT / 2,
+          top: firstRect.top - railRect.top + bulletRadius,
+          bottom: railRect.bottom - (lastRect.top - railRect.top) - bulletRadius,
         });
       }
     }
@@ -139,8 +141,8 @@ export function ScrollTruckNav() {
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain transition-[top] duration-300 ease-out"
-            style={{ top: truckTop, left: 'calc(50% - 35px)' }}
+            className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain"
+            style={{ top: truckTop, left: '76px' }}
           />
         </div>
       </aside>
