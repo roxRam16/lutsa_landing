@@ -12,7 +12,7 @@ export function Header({ onContact }: HeaderProps) {
             <img src="/seccion01/svg/usa.svg" alt="" className="h-3.5 w-auto object-contain" aria-hidden="true" /><span>IDIOMA</span><span aria-hidden="true">▾</span>
           </button>
           <button onClick={onContact} className="orange-gradient flex h-9 items-center gap-1.5 rounded-full px-5 py-0.5 font-exo text-xs font-bold uppercase text-white shadow-glow transition-transform hover:scale-105 active:scale-95 sm:h-9">
-            <img src="/seccion01/svg/contacto.svg" alt="" className="h-5 w-auto object-contain" aria-hidden="true" /> Contacto
+            <img src="/seccion01/svg/contacto.svg" alt="" className="h-5 w-auto object-contain" aria-hidden="true" /><span className="ml-1.5">Contacto</span>
           </button>
         </div>
       </div>
