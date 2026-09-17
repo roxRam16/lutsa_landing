@@ -11,15 +11,21 @@ function App() {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  return <div id="inicio" className="min-h-screen bg-[#121874]">
-    <ScrollTruckNav />
-    <main>
-      <div className="relative"><Header onContact={scrollToContact} /><HeroServicios /></div>
-      <ServiciosSection />
-      <PlaceholderSections />
-      <ContactoSection />
-    </main>
-  </div>;
+  return (
+    <div id="inicio" className="min-h-screen bg-[#121874]">
+      <ScrollTruckNav />
+      {/* main se desplaza a la derecha del riel fijo en desktop */}
+      <main className="lg:ml-[206px]">
+        <div className="relative">
+          <Header onContact={scrollToContact} />
+          <HeroServicios />
+        </div>
+        <ServiciosSection />
+        <PlaceholderSections />
+        <ContactoSection />
+      </main>
+    </div>
+  );
 }
 
 export default App;

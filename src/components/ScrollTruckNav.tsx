@@ -1,6 +1,8 @@
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useScrollProgress } from '../hooks/useScrollProgress';
 
+const NAV_WIDTH = 206;
+
 const stops = [
   { id: 'inicio', km: '—', label: 'Recorrido LUTSA' },
   { id: 'quienes-somos', km: '10', label: 'Quiénes somos' },
@@ -25,31 +27,70 @@ export function ScrollTruckNav() {
           return <a key={stop.id} href={`#${stop.id}`} className={`flex h-8 min-w-8 items-center justify-center rounded-full px-2 font-condensed text-xs font-bold transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`} aria-label={`${stop.km} kilómetros, ${stop.label}`}>{stop.km}</a>;
         })}
       </nav>
-      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[206px] bg-[#07120d] lg:block" aria-label="Navegación por kilómetros">
-      <div className="absolute inset-0 bg-cover bg-center opacity-80" style={{ backgroundImage: "url('/carretera.png')" }} />
-      <div className="absolute inset-y-0 right-0 w-[84px] bg-black/20" />
-      <div className="relative flex h-full flex-col px-5 py-9">
-        <div className="absolute left-[25px] top-[47px] bottom-[118px] w-px bg-white/90" />
-        <div className="flex flex-1 flex-col justify-between">
-          {stops.map((stop) => {
-            const isActive = activeSection === stop.id || (stop.id === 'servicios' && activeSection === 'inicio');
-            return (
-              <a key={stop.id} href={`#${stop.id}`} className="group relative flex items-center gap-3 text-left font-condensed text-[13px] font-bold uppercase leading-[1.05] tracking-tight text-white transition-colors hover:text-[#ff8a39]">
-                <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 border-white bg-[#07120d] transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : 'group-hover:border-[#f0782d]'}`}>
-                  {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
-                </span>
-                <span className={isActive ? 'text-[#ff812f]' : 'text-white'}>{stop.km !== '—' && `${stop.km} KM `}{stop.label}</span>
-              </a>
-            );
-          })}
+
+      <aside
+        className="fixed left-0 top-0 z-40 hidden h-screen overflow-hidden border-r border-white/10 lg:block"
+        style={{ width: `${NAV_WIDTH}px` }}
+        aria-label="Navegación por kilómetros"
+      >
+        {/* Carretera como fondo vertical: la imagen original es horizontal (1920x1080)
+            se rota 90° para que las líneas discontinuas queden verticales */}
+        <div
+          className="absolute left-1/2 top-1/2 bg-repeat-y"
+          style={{
+            backgroundImage: "url('/carretera.png')",
+            backgroundSize: 'cover',
+            width: '1080px',
+            height: '1920px',
+            transform: 'translate(-50%, -50%) rotate(90deg)',
+          }}
+        />
+        {/* Carril derecho por donde avanza el camión */}
+        <div className="absolute inset-y-0 right-0 w-[84px] bg-black/25" />
+
+        {/* Contenido del riel */}
+        <div className="relative flex h-full flex-col px-5 py-9" style={{ width: `${NAV_WIDTH}px` }}>
+          {/* Línea vertical blanca sobre la carretera */}
+          <div className="absolute left-[25px] top-[47px] bottom-[118px] w-px bg-white/90" />
+
+          {/* Puntos KM */}
+          <div className="flex flex-1 flex-col justify-between">
+            {stops.map((stop) => {
+              const isActive = activeSection === stop.id || (stop.id === 'servicios' && activeSection === 'inicio');
+              return (
+                <a
+                  key={stop.id}
+                  href={`#${stop.id}`}
+                  className="group relative flex items-center gap-3 text-left font-condensed text-[13px] font-bold uppercase leading-[1.05] tracking-tight text-white transition-colors hover:text-[#ff8a39]"
+                >
+                  <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 border-white bg-[#07120d] transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : 'group-hover:border-[#f0782d]'}`}>
+                    {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+                  </span>
+                  <span className={isActive ? 'text-[#ff812f]' : 'text-white'}>
+                    {stop.km !== '—' && `${stop.km} KM `}{stop.label}
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Indicador "Sigue avanzando" */}
+          <div className="mt-4 pl-10 text-center font-condensed text-sm font-bold leading-tight text-white">
+            Sigue<br />avanzando
+            <div className="mt-3 text-5xl leading-[.55] text-[#f06b2a]" aria-hidden="true">⌄<br />⌄</div>
+          </div>
+
+          {/* Camión que se desliza proporcional al scroll */}
+          <img
+            src="/camion.png"
+            alt="Camión recorriendo el riel"
+            className="pointer-events-none absolute right-[4px] z-20 h-[150px] w-[70px] object-contain transition-[top] duration-150 ease-out"
+            style={{ top: truckTop }}
+          />
         </div>
-        <div className="mt-4 pl-10 text-center font-condensed text-sm font-bold leading-tight text-white">
-          Sigue<br />avanzando
-          <div className="mt-3 text-5xl leading-[.55] text-[#f06b2a]" aria-hidden="true">⌄<br />⌄</div>
-        </div>
-        <img src="/camion.png" alt="Camión recorriendo el riel" className="pointer-events-none absolute right-[4px] z-20 h-[150px] w-[70px] object-contain transition-[top] duration-150 ease-out" style={{ top: truckTop }} />
-      </div>
       </aside>
     </>
   );
 }
+
+export { NAV_WIDTH };
