@@ -25,17 +25,30 @@ export function ScrollTruckNav() {
   const railRef = useRef<HTMLDivElement>(null);
   const stopRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [truckTop, setTruckTop] = useState('calc(24px + 0%)');
+  const [lineBounds, setLineBounds] = useState<{ top: number; bottom: number } | null>(null);
 
   const activeIndex = stops.findIndex((s) => s.id === activeSection);
 
   useEffect(() => {
     const rail = railRef.current;
     const stopEl = stopRefs.current[activeIndex];
-    if (rail && stopEl) {
+    const firstEl = stopRefs.current[0];
+    const lastEl = stopRefs.current[stops.length - 1];
+    if (rail) {
       const railRect = rail.getBoundingClientRect();
-      const stopRect = stopEl.getBoundingClientRect();
-      const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
-      setTruckTop(`${bulletCenter - TRUCK_HEIGHT / 2}px`);
+      if (stopEl) {
+        const stopRect = stopEl.getBoundingClientRect();
+        const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
+        setTruckTop(`${bulletCenter - TRUCK_HEIGHT / 2}px`);
+      }
+      if (firstEl && lastEl) {
+        const firstRect = firstEl.getBoundingClientRect();
+        const lastRect = lastEl.getBoundingClientRect();
+        setLineBounds({
+          top: firstRect.top - railRect.top + BULLET_HEIGHT / 2,
+          bottom: railRect.bottom - (lastRect.top - railRect.top) - BULLET_HEIGHT / 2,
+        });
+      }
     }
   }, [activeIndex, progress]);
 
@@ -66,17 +79,20 @@ export function ScrollTruckNav() {
         aria-label="Navegación por kilómetros"
       >
         <div
-          className="absolute inset-0 bg-center bg-no-repeat"
+          className="absolute inset-0 bg-center-top bg-no-repeat"
           style={{
-            backgroundImage: "url('/carretera.png')",
-            backgroundSize: 'cover',
+            backgroundImage: "url('/carretera_vertical.png')",
+            backgroundSize: '100% 100%',
           }}
           aria-hidden="true"
         />
         {/* Contenido del riel */}
         <div ref={railRef} className="relative flex h-full flex-col px-5 py-9" style={{ width: `${NAV_WIDTH}px` }}>
           {/* Línea vertical blanca sobre la carretera */}
-          <div className="absolute left-[25px] top-[55px] bottom-[128px] w-px bg-white/90" />
+          <div
+            className="absolute left-[25px] w-px bg-white/90"
+            style={lineBounds ? { top: `${lineBounds.top}px`, bottom: `${lineBounds.bottom}px` } : { top: '55px', bottom: '138px' }}
+          />
 
           {/* Puntos KM */}
           <div className="flex flex-1 flex-col justify-between">
