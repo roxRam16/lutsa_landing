@@ -16,8 +16,8 @@ const stops = [
   { id: '__fin__', label: '' },
 ];
 
-const TRUCK_HEIGHT = 230;
-const TRUCK_WIDTH = 110;
+const TRUCK_HEIGHT = 200;
+const TRUCK_WIDTH = 95;
 const BULLET_HEIGHT = 17;
 
 export function ScrollTruckNav() {
@@ -55,7 +55,7 @@ export function ScrollTruckNav() {
     if (stopEl) {
       const stopRect = stopEl.getBoundingClientRect();
       const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
-      const offset = activeIndex === 0 ? 80 : 0;
+      const offset = activeIndex === 0 ? 120 : 0;
       setTruckTop(`${bulletCenter - offset}px`);
     }
 
@@ -154,8 +154,8 @@ export function ScrollTruckNav() {
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute z-20 h-[230px] w-[110px] object-contain transition-[top] duration-2000 ease-in-out"
-            style={{ top: truckTop, left: '94px' }}
+            className="pointer-events-none absolute z-20 h-[200px] w-[95px] object-contain transition-[top] duration-3000 ease-in-out"
+            style={{ top: truckTop, left: '101px' }}
           />
         </div>
       </aside>
