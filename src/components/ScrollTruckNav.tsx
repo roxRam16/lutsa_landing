@@ -49,13 +49,13 @@ export function ScrollTruckNav() {
     if (!rail) return;
     const railRect = rail.getBoundingClientRect();
 
-    // El camión arranca desde muy arriba (cerca del tope del riel) y avanza
+    // El camión arranca desde muy arriba (incluso un poco fuera del riel) y avanza
     // solo un poquito por cada bullet. No salta al centro exacto de cada bullet.
     const totalStops = stops.length - 1; // sin contar __fin__
     const railHeight = railRect.height;
-    const usableHeight = railHeight - TRUCK_HEIGHT - 20; // dejar margen arriba y abajo
+    const usableHeight = railHeight - TRUCK_HEIGHT + 40; // permitir que empiece más arriba
     const stepSize = usableHeight / (totalStops - 1); // distancia entre cada parada
-    const truckPos = activeIndex * stepSize;
+    const truckPos = activeIndex * stepSize - 40; // offset negativo para que salga de más arriba
     setTruckTop(`${truckPos}px`);
 
     updateLineBounds();
