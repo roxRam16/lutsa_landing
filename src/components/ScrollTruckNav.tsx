@@ -30,35 +30,42 @@ export function ScrollTruckNav() {
 
   const activeIndex = stops.findIndex((s) => s.id === activeSection);
 
-  useEffect(() => {
+  const updateLineBounds = useCallback(() => {
     const rail = railRef.current;
     const firstEl = stopRefs.current[0];
     const lastEl = stopRefs.current[stops.length - 1];
-    if (rail) {
+    if (rail && firstEl && lastEl) {
       const railRect = rail.getBoundingClientRect();
-
-      // El camión se posa en el bullet de la sección activa
-      // La cabeza del camión se alinea con el centro del bullet
-      const stopEl = stopRefs.current[activeIndex];
-      if (stopEl) {
-        const stopRect = stopEl.getBoundingClientRect();
-        const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
-        // En el primer stop, el camión se posiciona más arriba para mostrar cómo entra a la carretera
-        const offset = activeIndex === 0 ? 80 : 0;
-        setTruckTop(`${bulletCenter - offset}px`);
-      }
-
-      if (firstEl && lastEl) {
-        const firstRect = firstEl.getBoundingClientRect();
-        const lastRect = lastEl.getBoundingClientRect();
-        const bulletRadius = BULLET_HEIGHT / 2 + 2;
-        setLineBounds({
-          top: firstRect.top - railRect.top + bulletRadius,
-          bottom: railRect.bottom - (lastRect.top - railRect.top) - bulletRadius,
-        });
-      }
+      const firstRect = firstEl.getBoundingClientRect();
+      const lastRect = lastEl.getBoundingClientRect();
+      const bulletRadius = BULLET_HEIGHT / 2 + 2;
+      setLineBounds({
+        top: firstRect.top - railRect.top + bulletRadius,
+        bottom: railRect.bottom - (lastRect.top - railRect.top),
+      });
     }
-  }, [activeIndex, progress]);
+  }, []);
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const railRect = rail.getBoundingClientRect();
+
+    const stopEl = stopRefs.current[activeIndex];
+    if (stopEl) {
+      const stopRect = stopEl.getBoundingClientRect();
+      const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
+      const offset = activeIndex === 0 ? 80 : 0;
+      setTruckTop(`${bulletCenter - offset}px`);
+    }
+
+    updateLineBounds();
+  }, [activeIndex, updateLineBounds]);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateLineBounds);
+    return () => window.removeEventListener('resize', updateLineBounds);
+  }, [updateLineBounds]);
 
   const goNext = useCallback(() => {
     const currentIndex = stops.findIndex((s) => s.id === activeSection);
@@ -112,7 +119,7 @@ export function ScrollTruckNav() {
                   key={stop.id}
                   href={isEmpty ? undefined : `#${stop.id}`}
                   ref={(el) => { stopRefs.current[index] = el; }}
-                  className={`group relative flex items-center gap-3 text-left font-condensed text-[10px] font-medium uppercase leading-[1.05] tracking-tight text-white transition-colors ${isEmpty ? 'pointer-events-none mb-12' : 'hover:text-[#ff8a39]'}`}
+                  className={`group relative flex items-center gap-3 text-left font-condensed text-[10px] font-medium uppercase leading-[1.05] tracking-tight text-white transition-colors ${isEmpty ? 'pointer-events-none mb-6' : 'hover:text-[#ff8a39]'}`}
                 >
                   <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : isEmpty ? 'border-[#FFAB49] bg-[#FFAB49]/30 ring-2 ring-[#FFAB49]/20' : 'border-white bg-[#07120d] group-hover:border-[#f0782d]'}`}>
                     {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
@@ -147,7 +154,7 @@ export function ScrollTruckNav() {
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute z-20 h-[230px] w-[110px] object-contain transition-[top] duration-1200 ease-in-out"
+            className="pointer-events-none absolute z-20 h-[230px] w-[110px] object-contain transition-[top] duration-2000 ease-in-out"
             style={{ top: truckTop, left: '94px' }}
           />
         </div>
