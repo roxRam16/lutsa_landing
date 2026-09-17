@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 215 48">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-2 {
+        fill: url(#Degradado_sin_nombre_129);
+      }
+    </style>
+    <filter id="drop-shadow-1" x="-30.19" y="-30.17" width="275.28" height="108.24" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="10"/>
+      <feFlood flood-color="#f50" flood-opacity=".8"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="Degradado_sin_nombre_129" data-name="Degradado sin nombre 129" x1="107.5" y1="48" x2="107.5" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e28030"/>
+      <stop offset=".25" stop-color="#dd702e"/>
+      <stop offset=".71" stop-color="#d7572c"/>
+      <stop offset="1" stop-color="#d54f2c"/>
+    </linearGradient>
+  </defs>
+  <g class="cls-1">
+    <rect class="cls-2" x="0" y="0" width="215" height="48" rx="24" ry="24"/>
+  </g>
+</svg>
