@@ -42,12 +42,14 @@ export function Header({ onContact }: HeaderProps) {
           </p>
         </div>
 
-        <div className="mt-4 -mx-4 bg-gradient-to-r from-[#141c80]/95 via-[#132085]/90 to-[#11166d]/95 px-4 py-4 sm:-mx-8 sm:px-8 sm:py-5 lg:-mx-14 lg:px-14">
+        <div className="mt-4 -mx-4 bg-gradient-to-r from-[#141c80]/40 via-[#132085]/35 to-[#11166d]/40 px-4 py-4 sm:-mx-8 sm:px-8 sm:py-5 lg:-mx-14 lg:px-14">
           <div className="grid grid-cols-2 gap-y-4 sm:grid-cols-5 sm:gap-4">
             {metrics.map((metric) => (
               <div key={metric.text} className="flex items-center gap-2 sm:gap-3">
-                <img src={metric.icon} alt="" className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12" />
-                <p className="font-exo text-[12px] font-bold leading-[1.1] text-white">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14">
+                  <img src={metric.icon} alt="" className="max-h-full max-w-full object-contain" />
+                </div>
+                <p className="font-exo text-[10px] font-bold leading-[1.1] text-white">
                   {metric.text.split('\n').map((line: string) => <span key={line}>{line}<br /></span>)}
                 </p>
               </div>
