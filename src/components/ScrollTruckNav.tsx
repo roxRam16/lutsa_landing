@@ -49,21 +49,14 @@ export function ScrollTruckNav() {
     if (!rail) return;
     const railRect = rail.getBoundingClientRect();
 
-    const stopEl = stopRefs.current[activeIndex];
-    if (stopEl) {
-      const stopRect = stopEl.getBoundingClientRect();
-      const bulletCenter = stopRect.top - railRect.top + BULLET_HEIGHT / 2;
-      // El camión avanza solo un poquito por cada bullet: arranca muy arriba
-      // y va bajando de a poco, en lugar de saltar al centro exacto de cada bullet.
-      // Calculamos la posición como un porcentaje del recorrido total,
-      // pero el camión solo cubre una fracción de ese recorrido para que avance poco.
-      const totalStops = stops.length - 1; // sin contar __fin__
-      const fractionPerStop = 0.85 / totalStops; // 85% del riel repartido en los stops
-      const startOffset = 140; // arranca más arriba en el primer stop
-      const railHeight = railRect.height;
-      const truckPos = startOffset + activeIndex * fractionPerStop * railHeight;
-      setTruckTop(`${truckPos}px`);
-    }
+    // El camión arranca desde muy arriba (cerca del tope del riel) y avanza
+    // solo un poquito por cada bullet. No salta al centro exacto de cada bullet.
+    const totalStops = stops.length - 1; // sin contar __fin__
+    const railHeight = railRect.height;
+    const usableHeight = railHeight - TRUCK_HEIGHT - 20; // dejar margen arriba y abajo
+    const stepSize = usableHeight / (totalStops - 1); // distancia entre cada parada
+    const truckPos = activeIndex * stepSize;
+    setTruckTop(`${truckPos}px`);
 
     updateLineBounds();
   }, [activeIndex, updateLineBounds]);

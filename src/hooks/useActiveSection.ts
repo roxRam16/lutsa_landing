@@ -4,29 +4,41 @@ export function useActiveSection(sectionIds: string[]): string {
   const [activeSection, setActiveSection] = useState(sectionIds[0] ?? 'servicios');
 
   useEffect(() => {
-    const sections = sectionIds.map((id: string) => document.getElementById(id)).filter(Boolean);
-    const observer = new IntersectionObserver(
-      (entries: IntersectionObserverEntry[]) => {
-        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]?.target.id) setActiveSection(visible[0].target.id);
-      },
-      { rootMargin: '-30% 0px -40% 0px', threshold: [0, 0.25, 0.5] },
-    );
-    sections.forEach((section: Element | null) => section && observer.observe(section));
-
-    const handleScroll = () => {
-      const scrollBottom = window.innerHeight + window.scrollY;
+    const handler = () => {
+      const scrollPos = window.scrollY + window.innerHeight * 0.4;
       const docHeight = document.documentElement.scrollHeight;
+      const scrollBottom = window.innerHeight + window.scrollY;
+
+      // Si llegamos al final de la página, activar la última sección
       if (scrollBottom >= docHeight - 80) {
         const lastId = sectionIds[sectionIds.length - 1];
-        if (lastId) setActiveSection(lastId);
+        if (lastId) {
+          setActiveSection(lastId);
+          return;
+        }
       }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
 
+      // Encontrar la sección cuya parte superior está más cerca por encima del punto de detección
+      let current = sectionIds[0];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (top <= scrollPos) {
+          current = id;
+        } else {
+          break;
+        }
+      }
+      setActiveSection(current);
+    };
+
+    handler();
+    window.addEventListener('scroll', handler, { passive: true });
+    window.addEventListener('resize', handler);
     return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handler);
+      window.removeEventListener('resize', handler);
     };
   }, [sectionIds]);
 
