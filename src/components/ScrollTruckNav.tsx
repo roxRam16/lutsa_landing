@@ -33,17 +33,16 @@ export function ScrollTruckNav() {
         style={{ width: `${NAV_WIDTH}px` }}
         aria-label="Navegación por kilómetros"
       >
-        {/* Carretera como fondo vertical: la imagen original es horizontal (1920x1080)
-            se rota 90° para que las líneas discontinuas queden verticales */}
-        <div
-          className="absolute left-1/2 top-1/2 bg-repeat-y"
-          style={{
-            backgroundImage: "url('/carretera.png')",
-            backgroundSize: 'cover',
-            width: '1080px',
-            height: '1920px',
-            transform: 'translate(-50%, -50%) rotate(90deg)',
-          }}
+        {/* Carretera vertical: la imagen original es horizontal (1920x1080).
+            Se rota 90° para que las líneas discontinuas queden verticales.
+            El img mide 100vh de ancho x 206px de alto antes de rotar;
+            tras la rotación ocupa 206px de ancho x 100vh de alto, llenando el riel. */}
+        <img
+          src="/carretera.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute left-1/2 top-1/2 h-[206px] w-[100vh] max-w-none object-cover"
+          style={{ transform: 'translate(-50%, -50%) rotate(90deg)' }}
         />
         {/* Carril derecho por donde avanza el camión */}
         <div className="absolute inset-y-0 right-0 w-[84px] bg-black/25" />
