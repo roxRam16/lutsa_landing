@@ -4,14 +4,14 @@ import { useScrollProgress } from '../hooks/useScrollProgress';
 const NAV_WIDTH = 206;
 
 const stops = [
-  { id: 'inicio', km: '—', label: 'Recorrido LUTSA' },
-  { id: 'quienes-somos', km: '10', label: 'Quiénes somos' },
-  { id: 'servicios', km: '20', label: 'Servicios' },
-  { id: 'industrias', km: '30', label: 'Industrias' },
-  { id: 'ecosistema', km: '40', label: 'Ecosistema de empresas' },
-  { id: 'esr', km: '50', label: 'ESR' },
-  { id: 'certificaciones', km: '60', label: 'Certificaciones' },
-  { id: 'contacto', km: '70', label: 'Cotización y contacto' },
+  { id: 'inicio', label: 'RECORRIDO\nLUTSA' },
+  { id: 'quienes-somos', label: '10 KM\nQUIENES\nSOMOS' },
+  { id: 'servicios', label: '20 KM\nSERVICIOS' },
+  { id: 'industrias', label: '30 KM\nINDUSTRIAS' },
+  { id: 'ecosistema', label: '40 KM\nECOSISTEMA\nDE EMPRESAS' },
+  { id: 'esr', label: '50 KM\nESR' },
+  { id: 'certificaciones', label: '60 KM\nCERTIFICACIONES' },
+  { id: 'contacto', label: '70 KM\nCOTIZACIÓN\nY CONTACTO' },
 ];
 
 export function ScrollTruckNav() {
@@ -24,7 +24,7 @@ export function ScrollTruckNav() {
       <nav className="fixed inset-x-3 bottom-3 z-50 flex items-center justify-between rounded-full border border-white/20 bg-[#0b145f]/95 px-3 py-2 shadow-2xl backdrop-blur-md lg:hidden" aria-label="Navegación rápida">
         {stops.slice(1).map((stop) => {
           const isActive = activeSection === stop.id;
-          return <a key={stop.id} href={`#${stop.id}`} className={`flex h-8 min-w-8 items-center justify-center rounded-full px-2 font-condensed text-xs font-bold transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`} aria-label={`${stop.km} kilómetros, ${stop.label}`}>{stop.km}</a>;
+          return <a key={stop.id} href={`#${stop.id}`} className={`flex h-8 min-w-8 items-center justify-center rounded-full px-2 font-condensed text-xs font-bold transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`} aria-label={stop.label.replace(/\n/g, ' ')}>{stop.label.split('\n')[0].replace(' KM', '')}</a>;
         })}
       </nav>
 
@@ -44,9 +44,6 @@ export function ScrollTruckNav() {
           }}
           aria-hidden="true"
         />
-        {/* Carril derecho por donde avanza el camión */}
-        <div className="absolute inset-y-0 right-0 w-[84px] bg-black/25" />
-
         {/* Contenido del riel */}
         <div className="relative flex h-full flex-col px-5 py-9" style={{ width: `${NAV_WIDTH}px` }}>
           {/* Línea vertical blanca sobre la carretera */}
@@ -60,13 +57,13 @@ export function ScrollTruckNav() {
                 <a
                   key={stop.id}
                   href={`#${stop.id}`}
-                  className="group relative flex items-center gap-3 text-left font-condensed text-[13px] font-bold uppercase leading-[1.05] tracking-tight text-white transition-colors hover:text-[#ff8a39]"
+                  className="group relative flex items-center gap-3 text-left font-condensed text-[12px] font-bold uppercase leading-[1.05] tracking-tight text-white transition-colors hover:text-[#ff8a39]"
                 >
                   <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 border-white bg-[#07120d] transition-all ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : 'group-hover:border-[#f0782d]'}`}>
                     {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </span>
                   <span className={isActive ? 'text-[#ff812f]' : 'text-white'}>
-                    {stop.km !== '—' && `${stop.km} KM `}{stop.label}
+                    {stop.label.split('\n').map((line: string) => <span key={line} className="block">{line}</span>)}
                   </span>
                 </a>
               );
@@ -83,8 +80,8 @@ export function ScrollTruckNav() {
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute right-[4px] z-20 h-[150px] w-[70px] object-contain transition-[top] duration-150 ease-out"
-            style={{ top: truckTop }}
+            className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain transition-[top] duration-150 ease-out"
+            style={{ top: truckTop, left: 'calc(66.1% - 35px)' }}
           />
         </div>
       </aside>
