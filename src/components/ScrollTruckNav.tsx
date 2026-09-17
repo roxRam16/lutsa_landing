@@ -37,10 +37,10 @@ export function ScrollTruckNav() {
             el resto del PNG es transparente. Se escala la zona útil al ancho
             del riel y se repite hacia abajo para cubrir toda la pantalla. */}
         <div
-          className="absolute inset-0 bg-left-top bg-repeat-y"
+          className="absolute inset-0 bg-left-top bg-no-repeat"
           style={{
             backgroundImage: "url('/carretera.png')",
-            backgroundSize: '852px 480px',
+            backgroundSize: '852px 100%',
           }}
           aria-hidden="true"
         />
