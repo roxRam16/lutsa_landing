@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 393.64 100">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #003184;
+      }
+
+      .cls-3 {
+        fill: #e97900;
+        font-family: HelveticaNeue-Bold, 'Helvetica Neue';
+        font-size: 25.97px;
+      }
+
+      .cls-3, .cls-2 {
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        font-family: HelveticaLTStd-BoldCond, 'HelveticaLTStd BoldCond';
+        font-size: 16.5px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: url(#Degradado_sin_nombre_129);
+      }
+
+      .cls-6 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 1.95px;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_129" data-name="Degradado sin nombre 129" x1="196.82" y1="1.12" x2="196.82" y2="113.77" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e28030"/>
+      <stop offset=".25" stop-color="#dd702e"/>
+      <stop offset=".71" stop-color="#d7572c"/>
+      <stop offset="1" stop-color="#d54f2c"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-5" d="M393.64,91.35c0,4.78-3.87,8.65-8.65,8.65H8.65c-4.77,0-8.65-3.87-8.65-8.65V8.65C0,3.87,3.87,0,8.65,0h376.34c4.77,0,8.65,3.87,8.65,8.65v82.7Z"/>
+  <path class="cls-6" d="M373.2,88.9H18.12c-5.51,0-9.98-4.29-9.98-9.57V18.39c0-5.28,4.48-9.57,9.98-9.57h355.07c5.51,0,9.99,4.29,9.99,9.57v60.93c0,5.28-4.48,9.57-9.99,9.57Z"/>
+  <g>
+    <path class="cls-4" d="M23.19,21h28.91c3.07,0,5.57,2.49,5.57,5.57v42.07c0,3.07-2.49,5.57-5.57,5.57h-28.91c-3.07,0-5.57-2.49-5.57-5.57V26.57c0-3.07,2.49-5.57,5.57-5.57Z"/>
+    <rect class="cls-1" x="19.67" y="42.44" width="35.94" height="29.71" rx="3.27" ry="3.27"/>
+    <text class="cls-2" transform="translate(26.54 37.9)"><tspan x="0" y="0">KM</tspan></text>
+    <text class="cls-3" transform="translate(23.2 66.54)"><tspan x="0" y="0">20</tspan></text>
+  </g>
+</svg>
