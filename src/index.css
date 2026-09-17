@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Roboto+Condensed:wght@700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-blanco: #ffffff;
+  --color-gris-claro: #dedede;
+  --color-gris-texto: #666666;
+  --color-naranja-start: #e66600;
+  --color-naranja-end: #d54f2c;
+  --color-azul-start: #2c3bfa;
+  --color-azul-end: #121874;
+  --font-exo: 'Exo 2', sans-serif;
+  --font-condensed: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  --shadow-glow: 0 0 24px rgba(230, 102, 0, 0.28);
+}
+
+:root {
+  font-family: 'Exo 2', sans-serif;
+  color: #fff;
+  background: #121874;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; overflow-x: hidden; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 3px solid #ffb26d; outline-offset: 3px; }
+
+@layer components {
+  .orange-gradient { background: linear-gradient(110deg, #e66600 0%, #d54f2c 100%); }
+  .blue-gradient { background: linear-gradient(135deg, #2c3bfa 0%, #121874 100%); }
+  .orange-underline { border-bottom: 2px solid #e66600; }
+}
