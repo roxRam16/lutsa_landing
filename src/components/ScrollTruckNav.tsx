@@ -90,7 +90,7 @@ export function ScrollTruckNav() {
         <div ref={railRef} className="relative flex h-full flex-col px-5 py-9" style={{ width: `${NAV_WIDTH}px` }}>
           {/* Línea vertical blanca sobre la carretera */}
           <div
-            className="absolute left-[25px] w-px bg-white/90"
+            className="absolute left-[28px] w-0.5 bg-white/90"
             style={lineBounds ? { top: `${lineBounds.top}px`, bottom: `${lineBounds.bottom}px` } : { top: '55px', bottom: '138px' }}
           />
 
@@ -124,7 +124,7 @@ export function ScrollTruckNav() {
             type="button"
             onClick={goNext}
             disabled={isLast}
-            className="mt-5 flex flex-col items-start gap-2 pl-[29px] text-left font-condensed text-[10px] font-medium leading-tight text-white transition-opacity hover:text-[#ff8a39] disabled:opacity-40"
+            className="mt-5 flex flex-col items-start gap-2 pl-[32px] text-left font-condensed text-[10px] font-medium leading-tight text-white transition-opacity hover:text-[#ff8a39] disabled:opacity-40"
             aria-label="Avanzar a la siguiente sección"
           >
             <span>Sigue<br />avanzando</span>
