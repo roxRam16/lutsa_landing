@@ -9,7 +9,8 @@ export function useScrollProgress(): number {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        setProgress(maxScroll > 0 ? window.scrollY / maxScroll : 0);
+        const raw = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+        setProgress(raw * 0.92);
       });
     };
     updateProgress();

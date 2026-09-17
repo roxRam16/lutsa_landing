@@ -1,5 +1,4 @@
 const sections = [
-  { id: 'quienes-somos', title: 'Quiénes somos', text: 'Experiencia, cercanía y capacidad para mover lo que tu negocio necesita.' },
   { id: 'industrias', title: 'Industrias', text: 'Soluciones para las cadenas de suministro que mantienen a México en movimiento.' },
   { id: 'ecosistema', title: 'Ecosistema de empresas', text: 'Conectamos talento, infraestructura y aliados estratégicos.' },
   { id: 'esr', title: 'ESR', text: 'Crecemos con responsabilidad y compromiso con nuestra comunidad.' },

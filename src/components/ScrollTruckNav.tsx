@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useScrollProgress } from '../hooks/useScrollProgress';
 
@@ -17,7 +18,16 @@ const stops = [
 export function ScrollTruckNav() {
   const progress = useScrollProgress();
   const activeSection = useActiveSection(stops.map((stop) => stop.id));
-  const truckTop = `calc(24px + ${progress * 86}%)`;
+  const truckTop = `calc(24px + ${progress * 80}%)`;
+
+  const goNext = useCallback(() => {
+    const currentIndex = stops.findIndex((s) => s.id === activeSection);
+    const nextIndex = currentIndex < stops.length - 1 ? currentIndex + 1 : currentIndex;
+    document.getElementById(stops[nextIndex].id)?.scrollIntoView({ behavior: 'smooth' });
+  }, [activeSection]);
+
+  const currentIndex = stops.findIndex((s) => s.id === activeSection);
+  const isLast = currentIndex >= stops.length - 1;
 
   return (
     <>
@@ -33,9 +43,6 @@ export function ScrollTruckNav() {
         style={{ width: `${NAV_WIDTH}px` }}
         aria-label="Navegación por kilómetros"
       >
-        {/* La carretera ya viene vertical en el primer bloque de la imagen;
-            el resto del PNG es transparente. Se escala la zona útil al ancho
-            del riel y se repite hacia abajo para cubrir toda la pantalla. */}
         <div
           className="absolute inset-0 bg-left-top bg-no-repeat"
           style={{
@@ -47,12 +54,12 @@ export function ScrollTruckNav() {
         {/* Contenido del riel */}
         <div className="relative flex h-full flex-col px-5 py-9" style={{ width: `${NAV_WIDTH}px` }}>
           {/* Línea vertical blanca sobre la carretera */}
-          <div className="absolute left-[25px] top-[47px] bottom-[118px] w-px bg-white/90" />
+          <div className="absolute left-[25px] top-[47px] bottom-[128px] w-px bg-white/90" />
 
           {/* Puntos KM */}
           <div className="flex flex-1 flex-col justify-between">
             {stops.map((stop) => {
-              const isActive = activeSection === stop.id || (stop.id === 'servicios' && activeSection === 'inicio');
+              const isActive = activeSection === stop.id;
               return (
                 <a
                   key={stop.id}
@@ -70,17 +77,27 @@ export function ScrollTruckNav() {
             })}
           </div>
 
-          {/* Indicador "Sigue avanzando" */}
-          <div className="mt-4 pl-10 text-center font-condensed text-sm font-bold leading-tight text-white">
-            Sigue<br />avanzando
-            <div className="mt-3 text-5xl leading-[.55] text-[#f06b2a]" aria-hidden="true">⌄<br />⌄</div>
-          </div>
+          {/* Indicador "Sigue avanzando" como botón */}
+          <button
+            type="button"
+            onClick={goNext}
+            disabled={isLast}
+            className="mt-4 flex flex-col items-center gap-2 pl-10 text-left font-condensed text-[9px] font-medium leading-tight text-white transition-opacity hover:text-[#ff8a39] disabled:opacity-40"
+            aria-label="Avanzar a la siguiente sección"
+          >
+            <span>Sigue<br />avanzando</span>
+            <img
+              src="/seccion01/svg/flecha_avanzando.svg"
+              alt=""
+              className="h-8 w-8 object-contain"
+            />
+          </button>
 
           {/* Camión que se desliza proporcional al scroll */}
           <img
             src="/camion.png"
             alt="Camión recorriendo el riel"
-            className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain transition-[top] duration-150 ease-out"
+            className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain transition-[top] duration-300 ease-out"
             style={{ top: truckTop, left: 'calc(66.1% - 35px)' }}
           />
         </div>
