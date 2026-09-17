@@ -12,17 +12,7 @@ export function HeroServicios() {
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo-prueba.png')" }} />
       <div className="absolute inset-0 bg-gradient-to-b from-[#101979]/60 via-[#101979]/10 to-transparent" />
 
-      <div className="relative z-10 flex flex-1 items-center px-5 pt-20 sm:px-10 sm:pt-24 lg:px-16 lg:pt-28 xl:px-20">
-        <div className="mx-auto w-full max-w-[1280px]">
-          <div className="max-w-[640px]">
-            <h1 className="font-exo text-[2.5rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f]">
-              Soluciones logísticas<br /><span className="text-[#e66600]">que impulsan tu negocio.</span>
-            </h1>
-            <p className="mt-5 max-w-[510px] font-exo text-[16px] font-semibold leading-[1.35] text-[#515151] sm:text-[16px] lg:text-[16px]">
-              Contamos con la infraestructura, experiencia y capacidad para ofrecerte servicios integrales de logística, transporte y comercio exterior.
-            </p>
-          </div>
-        </div>
+      <div className="relative z-10 flex flex-1 items-end px-5 pb-0 sm:px-10 lg:px-16 xl:px-20">
       </div>
 
       <div className="relative z-10 bg-gradient-to-r from-[#141c80]/95 via-[#132085]/90 to-[#11166d]/95 py-5 sm:py-6">
