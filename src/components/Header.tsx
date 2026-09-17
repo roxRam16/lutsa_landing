@@ -1,9 +1,24 @@
 type HeaderProps = { onContact: () => void };
 
+type Metric = {
+  icon: string;
+  value: string;
+  suffix?: string;
+  text: string;
+};
+
+const metrics: Metric[] = [
+  { icon: '/seccion01/svg/unidades.svg', value: '+70', text: 'unidades propias\nen operación.' },
+  { icon: '/seccion01/svg/colaboradores.svg', value: '+100', text: 'colaboradores\ncapacitados.' },
+  { icon: '/seccion01/svg/patio_almacen.svg', value: '3', suffix: ' ha', text: 'de patio y\nalmacén propio.' },
+  { icon: '/seccion01/svg/4km.svg', value: '4', suffix: ' km', text: 'del Puerto de\nVeracruz.' },
+  { icon: '/seccion01/svg/estacion_diesel.svg', value: '', text: 'Estación propia\nde diésel.' },
+];
+
 export function Header({ onContact }: HeaderProps) {
   return (
-    <header className="absolute inset-x-0 top-0 z-20 px-4 py-5 sm:px-8 lg:px-14 lg:py-8">
-      <div className="mx-auto max-w-[1280px]">
+    <header className="absolute inset-0 z-20 px-4 py-5 sm:px-8 lg:px-14 lg:py-8">
+      <div className="mx-auto flex h-full max-w-[1280px] flex-col">
         <div className="flex items-center justify-between gap-3">
           <a href="#inicio" className="flex h-auto w-auto items-center justify-center rounded-full bg-white px-1 py-0.5 shadow-lg transition-transform hover:scale-105" aria-label="LUTSA Transportes, ir a inicio">
             <img src="/seccion01/svg/btn_lutsa_superior.svg" alt="LUTSA Transportes" className="h-6 w-auto object-contain sm:h-8" />
@@ -25,6 +40,20 @@ export function Header({ onContact }: HeaderProps) {
           <p className="mt-3 max-w-[510px] font-exo text-[14px] font-semibold leading-[1.45] text-[#515151]">
             Contamos con la infraestructura, experiencia y capacidad para ofrecerte servicios integrales de logística, transporte y comercio exterior.
           </p>
+        </div>
+
+        <div className="mt-auto -mx-4 bg-gradient-to-r from-[#141c80]/95 via-[#132085]/90 to-[#11166d]/95 px-4 py-5 sm:-mx-8 sm:px-8 sm:py-6 lg:-mx-14 lg:px-14">
+          <div className="grid grid-cols-2 gap-y-5 sm:grid-cols-5 sm:gap-4">
+            {metrics.map((metric) => (
+              <div key={metric.text} className="flex items-center gap-2 sm:gap-3">
+                <img src={metric.icon} alt="" className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12" />
+                <p className="font-exo text-[1.5rem] font-bold leading-[1.05] text-white">
+                  <span className="text-[1.5rem] text-[#f0742d]">{metric.value}</span>{metric.suffix}<br />
+                  {metric.text.split('\n').map((line: string) => <span key={line}>{line}<br /></span>)}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </header>
