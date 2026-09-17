@@ -9,13 +9,13 @@ const metrics = [
 export function HeroServicios() {
   return (
     <section className="relative flex min-h-[560px] flex-col overflow-hidden bg-[#101979] sm:min-h-[640px] lg:min-h-[720px]">
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo_sin_carretera.webp')" }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-[#121874]/50" />
+      <div className="absolute inset-0 bg-contain bg-bottom bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo_sin_carretera.webp')" }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#101979]/80 via-[#101979]/20 to-transparent" />
 
       <div className="relative z-10 flex flex-1 items-center px-5 pt-24 sm:px-10 sm:pt-28 lg:px-16 lg:pt-32 xl:px-20">
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="max-w-[640px]">
-            <h1 className="font-exo text-[20px] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-[20px] lg:text-[20px]">
+            <h1 className="font-exo text-[2.5rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f]">
               Soluciones logísticas<br /><span className="text-[#e66600]">que impulsan tu negocio.</span>
             </h1>
             <p className="mt-5 max-w-[510px] font-exo text-[16px] font-semibold leading-[1.35] text-[#515151] sm:text-[16px] lg:text-[16px]">
