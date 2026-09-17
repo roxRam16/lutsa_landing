@@ -69,14 +69,14 @@ export function ScrollTruckNav() {
           className="absolute inset-0 bg-left-top bg-no-repeat"
           style={{
             backgroundImage: "url('/carretera.png')",
-            backgroundSize: '852px 100%',
+            backgroundSize: '100% 100%',
           }}
           aria-hidden="true"
         />
         {/* Contenido del riel */}
         <div ref={railRef} className="relative flex h-full flex-col px-5 py-9" style={{ width: `${NAV_WIDTH}px` }}>
           {/* Línea vertical blanca sobre la carretera */}
-          <div className="absolute left-[25px] top-[47px] bottom-[47px] w-px bg-white/90" />
+          <div className="absolute left-[25px] top-[55px] bottom-[128px] w-px bg-white/90" />
 
           {/* Puntos KM */}
           <div className="flex flex-1 flex-col justify-between">
@@ -124,7 +124,7 @@ export function ScrollTruckNav() {
             src="/camion.png"
             alt="Camión recorriendo el riel"
             className="pointer-events-none absolute z-20 h-[150px] w-[70px] object-contain transition-[top] duration-300 ease-out"
-            style={{ top: truckTop, left: 'calc(66.1% - 35px)' }}
+            style={{ top: truckTop, left: 'calc(50% - 35px)' }}
           />
         </div>
       </aside>
