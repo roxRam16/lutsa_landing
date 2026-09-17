@@ -113,7 +113,6 @@ export function ScrollTruckNav() {
             {stops.map((stop, index) => {
               const isActive = activeSection === stop.id;
               const isEmpty = stop.id === '__fin__';
-              const isFirstStop = index === 0;
               return (
                 <a
                   key={stop.id}
@@ -125,17 +124,9 @@ export function ScrollTruckNav() {
                     {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </span>
                   {!isEmpty && (
-                    isFirstStop ? (
-                      <img
-                        src="/seccion01/svg/btn_lutsa_superior.svg"
-                        alt="Recorrido LUTSA"
-                        className="h-auto w-[150px] object-contain"
-                      />
-                    ) : (
-                      <span className={isActive ? 'text-[#ff812f]' : 'text-white'}>
-                        {stop.label.split('\n').map((line: string) => <span key={line} className="block">{line}</span>)}
-                      </span>
-                    )
+                    <span className={isActive ? 'text-[#ff812f]' : 'text-white'}>
+                      {stop.label.split('\n').map((line: string) => <span key={line} className="block">{line}</span>)}
+                    </span>
                   )}
                 </a>
               );
