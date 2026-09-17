@@ -12,11 +12,11 @@ function App() {
   }, []);
 
   return (
-    <div id="inicio" className="min-h-screen bg-[#121874]">
+    <div className="min-h-screen bg-[#121874]">
       <ScrollTruckNav />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[206px]">
-        <div className="relative">
+        <div id="inicio" className="relative">
           <Header onContact={scrollToContact} />
           <HeroServicios />
         </div>

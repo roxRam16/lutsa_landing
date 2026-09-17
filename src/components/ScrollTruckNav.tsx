@@ -82,7 +82,7 @@ export function ScrollTruckNav() {
             type="button"
             onClick={goNext}
             disabled={isLast}
-            className="mt-4 flex flex-col items-center gap-2 pl-10 text-left font-condensed text-[9px] font-medium leading-tight text-white transition-opacity hover:text-[#ff8a39] disabled:opacity-40"
+            className="mt-4 flex flex-col items-start gap-2 text-left font-condensed text-[10px] font-medium leading-tight text-white transition-opacity hover:text-[#ff8a39] disabled:opacity-40"
             aria-label="Avanzar a la siguiente sección"
           >
             <span>Sigue<br />avanzando</span>

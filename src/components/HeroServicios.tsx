@@ -8,7 +8,7 @@ const metrics = [
 
 export function HeroServicios() {
   return (
-    <section id="servicios" className="relative min-h-[760px] overflow-hidden bg-[#101979] pt-28 sm:min-h-[840px] sm:pt-36 lg:min-h-[960px] lg:pt-40">
+    <section className="relative min-h-[760px] overflow-hidden bg-[#101979] pt-28 sm:min-h-[840px] sm:pt-36 lg:min-h-[960px] lg:pt-40">
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo_sin_carretera.webp')" }} />
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-[#121874]/50" />
       <div className="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-10 lg:px-16 xl:px-20">
