@@ -9,7 +9,7 @@ const metrics = [
 export function HeroServicios() {
   return (
     <section className="relative flex min-h-[560px] flex-col overflow-hidden bg-[#101979] sm:min-h-[640px] lg:min-h-[720px]">
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo-prueba.png')" }} />
+      <div className="absolute inset-0 bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo-prueba.png')", backgroundSize: '100% auto', backgroundPosition: 'top center' }} />
       <div className="absolute inset-0 bg-gradient-to-b from-[#101979]/60 via-[#101979]/10 to-transparent" />
 
       <div className="relative z-10 flex flex-1 items-end px-5 pb-0 sm:px-10 lg:px-16 xl:px-20">
