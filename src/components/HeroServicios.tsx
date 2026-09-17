@@ -12,7 +12,7 @@ export function HeroServicios() {
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo-prueba.png')" }} />
       <div className="absolute inset-0 bg-gradient-to-b from-[#101979]/60 via-[#101979]/10 to-transparent" />
 
-      <div className="relative z-10 flex flex-1 items-center px-5 pt-24 sm:px-10 sm:pt-28 lg:px-16 lg:pt-32 xl:px-20">
+      <div className="relative z-10 flex flex-1 items-center px-5 pt-20 sm:px-10 sm:pt-24 lg:px-16 lg:pt-28 xl:px-20">
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="max-w-[640px]">
             <h1 className="font-exo text-[2.5rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f]">
