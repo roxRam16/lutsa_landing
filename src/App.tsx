@@ -17,7 +17,7 @@ function App() {
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
         <div id="inicio" className="relative min-h-[500px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
-          <div className="relative z-10 px-5 pt-20 sm:px-8 lg:px-10 lg:pt-24">
+          <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:px-10 lg:pt-24">
             <div className="max-w-[360px]">
               <p className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-[2.4rem]">
                 <span className="block">Siempre en</span>
@@ -33,6 +33,7 @@ function App() {
                 <span aria-hidden="true" className="text-lg leading-none">▶</span>
               </a>
             </div>
+            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[220px] object-contain sm:w-[260px] lg:w-[300px]" />
           </div>
         </div>
         <section id="quienes-somos" className="relative flex min-h-[360px] items-center overflow-hidden bg-[#0c145f] px-5 py-20">
