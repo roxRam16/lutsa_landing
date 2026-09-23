@@ -5,6 +5,12 @@ import { PlaceholderSections } from './components/PlaceholderSections';
 import { ScrollTruckNav } from './components/ScrollTruckNav';
 import { ServiciosSection } from './components/ServiciosSection';
 
+const highlights = [
+  { icon: '/seccion00/svg/icono_conectamos.svg', text: 'Conectamos puertos, empresas y mercados.' },
+  { icon: '/seccion00/svg/icono_segur.svg', text: 'Seguridad, experiencia y compromiso.' },
+  { icon: '/seccion00/svg/icono_veracruz.svg', text: 'Veracruz, el punto que nos mueve.' },
+];
+
 function App() {
   const scrollToContact = useCallback((): void => {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
@@ -34,6 +40,15 @@ function App() {
               </a>
             </div>
             <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[220px] object-contain sm:w-[260px] lg:w-[300px]" />
+          </div>
+          <div className="relative z-10 mx-auto mt-auto grid w-full max-w-4xl grid-cols-1 divide-y divide-[#e66600]/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {highlights.map((h) => (
+              <div key={h.text} className="relative flex min-h-[160px] flex-col items-center justify-center gap-4 px-6 py-6">
+                <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-px w-24 -translate-x-1/2 -translate-y-1/2 bg-[#f0782d] opacity-60 blur-[4px] sm:left-0 sm:top-0 sm:h-full sm:w-px sm:translate-x-0 sm:translate-y-0" />
+                <img src={h.icon} alt="" className="relative h-14 w-14 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
+                <p className="relative max-w-[200px] text-center font-exo text-sm font-semibold leading-[1.25] text-white sm:text-base">{h.text}</p>
+              </div>
+            ))}
           </div>
         </div>
         <section id="quienes-somos" className="relative flex min-h-[360px] items-center overflow-hidden bg-[#0c145f] px-5 py-20">
