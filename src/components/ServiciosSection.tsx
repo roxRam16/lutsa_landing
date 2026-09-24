@@ -56,7 +56,7 @@ function FlowColumn({ title, steps }: { title: string; steps: string[] }) {
 export function ServiciosSection() {
   return (
     <section id="servicios" className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-no-repeat" style={{ backgroundImage: "url('/seccion01/principal_xl.png')", backgroundSize: '100% auto', backgroundPosition: 'top center' }} />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo-difuminado.png')" }} />
       <div className="relative z-10 px-4 pt-20 pb-10 sm:px-8 lg:px-10 lg:pt-24 lg:pb-12">
         <div className="mx-auto max-w-[1280px]">
           <div className="mt-4 max-w-[640px]">
