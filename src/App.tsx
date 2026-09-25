@@ -23,8 +23,8 @@ function App() {
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
         <div id="inicio" className="relative flex min-h-screen flex-col bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
-          <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:flex-col lg:items-center lg:gap-6 lg:px-10 lg:pt-24">
-            <div className="max-w-[480px] lg:self-start">
+          <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:px-10 lg:pt-24">
+            <div className="max-w-[480px]">
               <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-[1.8rem] lg:text-[2rem]">
                 <span className="block">Siempre en</span>
                 <span className="block">movimiento,</span>
@@ -39,13 +39,13 @@ function App() {
                 <span aria-hidden="true" className="text-lg leading-none">▶</span>
               </a>
             </div>
-            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:mt-0 lg:w-[280px]" />
+            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:w-[280px]" />
           </div>
           <div className="hero-highlights relative z-10 ml-auto mt-auto mb-4 grid w-full max-w-md grid-cols-3 lg:mx-auto lg:max-w-[620px]">
             {highlights.map((h) => (
-              <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[136px] flex-col items-center justify-start gap-3 px-3 py-4 lg:min-h-[154px]">
-                <img src={h.icon} alt="" className="relative h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-12 lg:w-12" />
-                <p className="relative max-w-[130px] text-center font-exo text-[0.72rem] font-semibold leading-[1.12] text-white sm:text-[0.78rem] lg:text-[0.85rem]">
+              <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[110px] flex-col items-center justify-start gap-2 px-1.5 py-2 lg:min-h-[126px]">
+                <img src={h.icon} alt="" className="relative h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-11 lg:w-11" />
+                <p className="relative max-w-[120px] text-center font-exo text-[0.7rem] font-semibold leading-[1.1] text-white sm:text-[0.76rem] lg:text-[0.82rem]">
                   {h.lines.map((line) => <span key={line} className="block">{line}</span>)}
                 </p>
               </div>
