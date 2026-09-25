@@ -45,7 +45,7 @@ function App() {
               <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:mt-0 lg:w-[280px]" />
             </div>
 
-            <div className="hero-highlights grid grid-cols-3 gap-2 self-end lg:col-span-3 lg:col-start-7 lg:row-start-3 lg:grid-cols-3 lg:gap-2 lg:self-end lg:pb-2">
+            <div className="hero-highlights grid grid-cols-3 gap-2 self-end lg:col-span-3 lg:col-start-8 lg:row-start-3 lg:grid-cols-3 lg:gap-2 lg:self-end lg:pb-2">
               {highlights.map((h) => (
                 <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[110px] flex-col items-center justify-center gap-1.5 px-2 py-1.5 lg:min-h-[110px] lg:flex-col lg:items-center lg:justify-center lg:gap-2 lg:px-3 lg:py-3">
                   <img src={h.icon} alt="" className="relative h-10 w-10 shrink-0 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-14 lg:w-14" />
