@@ -22,14 +22,12 @@ function App() {
       <Header onContact={scrollToContact} />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
-        <div id="inicio" className="relative min-h-[500px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
+        <div id="inicio" className="relative flex min-h-[600px] flex-col bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
           <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:px-10 lg:pt-24">
-            <div className="max-w-[360px]">
-              <p className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-[2.4rem]">
-                <span className="block">Siempre en</span>
-                <span className="block">movimiento,</span>
-                <span className="block text-[#e66600]">conectando</span>
-                <span className="block text-[#e66600]">posibilidades.</span>
+            <div className="max-w-[480px]">
+              <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-[1.8rem] lg:text-[2rem]">
+                <span className="block">Siempre en movimiento,</span>
+                <span className="block text-[#e66600]">conectando posibilidades.</span>
               </p>
               <p className="mt-5 font-exo text-sm font-semibold leading-[1.35] text-[#515151] sm:text-base">
                 Soluciones logísticas integrales<br />que impulsan tu negocio más lejos.
@@ -39,14 +37,13 @@ function App() {
                 <span aria-hidden="true" className="text-lg leading-none">▶</span>
               </a>
             </div>
-            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[220px] object-contain sm:w-[260px] lg:w-[300px]" />
+            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[100px] object-contain sm:w-[120px] lg:w-[140px]" />
           </div>
-          <div className="relative z-10 mx-auto mt-auto grid w-full max-w-4xl grid-cols-1 divide-y divide-[#e66600]/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div className="relative z-10 ml-auto mt-auto mb-4 grid w-full max-w-md grid-cols-3 divide-x divide-[#e66600]/70">
             {highlights.map((h) => (
-              <div key={h.text} className="relative flex min-h-[160px] flex-col items-center justify-center gap-4 px-6 py-6">
-                <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-px w-24 -translate-x-1/2 -translate-y-1/2 bg-[#f0782d] opacity-60 blur-[4px] sm:left-0 sm:top-0 sm:h-full sm:w-px sm:translate-x-0 sm:translate-y-0" />
-                <img src={h.icon} alt="" className="relative h-14 w-14 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
-                <p className="relative max-w-[200px] text-center font-exo text-sm font-semibold leading-[1.25] text-white sm:text-base">{h.text}</p>
+              <div key={h.text} className="relative flex flex-col items-center justify-center gap-2 px-3 py-4">
+                <img src={h.icon} alt="" className="relative h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
+                <p className="relative max-w-[110px] text-center font-exo text-[0.65rem] font-semibold leading-[1.2] text-white">{h.text}</p>
               </div>
             ))}
           </div>

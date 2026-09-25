@@ -18,7 +18,7 @@
 }
 
 @layer components {
-  .orange-gradient { background: linear-gradient(110deg, #e66600 0%, #d54f2c 100%); }
+  .orange-gradient { background: linear-gradient(90deg, #ed8127 0%, #df4d29 100%); }
   .blue-gradient { background: linear-gradient(135deg, #2c3bfa 0%, #121874 100%); }
   .orange-underline { border-bottom: 2px solid #e66600; }
 }
