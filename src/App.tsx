@@ -6,9 +6,9 @@ import { ScrollTruckNav } from './components/ScrollTruckNav';
 import { ServiciosSection } from './components/ServiciosSection';
 
 const highlights = [
-  { icon: '/seccion00/svg/icono_conectamos.svg', text: 'Conectamos puertos, empresas y mercados.' },
-  { icon: '/seccion00/svg/icono_segur.svg', text: 'Seguridad, experiencia y compromiso.' },
-  { icon: '/seccion00/svg/icono_veracruz.svg', text: 'Veracruz, el punto que nos mueve.' },
+  { icon: '/seccion00/svg/icono_conectamos.svg', lines: ['Conectamos', 'puertos,', 'empresas y', 'mercados.'] },
+  { icon: '/seccion00/svg/icono_segur.svg', lines: ['Seguridad,', 'experiencia y', 'compromiso.'] },
+  { icon: '/seccion00/svg/icono_veracruz.svg', lines: ['Veracruz, el', 'punto que nos', 'mueve.'] },
 ];
 
 function App() {
@@ -23,8 +23,8 @@ function App() {
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
         <div id="inicio" className="relative flex min-h-screen flex-col bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
-          <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:px-10 lg:pt-24">
-            <div className="max-w-[480px]">
+          <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:flex-col lg:items-center lg:gap-6 lg:px-10 lg:pt-24">
+            <div className="max-w-[480px] lg:self-start">
               <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-[1.8rem] lg:text-[2rem]">
                 <span className="block">Siempre en</span>
                 <span className="block">movimiento,</span>
@@ -39,13 +39,15 @@ function App() {
                 <span aria-hidden="true" className="text-lg leading-none">▶</span>
               </a>
             </div>
-            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:w-[280px]" />
+            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:mt-0 lg:w-[280px]" />
           </div>
-          <div className="relative z-10 ml-auto mt-auto mb-4 grid w-full max-w-md grid-cols-3 divide-x divide-[#e66600]/70">
+          <div className="hero-highlights relative z-10 ml-auto mt-auto mb-4 grid w-full max-w-md grid-cols-3 lg:mx-auto lg:max-w-[620px]">
             {highlights.map((h) => (
-              <div key={h.text} className="relative flex flex-col items-center justify-center gap-2 px-3 py-4">
-                <img src={h.icon} alt="" className="relative h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
-                <p className="relative max-w-[110px] text-center font-exo text-[0.65rem] font-semibold leading-[1.2] text-white">{h.text}</p>
+              <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[136px] flex-col items-center justify-start gap-3 px-3 py-4 lg:min-h-[154px]">
+                <img src={h.icon} alt="" className="relative h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-12 lg:w-12" />
+                <p className="relative max-w-[130px] text-center font-exo text-[0.72rem] font-semibold leading-[1.12] text-white sm:text-[0.78rem] lg:text-[0.85rem]">
+                  {h.lines.map((line) => <span key={line} className="block">{line}</span>)}
+                </p>
               </div>
             ))}
           </div>
