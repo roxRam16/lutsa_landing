@@ -25,7 +25,7 @@ function App() {
         <div id="inicio" className="relative min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
           <div className="relative z-10 grid grid-cols-1 gap-6 px-5 pt-20 pb-4 sm:px-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr_auto] lg:gap-4 lg:px-10 lg:pt-24 lg:pb-6 lg:min-h-screen">
             {/* --- Fila 1: Texto (cols 1-4) + Logo (cols 5-8) + Letreros (cols 9-12) --- */}
-            <div className="max-w-[480px] lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:self-center">
+            <div className="max-w-[480px] lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:self-start">
               <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-[1.8rem] lg:text-[2rem]">
                 <span className="block">Siempre en</span>
                 <span className="block">movimiento,</span>
@@ -41,7 +41,7 @@ function App() {
               </a>
             </div>
 
-            <div className="flex items-start justify-center lg:col-span-4 lg:col-start-5 lg:row-start-1 lg:self-center">
+            <div className="flex items-start justify-center lg:col-span-4 lg:col-start-5 lg:row-start-1 lg:self-start lg:pt-1">
               <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:mt-0 lg:w-[280px]" />
             </div>
 
