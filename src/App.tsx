@@ -45,11 +45,11 @@ function App() {
               <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:mt-0 lg:w-[280px]" />
             </div>
 
-            <div className="hero-highlights grid grid-cols-3 gap-2 self-end lg:col-span-4 lg:col-start-9 lg:row-start-1 lg:grid-cols-1 lg:gap-3 lg:self-center">
+            <div className="hero-highlights grid grid-cols-3 gap-2 self-end lg:col-span-4 lg:col-start-9 lg:row-start-1 lg:grid-cols-3 lg:gap-1 lg:self-center">
               {highlights.map((h) => (
-                <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[110px] flex-col items-center justify-start gap-2 px-1.5 py-2 lg:min-h-[126px] lg:flex-row lg:items-center lg:gap-4 lg:px-3 lg:py-3">
-                  <img src={h.icon} alt="" className="relative h-9 w-9 shrink-0 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-11 lg:w-11" />
-                  <p className="relative max-w-[120px] text-center font-exo text-[0.7rem] font-semibold leading-[1.1] text-white sm:text-[0.76rem] lg:max-w-none lg:text-left lg:text-[0.85rem]">
+                <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[110px] flex-col items-center justify-start gap-1 px-1 py-1 lg:min-h-[100px] lg:flex-col lg:items-center lg:gap-1.5 lg:px-1 lg:py-1">
+                  <img src={h.icon} alt="" className="relative h-8 w-8 shrink-0 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-10 lg:w-10" />
+                  <p className="relative max-w-[120px] text-center font-exo text-[0.68rem] font-semibold leading-[1.08] text-white sm:text-[0.74rem] lg:max-w-[110px] lg:text-center lg:text-[0.78rem]">
                     {h.lines.map((line) => <span key={line} className="block">{line}</span>)}
                   </p>
                 </div>
