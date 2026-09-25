@@ -39,7 +39,7 @@ function App() {
                 <span aria-hidden="true" className="text-lg leading-none">▶</span>
               </a>
             </div>
-            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[100px] object-contain sm:w-[120px] lg:w-[140px]" />
+            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:w-[280px]" />
           </div>
           <div className="relative z-10 ml-auto mt-auto mb-4 grid w-full max-w-md grid-cols-3 divide-x divide-[#e66600]/70">
             {highlights.map((h) => (
