@@ -42,8 +42,8 @@ function App() {
             <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:w-[280px]" />
           </div>
           <div className="hero-highlights relative z-10 ml-auto mt-auto mb-4 grid w-full max-w-md grid-cols-3 lg:mx-auto lg:max-w-[620px]">
-            {highlights.map((h) => (
-              <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[110px] flex-col items-center justify-start gap-2 px-1.5 py-2 lg:min-h-[126px]">
+            {highlights.map((h, index) => (
+              <div key={h.lines.join('-')} className={`hero-highlight relative flex min-h-[110px] flex-col items-center justify-start gap-2 px-1.5 py-2 lg:min-h-[126px] ${index === 1 ? 'security-highlight gap-1 px-0 py-1 lg:min-h-[112px] lg:translate-x-2 lg:-translate-y-1' : ''}`}>
                 <img src={h.icon} alt="" className="relative h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-11 lg:w-11" />
                 <p className="relative max-w-[120px] text-center font-exo text-[0.7rem] font-semibold leading-[1.1] text-white sm:text-[0.76rem] lg:text-[0.82rem]">
                   {h.lines.map((line) => <span key={line} className="block">{line}</span>)}
