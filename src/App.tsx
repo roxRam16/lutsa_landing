@@ -22,7 +22,7 @@ function App() {
       <Header onContact={scrollToContact} />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
-        <div id="inicio" className="relative flex min-h-[600px] flex-col bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
+        <div id="inicio" className="relative flex min-h-screen flex-col bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
           <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:px-10 lg:pt-24">
             <div className="max-w-[480px]">
               <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-[1.8rem] lg:text-[2rem]">
