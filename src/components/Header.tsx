@@ -4,7 +4,7 @@ export function Header({ onContact }: HeaderProps) {
   return (
     <div className="fixed inset-x-0 top-0 z-50 lg:left-[260px]">
       <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-8 lg:px-10">
-        <a href="#inicio" className="flex h-9 items-center justify-center gap-2 rounded-lg bg-white px-8 py-0.5 shadow-[0_5px_8px_rgba(20,33,110,0.45)] transition-colors hover:bg-[#f0f3ff]" aria-label="LUTSA Transportes, ir a inicio">
+        <a href="#inicio" className="flex h-9 items-center justify-center gap-2 rounded-lg bg-white px-12 py-0 shadow-[0_8px_16px_rgba(20,33,110,0.65)] transition-colors hover:bg-[#f0f3ff]" aria-label="LUTSA Transportes, ir a inicio">
           <img src="/seccion01/svg/logo-lutsa.svg" alt="LUTSA Transportes" className="h-5 w-auto object-contain" />
         </a>
         <div className="flex items-center gap-2 sm:gap-4">
