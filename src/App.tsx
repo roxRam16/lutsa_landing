@@ -26,8 +26,10 @@ function App() {
           <div className="relative z-10 flex flex-col gap-8 px-5 pt-20 sm:flex-row sm:items-start sm:gap-10 sm:px-8 lg:px-10 lg:pt-24">
             <div className="max-w-[480px]">
               <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-[1.8rem] lg:text-[2rem]">
-                <span className="block">Siempre en movimiento,</span>
-                <span className="block text-[#e66600]">conectando posibilidades.</span>
+                <span className="block">Siempre en</span>
+                <span className="block">movimiento,</span>
+                <span className="block text-[#e66600]">conectando</span>
+                <span className="block text-[#e66600]">posibilidades.</span>
               </p>
               <p className="mt-5 font-exo text-sm font-semibold leading-[1.35] text-[#515151] sm:text-base">
                 Soluciones logísticas integrales<br />que impulsan tu negocio más lejos.
