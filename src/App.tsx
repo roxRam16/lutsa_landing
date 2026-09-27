@@ -59,6 +59,9 @@ function App() {
         </div>
         <section id="quienes-somos" className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-5 py-16 sm:px-8 lg:min-h-[900px] lg:px-10 lg:py-20" style={{ backgroundImage: "url('/seccion02/somos.png')" }}>
           <div className="absolute inset-0 bg-black/40" />
+          <div className="relative z-10 mb-6 flex justify-center lg:mb-10">
+            <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="w-[180px] object-contain sm:w-[220px] lg:w-[260px]" />
+          </div>
           <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-8">
             <div className="lg:col-span-1 lg:pt-1">
               <p className="font-exo text-3xl font-bold uppercase leading-[.95] text-white sm:text-4xl lg:text-[2.4rem]">Quiénes<br /><span className="text-[#f47621]">somos</span></p>
