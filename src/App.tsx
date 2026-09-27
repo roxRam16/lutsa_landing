@@ -63,18 +63,18 @@ function App() {
           </div>
           <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-8">
             <div className="lg:col-span-3 lg:pt-1">
-              <p className="font-exo text-3xl font-bold uppercase leading-[.95] text-white sm:text-4xl lg:text-[2.4rem]">Quiénes<br /><span className="text-[#f47621]">somos</span></p>
+              <p className="font-exo text-[1.75rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-white sm:text-[2rem] lg:text-[2rem]">Quiénes<br /><span className="text-[#f47621]">somos</span></p>
             </div>
             <div className="lg:col-span-6 lg:col-start-4 lg:pt-3">
-              <p className="max-w-[520px] font-exo text-sm font-semibold leading-[1.45] text-white sm:text-base lg:text-[1.05rem]">Somos una empresa <span className="text-[#f47621]">100% mexicana</span> con más de 10 años de experiencia, dedicada a ofrecer soluciones logísticas integrales que impulsan el crecimiento de nuestros clientes.</p>
+              <p className="max-w-[520px] font-exo text-[13px] font-semibold leading-[1.45] text-white sm:text-[14px] lg:text-[14px]">Somos una empresa <span className="text-[#f47621]">100% mexicana</span> con más de 10 años de experiencia, dedicada a ofrecer soluciones logísticas integrales que impulsan el crecimiento de nuestros clientes.</p>
             </div>
             <div className="lg:col-span-3 lg:col-start-10 lg:pt-3">
-              <p className="font-exo text-xl font-bold uppercase leading-[1.05] text-white sm:text-2xl lg:text-[1.45rem]">Conectamos destinos,<br /><span className="text-[#f47621]">impulsamos negocios.</span></p>
+              <p className="font-exo text-[14px] font-bold uppercase leading-[1.05] text-white sm:text-[15px] lg:text-[15px]">Conectamos destinos,<br /><span className="text-[#f47621]">impulsamos negocios.</span></p>
             </div>
 
             <div className="border-t border-[#f47621] pt-5 lg:col-span-3 lg:row-start-2 lg:pt-5">
-              <p className="font-exo text-base font-bold uppercase leading-[1.05] text-[#f47621]">Nuestra gente,<br /><span className="text-white">nuestro motor.</span></p>
-              <p className="mt-4 font-exo text-xs font-medium leading-[1.45] text-white sm:text-sm">Contamos con un equipo comprometido y áreas especializadas que garantizan un servicio de excelencia.</p>
+              <p className="font-exo text-[12px] font-bold uppercase leading-[1.05] text-[#f47621]">Nuestra gente,<br /><span className="text-white">nuestro motor.</span></p>
+              <p className="mt-4 font-exo text-[11px] font-medium leading-[1.45] text-white sm:text-[12px]">Contamos con un equipo comprometido y áreas especializadas que garantizan un servicio de excelencia.</p>
             </div>
             <div className="border-t border-[#f47621] pt-5 lg:col-span-9 lg:col-start-4 lg:row-start-2 lg:pt-5">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -86,8 +86,8 @@ function App() {
                 ].map(([icon, title, text]) => (
                   <article key={title} className="flex min-h-[150px] flex-col items-center justify-center rounded-2xl border border-[#1b8eff] bg-[#18258f]/90 px-4 py-5 text-center shadow-[0_0_18px_rgba(0,126,255,.85)] transition-transform hover:-translate-y-1">
                     <img src={`/seccion01/svg/${icon}`} alt="" className="mb-2 h-9 w-9 object-contain" />
-                    <h3 className="font-exo text-sm font-bold uppercase text-[#f47621]">{title}</h3>
-                    <p className="mt-1 max-w-[150px] font-exo text-xs leading-[1.25] text-white">{text}</p>
+                    <h3 className="font-exo text-[11px] font-bold uppercase text-[#f47621]">{title}</h3>
+                    <p className="mt-1 max-w-[150px] font-exo text-[10px] leading-[1.25] text-white">{text}</p>
                   </article>
                 ))}
               </div>
@@ -103,7 +103,7 @@ function App() {
                 ].map(([icon, title, text]) => (
                   <div key={title} className="flex items-center gap-3 border-white/40 px-4 py-2 lg:border-r last:lg:border-r-0">
                     <img src={`/seccion01/svg/${icon}`} alt="" className="h-9 w-9 shrink-0 object-contain" />
-                    <div><p className="font-exo text-sm font-bold uppercase leading-[1.05] text-[#f47621]">{title}</p><p className="mt-1 font-exo text-xs text-white">{text}</p></div>
+                    <div><p className="font-exo text-[11px] font-bold uppercase leading-[1.05] text-[#f47621]">{title}</p><p className="mt-1 font-exo text-[10px] text-white">{text}</p></div>
                   </div>
                 ))}
               </div>
