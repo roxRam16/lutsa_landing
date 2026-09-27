@@ -57,12 +57,11 @@ function App() {
             </div>
           </div>
         </div>
-        <section id="quienes-somos" className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-5 py-16 sm:px-8 lg:px-10 lg:py-20" style={{ backgroundImage: "url('/seccion02/somos.png')" }}>
-          <div className="absolute inset-0 z-0 bg-black/40" />
-          <div className="relative z-20 mb-6 flex justify-center lg:mb-10">
+        <section id="quienes-somos" className="relative overflow-hidden bg-[#2937f5] bg-[length:100%_auto] bg-top bg-no-repeat px-5 pb-16 pt-[430px] sm:px-8 sm:pt-[470px] lg:px-10 lg:pb-20 lg:pt-[520px]" style={{ backgroundImage: "url('/seccion02/somos.png')" }}>
+          <div className="absolute left-0 right-0 top-0 z-20 flex justify-center pt-24 sm:pt-28 lg:pt-32">
             <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="w-[180px] object-contain sm:w-[220px] lg:w-[260px]" />
           </div>
-          <div className="relative z-20 mx-auto grid max-w-[1440px] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-8">
+          <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-8">
             <div className="lg:col-span-1 lg:pt-1">
               <p className="font-exo text-3xl font-bold uppercase leading-[.95] text-white sm:text-4xl lg:text-[2.4rem]">Quiénes<br /><span className="text-[#f47621]">somos</span></p>
             </div>
