@@ -57,12 +57,55 @@ function App() {
             </div>
           </div>
         </div>
-        <section id="quienes-somos" className="relative flex min-h-[360px] items-center overflow-hidden bg-cover bg-center bg-no-repeat px-5 py-20" style={{ backgroundImage: "url('/seccion02/somos.png')" }}>
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="relative z-10 max-w-2xl">
-            <p className="font-condensed text-sm font-bold uppercase tracking-[.2em] text-[#f0782d]">LUTSA / 01</p>
-            <h2 className="mt-3 font-exo text-4xl font-bold uppercase text-white sm:text-6xl">Quiénes somos</h2>
-            <p className="mt-5 max-w-lg font-exo text-lg leading-relaxed text-white/80 sm:text-2xl">Experiencia, cercanía y capacidad para mover lo que tu negocio necesita.</p>
+        <section id="quienes-somos" className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-5 py-16 sm:px-8 lg:min-h-[900px] lg:px-10 lg:py-20" style={{ backgroundImage: "url('/seccion02/somos.png')" }}>
+          <div className="absolute inset-0 bg-[#101b91]/10" />
+          <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-8">
+            <div className="lg:col-span-1 lg:pt-1">
+              <p className="font-exo text-3xl font-bold uppercase leading-[.95] text-white sm:text-4xl lg:text-[2.4rem]">Quiénes<br /><span className="text-[#f47621]">somos</span></p>
+            </div>
+            <div className="lg:col-span-8 lg:col-start-2 lg:pt-3">
+              <p className="max-w-[520px] font-exo text-sm font-semibold leading-[1.45] text-white sm:text-base lg:text-[1.05rem]">Somos una empresa <span className="text-[#f47621]">100% mexicana</span> con más de 10 años de experiencia, dedicada a ofrecer soluciones logísticas integrales que impulsan el crecimiento de nuestros clientes.</p>
+            </div>
+            <div className="lg:col-span-3 lg:col-start-10 lg:pt-3">
+              <p className="font-exo text-xl font-bold uppercase leading-[1.05] text-white sm:text-2xl lg:text-[1.45rem]">Conectamos destinos,<br /><span className="text-[#f47621]">impulsamos negocios.</span></p>
+            </div>
+
+            <div className="border-t border-[#f47621] pt-5 lg:col-span-1 lg:row-start-2 lg:pt-5">
+              <p className="font-exo text-base font-bold uppercase leading-[1.05] text-[#f47621]">Nuestra gente,<br /><span className="text-white">nuestro motor.</span></p>
+              <p className="mt-4 font-exo text-xs font-medium leading-[1.45] text-white sm:text-sm">Contamos con un equipo comprometido y áreas especializadas que garantizan un servicio de excelencia.</p>
+            </div>
+            <div className="border-t border-[#f47621] pt-5 lg:col-span-11 lg:col-start-2 lg:row-start-2 lg:pt-5">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  ['colaboradores.svg', 'Calidad', 'Quejas y sugerencias.'],
+                  ['unidades.svg', 'Capital humano', 'Talento que impulsa nuestro camino.'],
+                  ['estacion_diesel.svg', 'Monitoreo', 'Seguridad y control en tiempo real.'],
+                  ['btn_naranja.svg', 'Marketing', 'Estrategia, comunicación y crecimiento.'],
+                ].map(([icon, title, text]) => (
+                  <article key={title} className="flex min-h-[150px] flex-col items-center justify-center rounded-2xl border border-[#1b8eff] bg-[#18258f]/90 px-4 py-5 text-center shadow-[0_0_18px_rgba(0,126,255,.85)] transition-transform hover:-translate-y-1">
+                    <img src={`/seccion01/svg/${icon}`} alt="" className="mb-2 h-9 w-9 object-contain" />
+                    <h3 className="font-exo text-sm font-bold uppercase text-[#f47621]">{title}</h3>
+                    <p className="mt-1 max-w-[150px] font-exo text-xs leading-[1.25] text-white">{text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-12 lg:row-start-3">
+              <div className="grid grid-cols-1 gap-3 rounded-3xl border border-[#f47621] bg-[#1a2aa0]/75 p-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:p-2">
+                {[
+                  ['contacto.svg', '¿Necesitas atención?', 'Nuestro equipo está listo para ayudarte.'],
+                  ['flecha_avanzando.svg', '229 989 0000', 'Atención a Clientes'],
+                  ['usa.svg', 'Escríbenos', 'por WhatsApp'],
+                  ['btn_naranja.svg', 'Contáctanos', 'Estamos para ayudarte.'],
+                ].map(([icon, title, text]) => (
+                  <div key={title} className="flex items-center gap-3 border-white/40 px-4 py-2 lg:border-r last:lg:border-r-0">
+                    <img src={`/seccion01/svg/${icon}`} alt="" className="h-9 w-9 shrink-0 object-contain" />
+                    <div><p className="font-exo text-sm font-bold uppercase leading-[1.05] text-[#f47621]">{title}</p><p className="mt-1 font-exo text-xs text-white">{text}</p></div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
         <ServiciosSection />
