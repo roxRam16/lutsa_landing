@@ -62,21 +62,21 @@ function App() {
             <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="w-[180px] object-contain sm:w-[220px] lg:w-[260px]" />
           </div>
           <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-8">
-            <div className="lg:col-span-1 lg:pt-1">
+            <div className="lg:col-span-2 lg:pt-1">
               <p className="font-exo text-3xl font-bold uppercase leading-[.95] text-white sm:text-4xl lg:text-[2.4rem]">Quiénes<br /><span className="text-[#f47621]">somos</span></p>
             </div>
-            <div className="lg:col-span-8 lg:col-start-2 lg:pt-3">
+            <div className="lg:col-span-7 lg:col-start-3 lg:pt-3">
               <p className="max-w-[520px] font-exo text-sm font-semibold leading-[1.45] text-white sm:text-base lg:text-[1.05rem]">Somos una empresa <span className="text-[#f47621]">100% mexicana</span> con más de 10 años de experiencia, dedicada a ofrecer soluciones logísticas integrales que impulsan el crecimiento de nuestros clientes.</p>
             </div>
             <div className="lg:col-span-3 lg:col-start-10 lg:pt-3">
               <p className="font-exo text-xl font-bold uppercase leading-[1.05] text-white sm:text-2xl lg:text-[1.45rem]">Conectamos destinos,<br /><span className="text-[#f47621]">impulsamos negocios.</span></p>
             </div>
 
-            <div className="border-t border-[#f47621] pt-5 lg:col-span-1 lg:row-start-2 lg:pt-5">
+            <div className="border-t border-[#f47621] pt-5 lg:col-span-2 lg:row-start-2 lg:pt-5">
               <p className="font-exo text-base font-bold uppercase leading-[1.05] text-[#f47621]">Nuestra gente,<br /><span className="text-white">nuestro motor.</span></p>
               <p className="mt-4 font-exo text-xs font-medium leading-[1.45] text-white sm:text-sm">Contamos con un equipo comprometido y áreas especializadas que garantizan un servicio de excelencia.</p>
             </div>
-            <div className="border-t border-[#f47621] pt-5 lg:col-span-11 lg:col-start-2 lg:row-start-2 lg:pt-5">
+            <div className="border-t border-[#f47621] pt-5 lg:col-span-10 lg:col-start-3 lg:row-start-2 lg:pt-5">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {[
                   ['colaboradores.svg', 'Calidad', 'Quejas y sugerencias.'],
