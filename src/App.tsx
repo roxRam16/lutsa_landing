@@ -79,13 +79,13 @@ function App() {
             <div className="border-t border-[#f47621] pt-5 lg:col-span-9 lg:col-start-4 lg:row-start-2 lg:pt-5">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ['colaboradores.svg', 'Calidad', 'Quejas y sugerencias.'],
-                  ['unidades.svg', 'Capital humano', 'Talento que impulsa nuestro camino.'],
-                  ['estacion_diesel.svg', 'Monitoreo', 'Seguridad y control en tiempo real.'],
-                  ['btn_naranja.svg', 'Marketing', 'Estrategia, comunicación y crecimiento.'],
+                  ['calidad.svg', 'Calidad', 'Quejas y sugerencias.'],
+                  ['capital.svg', 'Capital humano', 'Talento que impulsa nuestro camino.'],
+                  ['monitoreo.svg', 'Monitoreo', 'Seguridad y control en tiempo real.'],
+                  ['market.svg', 'Marketing', 'Estrategia, comunicación y crecimiento.'],
                 ].map(([icon, title, text]) => (
                   <article key={title} className="flex min-h-[150px] flex-col items-center justify-center rounded-2xl border border-[#1b8eff] bg-[#18258f]/90 px-4 py-5 text-center shadow-[0_0_18px_rgba(0,126,255,.85)] transition-transform hover:-translate-y-1">
-                    <img src={`/seccion01/svg/${icon}`} alt="" className="mb-2 h-9 w-9 object-contain" />
+                    <img src={`/seccion02/svg/${icon}`} alt="" className="mb-2 h-9 w-9 object-contain" />
                     <h3 className="font-exo text-[11px] font-bold uppercase text-[#f47621]">{title}</h3>
                     <p className="mt-1 max-w-[150px] font-exo text-[10px] leading-[1.25] text-white">{text}</p>
                   </article>
