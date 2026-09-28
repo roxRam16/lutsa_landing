@@ -43,9 +43,9 @@ function Sign({ children, wide = false }: { children: ReactNode; wide?: boolean 
 function FlowColumn({ title, steps, icon }: { title: string; steps: string[]; icon: string }) {
   return (
     <div className="rounded-xl bg-[#080f65]/75 p-3 shadow-inner sm:p-4">
-      <div className="mb-3 flex items-center gap-2">
-        <img src={icon} alt="" className="h-10 w-10 shrink-0 object-contain" />
+      <div className="mb-3 flex items-center justify-center gap-2">
         <h3 className="font-exo text-[10px] font-bold uppercase leading-[.9] text-white">{title.slice(0, 4)}<br /><span className="text-[#f0782d]">{title.slice(4)}</span></h3>
+        <img src={icon} alt="" className="h-10 w-10 shrink-0 object-contain" />
       </div>
       <ol className="flex flex-col items-center gap-1 text-center font-exo text-[10px] font-semibold text-white">
         {steps.map((step, index) => (
@@ -70,7 +70,7 @@ function FlipCard({ label, image }: { label: string; image: string }) {
     >
       <div className="flip-card-inner">
         <div className="flip-card-face orange-gradient px-4 py-5 shadow-glow">
-          <span className="whitespace-nowrap font-exo text-[12px] font-bold uppercase leading-none text-white">
+          <span className="whitespace-nowrap font-exo text-[10px] font-bold uppercase leading-none text-white">
             {label}
           </span>
         </div>
