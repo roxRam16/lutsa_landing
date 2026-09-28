@@ -16,9 +16,9 @@ const industries = [
 ];
 
 const metrics = [
-  ['eficiencia.svg', '+8.5%', 'del PIB nacional son generados\npor las industrias que atendemos.'],
-  ['cobertura.svg', '+70%', 'del comercio exterior involucra\nproductos de estas industrias.'],
-  ['seguridad.svg', '+80%', 'de los productos que consumimos\ndependen de su logística.'],
+  ['icono_indus_1.svg', '+8.5%', 'del PIB nacional son generados\npor las industrias que atendemos.'],
+  ['icono_indus_2.svg', '+70%', 'del comercio exterior involucra\nproductos de estas industrias.'],
+  ['icono_indus_3.svg', '+80%', 'de los productos que consumimos\ndependen de su logística.'],
 ];
 
 function IndustriesSection() {
@@ -50,9 +50,9 @@ function IndustriesSection() {
         <div className="hidden lg:col-span-6 lg:block" aria-hidden="true" />
 
         <div className="lg:col-span-3 lg:pt-12">
-          <h2 className="font-exo text-[15px] font-bold uppercase leading-[1.05] text-[#10227f]">Presencia que conecta,</h2>
-          <h3 className="font-exo text-[15px] font-bold uppercase leading-[1.05] text-[#e66600]">cobertura que impulsa.</h3>
-          <ul className="mt-6 space-y-4 font-exo text-[11px] font-semibold text-[#10227f]">
+          <h2 className="font-exo text-[14px] font-bold uppercase leading-[1.05] text-[#10227f]">Presencia que conecta,</h2>
+          <h3 className="font-exo text-[14px] font-bold uppercase leading-[1.05] text-[#e66600]">cobertura que impulsa.</h3>
+          <ul className="mt-6 space-y-4 font-exo text-[12px] font-semibold text-[#10227f]">
             <li className="flex items-center gap-3"><img src="/seccion03/svg/seguridad.svg" alt="" className="h-5 w-5 object-contain" />Seguridad en cada entrega.</li>
             <li className="flex items-center gap-3"><img src="/seccion03/svg/eficiencia.svg" alt="" className="h-5 w-5 object-contain" />Eficiencia en cada ruta.</li>
             <li className="flex items-center gap-3"><img src="/seccion03/svg/cobertura.svg" alt="" className="h-5 w-5 object-contain" />Cobertura nacional.</li>
