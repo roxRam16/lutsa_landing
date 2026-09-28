@@ -32,7 +32,7 @@ function IndustriesSection() {
             <span className="block">Conectamos a México</span>
             <span className="block text-[#e66600]">con lo que mueve su futuro</span>
           </h1>
-          <p className="mt-4 max-w-[280px] font-exo text-[12px] font-semibold leading-[1.35] text-[#515151]">Atendemos las industrias clave<br />que impulsan el desarrollo del país.</p>
+          <p className="mt-4 max-w-[280px] font-exo text-[14px] font-semibold leading-[1.35] text-[#515151]">Atendemos las industrias clave<br />que impulsan el desarrollo del país.</p>
         </div>
 
         <div className="flex flex-col gap-3 lg:col-span-3 lg:mt-2">
