@@ -24,8 +24,8 @@ const metrics = [
 function IndustriesSection() {
   return (
     <section id="industrias" className="relative min-h-[760px] overflow-hidden px-5 pb-7 pt-20 sm:px-8 lg:min-h-[900px] lg:px-10 lg:pt-24">
-      <img src="/seccion03/industrias.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
-      <img src="/seccion03/map.png" alt="Mapa de cobertura nacional" className="pointer-events-none absolute left-1/2 top-[43%] z-20 w-[104%] -translate-x-1/2 -translate-y-1/2 object-contain sm:w-[88%] lg:left-[54%] lg:top-[40%] lg:w-[72%]" />
+      <img src="/seccion03/industrias.png" alt="" className="absolute inset-y-0 left-0 h-full w-full object-cover object-left" />
+      <img src="/seccion03/map.png" alt="Mapa de cobertura nacional" className="pointer-events-none absolute left-1/2 top-[43%] z-20 w-[104%] -translate-x-1/2 -translate-y-1/2 object-contain sm:w-[88%] lg:left-[57%] lg:top-[24%] lg:w-[74%] lg:translate-x-0 lg:translate-y-0" />
       <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-x-5">
         <div className="lg:col-span-12">
           <h1 className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-[2.4rem]">
