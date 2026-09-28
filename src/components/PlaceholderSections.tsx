@@ -59,11 +59,11 @@ function IndustriesSection() {
           </ul>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-0 rounded-3xl border border-[#273dff] bg-[#15228e]/95 px-2 py-4 shadow-[0_0_22px_rgba(31,78,255,.9)] sm:grid-cols-4 lg:col-span-12 lg:mt-[340px] lg:grid-cols-8 lg:px-3">
+        <div className="mt-8 grid grid-cols-2 gap-0 rounded-3xl border border-[#273dff] bg-gradient-to-b from-[#15228e] via-[#172795] to-[#243fff] px-2 py-4 shadow-[0_10px_24px_rgba(31,78,255,.95),inset_0_-12px_20px_rgba(39,61,255,.65)] sm:grid-cols-4 lg:col-span-12 lg:mt-[340px] lg:grid-cols-8 lg:px-3">
           {industries.map(([icon, label]) => (
             <div key={label} className="flex flex-col items-center justify-center border-white/30 px-2 py-2 lg:border-r last:lg:border-r-0">
               <img src={`/seccion03/svg/${icon}`} alt="" className="h-12 w-12 object-contain sm:h-14 sm:w-14" />
-              <p className="mt-2 text-center font-exo text-[9px] font-bold uppercase leading-none text-[#e66600]">{label}</p>
+              <p className="mt-2 whitespace-nowrap text-center font-exo text-[14px] font-bold uppercase leading-none text-[#e66600]">{label}</p>
             </div>
           ))}
         </div>
