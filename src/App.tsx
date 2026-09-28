@@ -77,19 +77,25 @@ function App() {
               <p className="mt-4 font-exo text-[11px] font-medium leading-[1.45] text-white sm:text-[12px]">Contamos con un equipo comprometido y áreas especializadas que garantizan un servicio de excelencia.</p>
             </div>
             <div className="border-t border-[#f47621] pt-5 lg:col-span-9 lg:col-start-4 lg:row-start-2 lg:pt-5">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[28px_repeat(4,minmax(0,1fr))_28px] lg:items-center lg:gap-3">
+                <span className="hidden lg:flex lg:items-center lg:justify-center" aria-hidden="true">
+                  <img src="/seccion02/svg/circle-left.svg" alt="" className="h-7 w-7 object-contain" />
+                </span>
                 {[
-                  ['calidad.svg', 'Calidad', 'Quejas y sugerencias.'],
-                  ['capital.svg', 'Capital humano', 'Talento que impulsa nuestro camino.'],
-                  ['monitoreo.svg', 'Monitoreo', 'Seguridad y control en tiempo real.'],
-                  ['market.svg', 'Marketing', 'Estrategia, comunicación y crecimiento.'],
-                ].map(([icon, title, text]) => (
-                  <article key={title} className="flex min-h-[150px] flex-col items-center justify-center rounded-2xl border border-[#1b8eff] bg-[#18258f]/90 px-4 py-5 text-center shadow-[0_0_18px_rgba(0,126,255,.85)] transition-transform hover:-translate-y-1">
-                    <img src={`/seccion02/svg/${icon}`} alt="" className="mb-2 h-9 w-9 object-contain" />
-                    <h3 className="font-exo text-[11px] font-bold uppercase text-[#f47621]">{title}</h3>
-                    <p className="mt-1 max-w-[150px] font-exo text-[10px] leading-[1.25] text-white">{text}</p>
+                  { icon: 'calidad.svg', title: <>Calidad</>, text: <>Quejas y<br />sugerencias.</> },
+                  { icon: 'capital.svg', title: <>Capital<br />humano</>, text: <>Talento que impulsa<br />nuestro camino.</> },
+                  { icon: 'monitoreo.svg', title: <>Monitoreo</>, text: <>Seguridad y control en tiempo<br />real.</> },
+                  { icon: 'market.svg', title: <>Marketing</>, text: <>Estrategia, comunicación y<br />crecimiento.</> },
+                ].map(({ icon, title, text }) => (
+                  <article key={icon} className="flex min-h-[174px] flex-col items-center justify-center rounded-2xl border border-[#1b8eff] bg-[#18258f]/90 px-3 py-5 text-center shadow-[0_0_18px_rgba(0,126,255,.85)] transition-transform hover:-translate-y-1">
+                    <img src={`/seccion02/svg/${icon}`} alt="" className="mb-3 h-11 w-11 object-contain" />
+                    <h3 className="font-exo text-[13px] font-bold uppercase leading-[1.05] text-[#f47621]">{title}</h3>
+                    <p className="mt-2 font-exo text-[11px] leading-[1.25] text-white">{text}</p>
                   </article>
                 ))}
+                <span className="hidden lg:flex lg:items-center lg:justify-center" aria-hidden="true">
+                  <img src="/seccion02/svg/circle-right.svg" alt="" className="h-7 w-7 object-contain" />
+                </span>
               </div>
             </div>
 
