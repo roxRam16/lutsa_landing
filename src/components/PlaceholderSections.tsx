@@ -23,7 +23,8 @@ const metrics = [
 
 function IndustriesSection() {
   return (
-    <section id="industrias" className="relative min-h-[760px] overflow-hidden bg-[#071961] bg-cover bg-center bg-no-repeat px-5 pb-7 pt-20 sm:px-8 lg:min-h-[900px] lg:px-10 lg:pt-24" style={{ backgroundImage: "url('/seccion03/industrias.png')" }}>
+    <section id="industrias" className="relative min-h-[760px] overflow-hidden px-5 pb-7 pt-20 sm:px-8 lg:min-h-[900px] lg:px-10 lg:pt-24">
+      <img src="/seccion03/industrias.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
       <img src="/seccion03/map.png" alt="Mapa de cobertura nacional" className="pointer-events-none absolute left-1/2 top-[43%] z-20 w-[104%] -translate-x-1/2 -translate-y-1/2 object-contain sm:w-[88%] lg:left-[54%] lg:top-[40%] lg:w-[72%]" />
       <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-x-5">
         <div className="lg:col-span-12">
