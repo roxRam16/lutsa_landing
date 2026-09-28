@@ -32,7 +32,7 @@ function IndustriesSection() {
             <span className="block">Conectamos a México</span>
             <span className="block text-[#e66600]">con lo que mueve su futuro</span>
           </h1>
-          <p className="mt-4 max-w-[280px] font-exo text-[13px] font-semibold leading-[1.35] text-[#515151]">Atendemos las industrias clave<br />que impulsan el desarrollo del país.</p>
+          <p className="mt-4 max-w-[280px] font-exo text-[12px] font-semibold leading-[1.35] text-[#515151]">Atendemos las industrias clave<br />que impulsan el desarrollo del país.</p>
         </div>
 
         <div className="flex flex-col gap-3 lg:col-span-3 lg:mt-2">
@@ -41,7 +41,7 @@ function IndustriesSection() {
               <img src={`/seccion03/svg/${icon}`} alt="" className="h-10 w-10 shrink-0 object-contain" />
               <div>
                 <p className="font-exo text-[22px] font-bold leading-none text-[#e66600]">{value}</p>
-                <p className="mt-1 whitespace-pre-line font-exo text-[9px] font-semibold leading-[1.15] text-[#18256e]">{text}</p>
+                <p className="mt-1 whitespace-pre-line font-exo text-[12px] font-semibold leading-[1.15] text-[#18256e]">{text}</p>
               </div>
             </div>
           ))}
