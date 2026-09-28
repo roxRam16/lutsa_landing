@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { ReactNode } from 'react';
 
 type Metric = {
@@ -39,10 +40,13 @@ function Sign({ children, wide = false }: { children: ReactNode; wide?: boolean 
   );
 }
 
-function FlowColumn({ title, steps }: { title: string; steps: string[] }) {
+function FlowColumn({ title, steps, icon }: { title: string; steps: string[]; icon: string }) {
   return (
     <div className="rounded-xl bg-[#080f65]/75 p-3 shadow-inner sm:p-4">
-      <h3 className="mb-3 font-exo text-[10px] font-bold uppercase leading-[.9] text-white">{title.slice(0, 4)}<br /><span className="text-[#f0782d]">{title.slice(4)}</span></h3>
+      <div className="mb-3 flex items-center gap-2">
+        <img src={icon} alt="" className="h-10 w-10 shrink-0 object-contain" />
+        <h3 className="font-exo text-[10px] font-bold uppercase leading-[.9] text-white">{title.slice(0, 4)}<br /><span className="text-[#f0782d]">{title.slice(4)}</span></h3>
+      </div>
       <ol className="flex flex-col items-center gap-1 text-center font-exo text-[10px] font-semibold text-white">
         {steps.map((step, index) => (
           <li key={step} className="flex w-full flex-col items-center">
@@ -52,6 +56,29 @@ function FlowColumn({ title, steps }: { title: string; steps: string[] }) {
         ))}
       </ol>
     </div>
+  );
+}
+
+function FlipCard({ label, image }: { label: string; image: string }) {
+  const [flipped, setFlipped] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => setFlipped((f) => !f)}
+      className={`flip-card relative block w-full ${flipped ? 'flipped' : ''}`}
+      style={{ height: '80px' }}
+    >
+      <div className="flip-card-inner">
+        <div className="flip-card-face orange-gradient px-4 py-5 shadow-glow">
+          <span className="whitespace-nowrap font-exo text-[12px] font-bold uppercase leading-none text-white">
+            {label}
+          </span>
+        </div>
+        <div className="flip-card-face flip-card-back bg-white shadow-glow">
+          <img src={image} alt={label} className="h-full w-full object-contain" />
+        </div>
+      </div>
+    </button>
   );
 }
 
@@ -99,8 +126,8 @@ export function ServiciosSection() {
             <div className="min-w-0">
               <Sign wide>Operación integral<br /><span className="text-[#10227f]">flujos operativos</span></Sign>
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <FlowColumn title="Importación" steps={imports} />
-                <FlowColumn title="Exportación" steps={exports} />
+                <FlowColumn title="Importación" steps={imports} icon="/seccion01/svg/btn_impo.svg" />
+                <FlowColumn title="Exportación" steps={exports} icon="/seccion01/svg/btn_expo.svg" />
               </div>
             </div>
             <div className="grid min-w-0 gap-6 sm:grid-cols-2 lg:contents">
@@ -112,8 +139,12 @@ export function ServiciosSection() {
               </div>
               <div className="min-w-0">
                 <h2 className="text-center font-exo text-[18px] font-bold uppercase leading-none text-white">Tipo de remolques</h2>
-                <ul className="mt-3 space-y-2 font-exo text-[10px] font-bold text-white">
-                  {trailers.map((item) => <li key={item} className="orange-gradient whitespace-nowrap rounded-xl px-4 py-5 text-center text-[9px] font-bold leading-none text-white transition-transform hover:-translate-y-1 hover:shadow-glow">{item}</li>)}
+                <ul className="mt-3 grid grid-cols-1 gap-2">
+                  {trailers.map((item, index) => (
+                    <li key={item}>
+                      <FlipCard label={item} image={`/seccion01/remolques/camion${index + 1}.png`} />
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
