@@ -120,10 +120,10 @@ function EcosystemBenefits() {
           <span className="block text-[#f47621]">un solo objetivo:</span>
         </div>
         {ecosystemBenefits.map((benefit) => (
-          <div key={benefit.icon} className="flex min-w-0 items-center gap-6 lg:flex-1 lg:gap-6">
-            <img src="/seccion04/svg/flecha-lateral.svg" alt="" className="h-7 w-auto shrink-0 object-contain sm:h-8" />
+          <div key={benefit.icon} className="flex min-w-0 items-center justify-center gap-5 lg:flex-1 lg:gap-5">
+            <img src="/seccion04/svg/flecha-lateral.svg" alt="" className="h-6 w-auto shrink-0 object-contain sm:h-7" />
             <div className="flex min-w-0 items-center gap-3">
-              <img src={benefit.icon} alt="" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
+              <img src={benefit.icon} alt="" className="h-6 w-6 shrink-0 object-contain sm:h-7 sm:w-7" />
               <p className="font-exo text-[12px] font-normal leading-[1.1] text-white">{benefit.text}</p>
             </div>
           </div>
