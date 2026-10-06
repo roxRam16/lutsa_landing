@@ -148,6 +148,9 @@ function EcosystemSection() {
             Un ecosistema de empresas especializadas que<br className="hidden sm:block" /> trabajan en sincronía para ofrecerte soluciones<br className="hidden sm:block" /> logísticas integrales, seguras y eficientes.
           </p>
         </div>
+        <div className="col-span-full flex justify-center">
+          <img src="/seccion04/ecosistema.png" alt="Ecosistema de empresas LUTSA" className="max-h-[500px] w-auto object-contain" />
+        </div>
         <EcosystemBenefits />
       </div>
     </section>
