@@ -150,13 +150,6 @@ function EcosystemSection() {
         </div>
         <div className="relative mt-4 min-h-[700px] lg:col-span-12 lg:mt-0 lg:min-h-[560px]">
           <div className="relative mx-auto flex min-h-[700px] max-w-[320px] flex-col items-center justify-start gap-5 pt-4 lg:absolute lg:inset-0 lg:block lg:min-h-0 lg:max-w-none lg:pt-0">
-            <div className="relative z-10 flex h-[160px] w-[160px] items-center justify-center rounded-full border-[4px] border-[#e8ebf2] bg-white shadow-[0_3px_8px_rgba(73,82,104,.14),0_0_0_1px_rgba(255,255,255,.72)] lg:absolute lg:left-1/2 lg:top-1/2 lg:h-[170px] lg:w-[170px] lg:-translate-x-1/2 lg:-translate-y-1/2">
-              <div className="flex h-[130px] w-[130px] flex-col items-center justify-center rounded-full border-2 border-[#e8ebf2] bg-white p-2 text-center shadow-[inset_0_1px_4px_rgba(73,82,104,.08)] lg:h-[135px] lg:w-[135px]">
-                <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="w-[100px] object-contain" />
-                <p className="mt-1 font-exo text-[14px] font-extrabold uppercase leading-[1.02] text-[#10227f]">Coordinación<br />y control</p>
-              </div>
-            </div>
-            <div className="h-1 w-1/2 border-t-2 border-[#f47621] lg:hidden" />
             {ecosystemNodes.map((node) => <EcosystemNode key={`${node.name}-${node.accent}`} node={node} />)}
             <EcosystemArrow className="left-1/2 top-[calc(50%_-_114px)] -translate-x-1/2 rotate-90" />
             <EcosystemArrow className="left-[calc(50%_+_86px)] top-1/2 -translate-y-1/2" />
