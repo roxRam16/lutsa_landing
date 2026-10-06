@@ -114,16 +114,18 @@ const ecosystemBenefits = [
 function EcosystemBenefits() {
   return (
     <div className="col-span-full mt-2 rounded-[28px] bg-[#101d87] px-5 py-5 shadow-[0_14px_36px_rgba(72,139,255,.82),0_0_82px_rgba(72,139,255,.62)] sm:px-8 lg:mt-8 lg:px-10 lg:py-5">
-      <div className="grid grid-cols-1 items-center gap-5 lg:flex lg:gap-4">
+      <div className="grid grid-cols-1 items-center gap-5 lg:flex lg:gap-6">
         <div className="font-exo text-[16px] font-semibold uppercase leading-[1.05] text-white sm:text-[18px] lg:w-[220px] lg:shrink-0">
           <span className="block">Un ecosistema,</span>
           <span className="block text-[#f47621]">un solo objetivo:</span>
         </div>
         {ecosystemBenefits.map((benefit) => (
-          <div key={benefit.icon} className="flex min-w-0 items-center gap-3 lg:flex-1 lg:gap-2">
-            <span className="hidden font-exo text-[28px] font-bold leading-none text-[#f47621] lg:block">›</span>
-            <img src={benefit.icon} alt="" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
-            <p className="font-exo text-[12px] font-normal leading-[1.1] text-white">{benefit.text}</p>
+          <div key={benefit.icon} className="flex min-w-0 items-center gap-6 lg:flex-1 lg:gap-6">
+            <img src="/seccion04/svg/flecha-lateral.svg" alt="" className="h-7 w-auto shrink-0 object-contain sm:h-8" />
+            <div className="flex min-w-0 items-center gap-3">
+              <img src={benefit.icon} alt="" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
+              <p className="font-exo text-[12px] font-normal leading-[1.1] text-white">{benefit.text}</p>
+            </div>
           </div>
         ))}
       </div>
