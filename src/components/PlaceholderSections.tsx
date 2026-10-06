@@ -148,16 +148,6 @@ function EcosystemSection() {
             Un ecosistema de empresas especializadas que<br className="hidden sm:block" /> trabajan en sincronía para ofrecerte soluciones<br className="hidden sm:block" /> logísticas integrales, seguras y eficientes.
           </p>
         </div>
-        <div className="relative mt-4 min-h-[700px] lg:col-span-12 lg:mt-0 lg:min-h-[560px]">
-          <div className="relative mx-auto flex min-h-[700px] max-w-[320px] flex-col items-center justify-start gap-5 pt-4 lg:absolute lg:inset-0 lg:block lg:min-h-0 lg:max-w-none lg:pt-0">
-            {ecosystemNodes.map((node) => <EcosystemNode key={`${node.name}-${node.accent}`} node={node} />)}
-            <EcosystemArrow className="left-1/2 top-[calc(50%_-_114px)] -translate-x-1/2 rotate-90" />
-            <EcosystemArrow className="left-[calc(50%_+_86px)] top-1/2 -translate-y-1/2" />
-            <EcosystemArrow className="left-[calc(50%_-_114px)] top-1/2 -translate-y-1/2" />
-            <EcosystemArrow className="left-[calc(50%_+_56px)] top-[calc(50%_+_56px)] rotate-45" />
-            <EcosystemArrow className="left-[calc(50%_-_84px)] top-[calc(50%_+_56px)] rotate-[-45deg]" />
-          </div>
-        </div>
         <EcosystemBenefits />
       </div>
     </section>
