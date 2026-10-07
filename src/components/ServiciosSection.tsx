@@ -50,7 +50,7 @@ function FlowColumn({ title, steps, icon }: { title: string; steps: string[]; ic
       <ol className="flex flex-col items-center gap-1 text-center font-exo text-[10px] font-semibold text-white">
         {steps.map((step, index) => (
           <li key={step} className="flex w-full flex-col items-center">
-            {index > 0 && <span className="mb-1 text-lg leading-none text-[#f0782d]">⌄</span>}
+            {index > 0 && <img src="/seccion01/svg/avanzando.svg" alt="" className="mb-1 h-3 w-4 object-contain" />}
             <span><b className="text-[#f0782d]">{index + 1}</b> {step}</span>
           </li>
         ))}
