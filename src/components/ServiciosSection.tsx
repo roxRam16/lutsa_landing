@@ -120,7 +120,7 @@ export function ServiciosSection() {
           <div className="mt-0 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
             <div className="min-w-0 sm:col-span-1 lg:col-span-3">
               <Sign>Infraestructura<br /><span className="text-[#10227f]">y ubicación</span></Sign>
-              <ul className="mt-4 space-y-3 font-exo text-[10px] font-normal uppercase leading-[1.05] text-white">
+              <ul className="mt-4 grid grid-cols-1 gap-x-5 gap-y-3 font-exo text-[10px] font-normal uppercase leading-[1.05] text-white sm:grid-cols-2 lg:gap-x-6" >
                 {infrastructure.map((point, index) => <li key={index} className="font-normal [&_em]:font-normal [&_em]:not-italic [&_em]:text-[#f0782d]">{point}</li>)}
               </ul>
             </div>
