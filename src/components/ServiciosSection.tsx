@@ -43,7 +43,7 @@ function Sign({ children, wide = false }: { children: ReactNode; wide?: boolean 
 
 function FlowColumn({ title, steps, icon }: { title: string; steps: string[]; icon: string }) {
   return (
-    <div className="rounded-xl bg-[#080f65]/75 p-3 shadow-inner sm:p-4">
+    <div className="col-span-6 rounded-xl bg-[#080f65]/75 p-3 shadow-inner sm:p-4">
       <div className="mb-3 flex items-center justify-center gap-2">
         <h3 className="font-exo text-[10px] font-bold uppercase leading-[.9] text-white">{title.slice(0, 4)}<br /><span className="text-[#f0782d]">{title.slice(4)}</span></h3>
         <img src={icon} alt="" className="h-10 w-10 shrink-0 object-contain" />
@@ -124,9 +124,9 @@ export function ServiciosSection() {
                 {infrastructure.map((point, index) => <li key={index} className="font-normal [&_em]:font-normal [&_em]:not-italic [&_em]:text-[#f0782d]">{point}</li>)}
               </ul>
             </div>
-            <div className="min-w-0 sm:col-span-1 lg:col-span-6">
+            <div className="min-w-0 sm:col-span-1 lg:col-span-5">
               <Sign wide>Operación integral<br /><span className="text-[#10227f]">flujos operativos</span></Sign>
-              <div className="mt-6 grid grid-cols-2 gap-3">
+              <div className="mt-6 grid grid-cols-12 gap-3">
                 <FlowColumn title="Importación" steps={imports} icon="/seccion01/svg/btn_impo.svg" />
                 <FlowColumn title="Exportación" steps={exports} icon="/seccion01/svg/btn_expo.svg" />
               </div>
