@@ -87,7 +87,7 @@ export function ServiciosSection() {
     <section id="servicios" className="relative overflow-hidden">
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo-difuminado.png')" }} />
       <div className="relative z-10 px-4 pt-20 pb-10 sm:px-8 lg:px-10 lg:pt-24 lg:pb-12">
-        <div className="mx-auto max-w-[1280px]">
+        <div className="w-full">
           <div className="mt-4 max-w-[640px]">
             <h1 className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f]">
               <span className="block pb-[1px]">Soluciones logísticas</span>
@@ -102,10 +102,10 @@ export function ServiciosSection() {
           </div>
 
           <div className="mt-24 -mx-4 bg-gradient-to-r from-[#141c80]/40 via-[#132085]/35 to-[#11166d]/40 px-4 pt-6 pb-2 sm:-mx-8 sm:px-8 sm:pt-8 sm:pb-2 lg:-mx-10 lg:px-10">
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-5 sm:gap-x-10 lg:gap-x-14">
+            <div className="grid grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-5 sm:gap-x-8 lg:grid-cols-10 lg:gap-x-5 xl:gap-x-8">
               {metrics.map((metric) => (
                 <div key={metric.text} className="flex items-center gap-2 sm:gap-3">
-                  <div className={`flex shrink-0 items-center justify-center ${metric.iconClass ? metric.iconClass : 'h-16 w-16 sm:h-20 sm:w-20'}`}>
+                  <div className={`flex shrink-0 items-center justify-center ${metric.iconClass ? metric.iconClass : 'h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20'}`}>
                     <img src={metric.icon} alt="" className="max-h-full max-w-full object-contain" />
                   </div>
                   <p className="whitespace-nowrap font-exo text-[10px] font-bold leading-[1.15] text-white">
@@ -116,28 +116,28 @@ export function ServiciosSection() {
             </div>
           </div>
 
-          <div className="mt-0 grid gap-6 lg:grid-cols-[1fr_1.25fr_1fr_1.25fr] lg:gap-7">
-            <div className="min-w-0">
+          <div className="mt-0 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
+            <div className="min-w-0 sm:col-span-1 lg:col-span-3">
               <Sign>Infraestructura<br /><span className="text-[#10227f]">y ubicación</span></Sign>
               <ul className="mt-4 space-y-3 font-exo text-[10px] font-normal uppercase leading-[1.05] text-white">
                 {infrastructure.map((point, index) => <li key={index} className="font-normal [&_em]:font-normal [&_em]:not-italic [&_em]:text-[#f0782d]">{point}</li>)}
               </ul>
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 sm:col-span-1 lg:col-span-3">
               <Sign wide>Operación integral<br /><span className="text-[#10227f]">flujos operativos</span></Sign>
               <div className="mt-6 grid grid-cols-2 gap-3">
                 <FlowColumn title="Importación" steps={imports} icon="/seccion01/svg/btn_impo.svg" />
                 <FlowColumn title="Exportación" steps={exports} icon="/seccion01/svg/btn_expo.svg" />
               </div>
             </div>
-            <div className="grid min-w-0 gap-6 sm:grid-cols-2 lg:contents">
-              <div className="min-w-0 lg:pt-[108px]">
+            <div className="grid min-w-0 gap-8 sm:col-span-2 sm:grid-cols-2 lg:contents">
+              <div className="min-w-0 lg:col-span-3 lg:pt-[108px]">
                 <h2 className="font-exo text-[18px] font-bold uppercase leading-none text-[#f0782d]">Capacidades</h2>
                 <ul className="mt-3 space-y-2 font-exo text-[10px] font-semibold text-white">
-                  {capabilities.map((item) => <li key={item} className="whitespace-nowrap border-b border-[#f0782d] pb-0.5">{item}</li>)}
+                  {capabilities.map((item) => <li key={item} className="border-b border-[#f0782d] pb-0.5">{item}</li>)}
                 </ul>
               </div>
-              <div className="min-w-0">
+              <div className="min-w-0 lg:col-span-3">
                 <h2 className="text-center font-exo text-[18px] font-bold uppercase leading-none text-white">Tipo de remolques</h2>
                 <ul className="mt-3 grid grid-cols-1 gap-2">
                   {trailers.map((item, index) => (
