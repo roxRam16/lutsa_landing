@@ -118,13 +118,13 @@ export function ServiciosSection() {
           </div>
 
           <div className="mt-0 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
-            <div className="min-w-0 sm:col-span-1 lg:col-span-3">
+            <div className="min-w-0 sm:col-span-1 lg:col-span-2">
               <Sign>Infraestructura<br /><span className="text-[#10227f]">y ubicación</span></Sign>
               <ul className="mt-4 space-y-3 font-exo text-[10px] font-normal uppercase leading-[1.05] text-white">
                 {infrastructure.map((point, index) => <li key={index} className="font-normal [&_em]:font-normal [&_em]:not-italic [&_em]:text-[#f0782d]">{point}</li>)}
               </ul>
             </div>
-            <div className="min-w-0 sm:col-span-1 lg:col-span-4">
+            <div className="min-w-0 sm:col-span-1 lg:col-span-5">
               <Sign wide>Operación integral<br /><span className="text-[#10227f]">flujos operativos</span></Sign>
               <div className="mt-6 grid grid-cols-12 gap-3">
                 <FlowColumn title="Importación" steps={imports} icon="/seccion01/svg/btn_impo.svg" />
