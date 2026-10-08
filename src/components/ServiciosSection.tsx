@@ -124,7 +124,7 @@ export function ServiciosSection() {
                 {infrastructure.map((point, index) => <li key={index} className="font-normal [&_em]:font-normal [&_em]:not-italic [&_em]:text-[#f0782d]">{point}</li>)}
               </ul>
             </div>
-            <div className="min-w-0 sm:col-span-1 lg:col-span-5">
+            <div className="min-w-0 sm:col-span-1 lg:col-span-4">
               <Sign wide>Operación integral<br /><span className="text-[#10227f]">flujos operativos</span></Sign>
               <div className="mt-6 grid grid-cols-12 gap-3">
                 <FlowColumn title="Importación" steps={imports} icon="/seccion01/svg/btn_impo.svg" />
@@ -132,7 +132,7 @@ export function ServiciosSection() {
               </div>
             </div>
             <div className="grid min-w-0 gap-8 sm:col-span-2 sm:grid-cols-2 lg:contents">
-              <div className="min-w-0 lg:col-span-2 lg:pt-[108px]">
+              <div className="min-w-0 lg:col-span-3 lg:pt-[108px]">
                 <h2 className="font-exo text-[18px] font-bold uppercase leading-none text-[#f0782d]">Capacidades</h2>
                 <ul className="mt-3 space-y-2 font-exo text-[10px] font-semibold text-white">
                   {capabilities.map((item) => <li key={item} className="border-b border-[#f0782d] pb-0.5">{item}</li>)}
