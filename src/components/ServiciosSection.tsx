@@ -6,12 +6,13 @@ type Metric = {
   text: string;
   iconClass?: string;
   columnClass: string;
+  alignClass?: string;
 };
 
 const metrics: Metric[] = [
   { icon: '/seccion01/svg/unidades.svg', text: 'unidades propias\nen operación.', columnClass: 'lg:col-span-2' },
-  { icon: '/seccion01/svg/colaboradores.svg', text: 'colaboradores\ncapacitados.', columnClass: 'lg:col-span-2' },
-  { icon: '/seccion01/svg/patio_almacen.svg', text: 'de patio y\nalmacén propio.', columnClass: 'lg:col-span-3' },
+  { icon: '/seccion01/svg/colaboradores.svg', text: 'colaboradores\ncapacitados.', columnClass: 'lg:col-span-2', alignClass: 'justify-center' },
+  { icon: '/seccion01/svg/patio_almacen.svg', text: 'de patio y\nalmacén propio.', columnClass: 'lg:col-span-3', alignClass: 'justify-center' },
   { icon: '/seccion01/svg/4km.svg', text: 'del Puerto de\nVeracruz.', columnClass: 'lg:col-span-2' },
   { icon: '/seccion01/svg/estacion_diesel.svg', text: 'Estación propia\nde diésel.', iconClass: 'h-8 w-8 sm:h-10 sm:w-10', columnClass: 'lg:col-span-3' },
 ];
@@ -105,7 +106,7 @@ export function ServiciosSection() {
           <div className="mt-24 -mx-4 bg-gradient-to-r from-[#141c80]/40 via-[#132085]/35 to-[#11166d]/40 px-4 pt-6 pb-2 sm:-mx-8 sm:px-8 sm:pt-8 sm:pb-2 lg:-mx-10 lg:px-10">
             <div className="grid grid-cols-12 gap-x-4 gap-y-4 sm:gap-x-6 lg:gap-x-4 xl:gap-x-6">
               {metrics.map((metric) => (
-                <div key={metric.text} className={`col-span-12 flex items-center gap-2 sm:col-span-6 sm:gap-3 ${metric.columnClass}`}>
+                <div key={metric.text} className={`col-span-12 flex items-center gap-2 sm:col-span-6 sm:gap-3 ${metric.columnClass} ${metric.alignClass ?? ''}`}>
                   <div className={`flex shrink-0 items-center justify-center ${metric.iconClass ? metric.iconClass : 'h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20'}`}>
                     <img src={metric.icon} alt="" className="max-h-full max-w-full object-contain" />
                   </div>
