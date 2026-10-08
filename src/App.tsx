@@ -147,7 +147,7 @@ function App() {
             </div>
 
             <div className="lg:col-span-12 lg:row-start-3">
-              <div className="grid grid-cols-1 gap-3 rounded-3xl border border-[#f47621] bg-[#1a2aa0]/75 p-3 sm:grid-cols-2 lg:grid-cols-[1.15fr_1.55fr_1.25fr_1.1fr] lg:gap-0 lg:p-2">
+              <div className="mx-auto grid w-full grid-cols-1 gap-3 rounded-3xl border border-[#f47621] bg-[#1a2aa0]/75 p-3 sm:grid-cols-2 lg:max-w-[874px] lg:grid-cols-[1.15fr_1.55fr_1.25fr_1.1fr] lg:gap-0 lg:p-2">
                 <div className="flex items-center gap-3 border-white/40 px-4 py-2 lg:border-r">
                   <img src="/seccion02/svg/diadema.svg" alt="" className="h-11 w-11 shrink-0 object-contain" />
                   <p className="font-exo text-[16px] font-bold uppercase leading-[1.05] text-white">Necesitas<br /><span className="text-[#f47621]">atención</span></p>
