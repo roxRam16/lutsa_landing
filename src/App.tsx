@@ -147,26 +147,26 @@ function App() {
             </div>
 
             <div className="lg:col-span-12 lg:row-start-3">
-              <div className="mx-auto grid w-full grid-cols-1 gap-3 rounded-3xl border border-[#f47621] bg-[#1a2aa0]/75 p-3 sm:grid-cols-2 lg:max-w-[874px] lg:grid-cols-[1.15fr_1.55fr_1.25fr_1.1fr] lg:gap-0 lg:p-2">
-                <div className="flex items-center gap-3 border-white/40 px-4 py-2 lg:border-r">
-                  <img src="/seccion02/svg/diadema.svg" alt="" className="h-11 w-11 shrink-0 object-contain" />
-                  <p className="font-exo text-[16px] font-bold uppercase leading-[1.05] text-white">Necesitas<br /><span className="text-[#f47621]">atención</span></p>
+              <div className="grid w-full grid-cols-1 gap-3 rounded-3xl border border-[#f47621] bg-[#1a2aa0]/75 p-3 sm:grid-cols-2 lg:grid-cols-[1.15fr_1.55fr_1.25fr_1.1fr] lg:gap-0 lg:p-2">
+                <div className="flex items-center gap-3 border-white/40 px-4 py-2 lg:justify-center lg:border-r">
+                  <img src="/seccion02/svg/diadema.svg" alt="" className="h-12 w-12 shrink-0 object-contain" />
+                  <p className="font-exo text-[17px] font-bold uppercase leading-[1.05] text-white">Necesitas<br /><span className="text-[#f47621]">atención</span></p>
                 </div>
-                <div className="flex items-center border-white/40 px-4 py-2 lg:border-r">
-                  <p className="font-exo text-[12px] font-bold leading-[1.2] text-white">Nuestro equipo está listo para ayudarte.<br /><span className="text-[10px] font-normal">Llámanos o escríbenos por WhatsApp.</span></p>
+                <div className="flex items-center border-white/40 px-4 py-2 lg:justify-center lg:border-r">
+                  <p className="font-exo text-[13px] font-bold leading-[1.2] text-white">Nuestro equipo está listo para ayudarte.<br /><span className="text-[11px] font-normal">Llámanos o escríbenos por WhatsApp.</span></p>
                 </div>
-                <div className="flex items-center gap-3 border-white/40 px-4 py-2 lg:border-r">
-                  <img src="/seccion02/svg/phone.svg" alt="" className="h-10 w-10 shrink-0 object-contain" />
+                <div className="flex items-center gap-3 border-white/40 px-4 py-2 lg:justify-center lg:border-r">
+                  <img src="/seccion02/svg/phone.svg" alt="" className="h-11 w-11 shrink-0 object-contain" />
                   <div>
-                    <p className="font-exo text-[16px] font-bold leading-none text-white">229 989 0000</p>
-                    <p className="mt-1 font-exo text-[10px] text-white">Atención a clientes</p>
+                    <p className="font-exo text-[17px] font-bold leading-none text-white">229 989 0000</p>
+                    <p className="mt-1 font-exo text-[11px] text-white">Atención a clientes</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 px-4 py-2">
-                  <img src="/seccion02/svg/whats.svg" alt="" className="h-10 w-10 shrink-0 object-contain" />
+                <div className="flex items-center gap-3 px-4 py-2 lg:justify-center">
+                  <img src="/seccion02/svg/whats.svg" alt="" className="h-11 w-11 shrink-0 object-contain" />
                   <div>
-                    <button type="button" className="orange-gradient rounded-full px-5 py-2 font-exo text-[10px] font-bold uppercase leading-none text-white transition-transform hover:-translate-y-0.5">Escríbenos</button>
-                    <p className="mt-1 font-exo text-[10px] text-white">por WhatsApp</p>
+                    <button type="button" className="orange-gradient rounded-full px-5 py-2 font-exo text-[11px] font-bold uppercase leading-none text-white transition-transform hover:-translate-y-0.5">Escríbenos</button>
+                    <p className="mt-1 font-exo text-[11px] text-white">por WhatsApp</p>
                   </div>
                 </div>
               </div>
