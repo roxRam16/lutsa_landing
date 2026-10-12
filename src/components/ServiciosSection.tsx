@@ -91,7 +91,7 @@ export function ServiciosSection() {
       <div className="relative z-10 px-4 pt-20 pb-10 sm:px-8 lg:px-10 lg:pt-24 lg:pb-12">
         <div className="w-full">
           <div className="mt-4 max-w-[640px]">
-            <h1 className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f]">
+            <h1 className="text-center font-exo text-[24px] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-left sm:text-[38px] lg:text-[60px]">
               <span className="block pb-[1px]">Soluciones logísticas</span>
               <span className="block pb-[1px] text-[#e66600]">que impulsan tu negocio.</span>
             </h1>

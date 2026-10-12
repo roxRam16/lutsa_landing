@@ -28,7 +28,7 @@ function IndustriesSection() {
       <img src="/seccion03/map.png" alt="Mapa de cobertura nacional" className="pointer-events-none absolute left-1/2 top-[43%] z-20 w-[104%] -translate-x-1/2 -translate-y-1/2 object-contain sm:w-[88%] lg:left-[28%] lg:top-[24%] lg:w-[60%] lg:translate-x-0 lg:translate-y-0" />
       <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-x-5">
         <div className="lg:col-span-12">
-          <h1 className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-[2.4rem]">
+          <h1 className="text-center font-exo text-[24px] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-left sm:text-[38px] lg:text-[60px]">
             <span className="block">Conectamos a México</span>
             <span className="block text-[#e66600]">con lo que mueve su futuro</span>
           </h1>
@@ -142,7 +142,7 @@ function EcosystemSection() {
     >
       <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-x-5">
         <div className="lg:col-span-7 lg:col-start-1">
-          <h1 className="font-exo text-[2rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-[2.4rem]">
+          <h1 className="text-center font-exo text-[24px] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-left sm:text-[38px] lg:text-[60px]">
             <span className="block">Nuestro ecosistema logístico</span>
             <span className="block text-[#e66600]">Cobertura que conecta a México</span>
           </h1>
@@ -168,7 +168,7 @@ export function PlaceholderSections() {
         <div className="absolute -right-28 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full border-[38px] border-[#e66600]/20" />
         <div className="relative max-w-2xl">
           <p className="font-condensed text-sm font-bold uppercase tracking-[.2em] text-[#f0782d]">LUTSA / 0{index + 3}</p>
-          <h2 className="mt-3 font-exo text-4xl font-bold uppercase text-white sm:text-6xl">{section.title}</h2>
+          <h2 className="mt-3 text-center font-exo text-[24px] font-bold uppercase text-white sm:text-left sm:text-[38px] lg:text-[60px]">{section.title}</h2>
           <p className="mt-5 max-w-lg font-exo text-lg leading-relaxed text-white/80 sm:text-2xl">{section.text}</p>
         </div>
       </section>

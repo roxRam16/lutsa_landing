@@ -84,11 +84,11 @@ function App() {
           <div className="relative z-10 grid grid-cols-1 gap-6 px-5 pt-20 pb-4 sm:px-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr_auto] lg:gap-4 lg:px-10 lg:pt-24 lg:pb-6 lg:min-h-screen">
             {/* --- Fila 1: Texto (cols 1-4) + Logo (cols 5-8) + Letreros (cols 9-12) --- */}
             <div className="max-w-[480px] lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:self-start">
-              <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-[1.8rem] lg:text-[2rem]">
-                <span className="block">Siempre en</span>
-                <span className="block">movimiento,</span>
-                <span className="block text-[#e66600]">conectando</span>
-                <span className="block text-[#e66600]">posibilidades.</span>
+              <p className="text-center font-exo text-[24px] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-left sm:text-[38px] lg:text-[60px]">
+                <span className="inline sm:block">Siempre en </span>
+                <span className="inline sm:block">movimiento, </span>
+                <span className="inline text-[#e66600] sm:block">conectando </span>
+                <span className="inline text-[#e66600] sm:block">posibilidades.</span>
               </p>
               <p className="mt-5 font-exo text-sm font-semibold leading-[1.35] text-[#515151] sm:text-base">
                 Soluciones logísticas integrales<br />que impulsan tu negocio más lejos.
@@ -121,7 +121,7 @@ function App() {
           </div>
           <div className="relative z-10 mx-auto grid max-w-[1440px] grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-8">
             <div className="lg:col-span-3 lg:pt-1">
-              <p className="font-exo text-[1.75rem] font-bold uppercase leading-[.98] tracking-[-.04em] text-white sm:text-[2rem] lg:text-[2rem]">Quiénes<br /><span className="text-[#f47621]">somos</span></p>
+              <p className="text-center font-exo text-[24px] font-bold uppercase leading-[.98] tracking-[-.04em] text-white sm:text-left sm:text-[38px] lg:text-[60px]">Quiénes<span className="sm:hidden"> </span><br className="hidden sm:block" /><span className="text-[#f47621]">somos</span></p>
             </div>
             <div className="lg:col-span-6 lg:col-start-4 lg:pt-3">
               <p className="max-w-[520px] font-exo text-[13px] font-semibold leading-[1.45] text-white sm:text-[14px] lg:text-[14px]">Somos una empresa <span className="text-[#f47621]">100% mexicana</span> con más de 10 años de experiencia, dedicada a ofrecer soluciones logísticas integrales que impulsan el crecimiento de nuestros clientes.</p>

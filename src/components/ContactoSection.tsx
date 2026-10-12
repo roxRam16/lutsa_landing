@@ -47,7 +47,7 @@ export function ContactoSection() {
         <div className="relative z-10 mx-auto grid h-full max-w-[1440px] grid-cols-1 items-center lg:grid-cols-12 lg:items-end">
           <div className="flex flex-col items-center text-center lg:col-span-8 lg:col-start-1 lg:pb-10">
             <p className="font-condensed text-[12px] font-bold uppercase tracking-[.2em] text-[#f0782d] sm:text-sm">70 KM / Tu siguiente movimiento</p>
-            <h2 className="mt-4 max-w-none whitespace-nowrap font-exo text-[clamp(1.45rem,2.8vw,2.85rem)] font-bold uppercase leading-[.98] text-white">Hablemos de tu operación.</h2>
+            <h2 className="mt-4 max-w-none text-center font-exo text-[24px] font-bold uppercase leading-[.98] text-white sm:text-[38px] lg:text-[60px]">Hablemos de tu operación.</h2>
             <button type="button" className="orange-gradient mt-7 rounded-full px-8 py-3 font-exo text-[12px] font-bold uppercase text-white shadow-[0_0_18px_rgba(244,118,33,.72),0_8px_18px_rgba(20,31,120,.42)] transition-all hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(244,118,33,.9),0_10px_22px_rgba(20,31,120,.5)] active:translate-y-0 sm:text-[14px]">Solicita tu cotización</button>
           </div>
           <div className="relative mt-3 min-h-[130px] w-full lg:col-span-4 lg:col-start-9 lg:mt-0 lg:min-h-[190px]">
