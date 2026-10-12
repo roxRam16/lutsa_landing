@@ -4,12 +4,15 @@ import { Header } from './components/Header';
 import { PlaceholderSections } from './components/PlaceholderSections';
 import { ScrollTruckNav } from './components/ScrollTruckNav';
 import { ServiciosSection } from './components/ServiciosSection';
+import { useLanguage } from './i18n/LanguageContext';
 
-const highlights = [
-  { icon: '/seccion00/svg/icono_conectamos.svg', lines: ['Conectamos', 'puertos,', 'empresas y', 'mercados.'] },
-  { icon: '/seccion00/svg/icono_segur.svg', lines: ['Seguridad,', 'experiencia y', 'compromiso.'] },
-  { icon: '/seccion00/svg/icono_veracruz.svg', lines: ['Veracruz, el', 'punto que nos', 'mueve.'] },
-];
+// Íconos en el mismo orden que t.hero.highlights
+const highlightIcons = ['/seccion00/svg/icono_conectamos.svg', '/seccion00/svg/icono_segur.svg', '/seccion00/svg/icono_veracruz.svg'];
+
+// Une líneas con salto solo en escritorio (xl); en móvil/tablet el texto fluye
+function DesktopLines({ lines }: { lines: readonly string[] }) {
+  return <>{lines.map((line, i) => <span key={line}>{line}{i < lines.length - 1 && <>{' '}<br className="hidden xl:inline" /></>}</span>)}</>;
+}
 
 const teamCards = [
   { icon: 'calidad.svg', title: 'Calidad', text: 'Quejas y|sugerencias.', phone: '229 989 0010', whatsapp: '229 265 4242', email: 'calidad@lutsa.mx' },
@@ -70,6 +73,7 @@ function TeamFlipCard({ card }: { card: typeof teamCards[number] }) {
 }
 
 function App() {
+  const { t } = useLanguage();
   const scrollToContact = useCallback((): void => {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
@@ -80,35 +84,38 @@ function App() {
       <Header onContact={scrollToContact} />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
-        <div id="inicio" className="relative min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_00.png')" }}>
-          <div className="relative z-10 grid grid-cols-1 gap-6 px-5 pt-20 pb-4 sm:px-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr_auto] lg:gap-4 lg:px-10 lg:pt-24 lg:pb-6 lg:min-h-screen">
-            {/* --- Fila 1: Texto (cols 1-4) + Logo (cols 5-8) + Letreros (cols 9-12) --- */}
-            <div className="max-w-[480px] lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:self-start">
-              <p className="text-center font-exo text-[24px] font-bold uppercase leading-[1.1] tracking-[-.04em] text-[#10227f] sm:text-left sm:text-[38px] lg:text-[60px]">
-                <span className="inline sm:block">Siempre en </span>
-                <span className="inline sm:block">movimiento, </span>
-                <span className="inline text-[#e66600] sm:block">conectando </span>
-                <span className="inline text-[#e66600] sm:block">posibilidades.</span>
+        <div id="inicio" className="relative min-h-screen bg-cover bg-[center_25%] bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_002.png')" }}>
+          {/* Móvil/tablet (<xl): columna centrada (logo → texto → highlights junto al camión).
+              Escritorio (xl): rejilla de 12 columnas medida sobre el diseño de 1920px. */}
+          {/* Velo claro para que el texto no se pierda sobre el arco naranja en móvil/tablet */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[60%] bg-gradient-to-b from-white/75 via-white/45 to-transparent xl:hidden" aria-hidden="true" />
+          <div className="relative z-10 flex min-h-screen flex-col px-5 pb-[3.25rem] pt-20 short:pb-[3.75rem] sm:px-8 sm:pb-20 sm:pt-24 lg:px-10 lg:pb-3 lg:pt-20 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_1fr_auto] xl:gap-4 xl:pl-[clamp(2.5rem,4.9vw,6rem)] xl:pt-[clamp(6rem,5.6vw,8.5rem)] xl:pb-6">
+            <div className="flex justify-center xl:col-span-4 xl:col-start-5 xl:row-start-1 xl:self-start">
+              <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="w-[clamp(8.5rem,28vw,13rem)] object-contain xl:w-[clamp(18rem,23vw,34rem)]" />
+            </div>
+
+            <div className="mx-auto mt-5 max-w-[36rem] text-center sm:mt-7 xl:col-span-4 xl:col-start-1 xl:row-start-1 xl:mx-0 xl:mt-0 xl:max-w-[480px] xl:self-start xl:text-left">
+              <h1 className="font-exo text-[clamp(1.625rem,5vw,2.5rem)] font-bold uppercase leading-[1.15] text-[#10227f] xl:text-hero-title">
+                <DesktopLines lines={t.hero.titleLines} />{' '}<br className="hidden xl:inline" />
+                <span className="text-[#e66600]"><DesktopLines lines={t.hero.titleAccentLines} /></span>
+              </h1>
+              <p className="mt-3 font-exo text-[clamp(0.9375rem,2.2vw,1.125rem)] font-semibold leading-[1.45] text-[#515151] sm:mt-4 xl:mt-[clamp(1rem,1.05vw,1.75rem)] xl:text-hero-lead">
+                <DesktopLines lines={t.hero.leadLines} />
               </p>
-              <p className="mt-5 font-exo text-sm font-semibold leading-[1.35] text-[#515151] sm:text-base">
-                Soluciones logísticas integrales<br />que impulsan tu negocio más lejos.
-              </p>
-              <a href="#quienes-somos" className="orange-gradient mt-6 inline-flex h-11 items-center gap-4 rounded-full px-8 font-exo text-sm font-bold uppercase text-white shadow-[0_6px_20px_rgba(230,102,0,0.8),0_0_12px_rgba(230,102,0,0.6)] transition-transform hover:scale-105 active:scale-95">
-                <span>Conoce más</span>
+              <a href="#quienes-somos" className="orange-gradient mt-5 inline-flex h-11 items-center gap-4 rounded-full px-8 font-exo text-sm font-bold uppercase text-white shadow-[0_6px_20px_rgba(230,102,0,0.8),0_0_12px_rgba(230,102,0,0.6)] transition-transform hover:scale-105 active:scale-95 sm:mt-6 sm:h-12 sm:text-base xl:mt-[clamp(1.5rem,1.75vw,2.5rem)] xl:h-[clamp(2.75rem,2.25vw,3.5rem)] xl:w-[clamp(12rem,11.7vw,17rem)] xl:justify-center xl:gap-[1.6vw] xl:px-0 xl:text-hero-btn">
+                <span>{t.hero.cta}</span>
                 <span aria-hidden="true" className="text-lg leading-none">▶</span>
               </a>
             </div>
 
-            <div className="flex items-start justify-center lg:col-span-4 lg:col-start-5 lg:row-start-1 lg:self-start lg:pt-1">
-              <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="mt-2 w-[200px] object-contain sm:w-[240px] lg:mt-0 lg:w-[280px]" />
-            </div>
-
-            <div className="hero-highlights grid grid-cols-3 gap-2 self-end lg:col-span-6 lg:col-start-7 lg:row-start-3 lg:grid-cols-6 lg:gap-0 lg:self-end lg:pb-2">
-              {highlights.map((h) => (
-                <div key={h.lines.join('-')} className="hero-highlight relative flex min-h-[110px] flex-col items-center justify-center gap-1.5 px-3 py-2 lg:col-span-2 lg:min-h-[120px] lg:flex-col lg:items-center lg:justify-center lg:gap-2 lg:px-4 lg:py-4">
-                  <img src={h.icon} alt="" className={`relative h-10 w-10 shrink-0 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] lg:h-14 lg:w-14 ${h.lines[0] === 'Conectamos' ? 'lg:mt-1.5' : ''}`} />
-                  <p className="relative max-w-[140px] text-center font-exo text-[0.72rem] font-semibold leading-[1.1] text-white sm:text-[0.8rem] lg:max-w-[140px] lg:text-center lg:text-[0.95rem]">
-                    {h.lines.map((line) => <span key={line} className="block">{line}</span>)}
+            {/* Highlights: columna vertical a la derecha del camión (<xl); fila de 3 en escritorio,
+                anclada al inicio de la franja azul del fondo (ver .hero-highlights en index.css) */}
+            <div className="hero-highlights mt-auto flex w-[clamp(9.5rem,40vw,16rem)] flex-col self-end pt-8 xl:mt-0 xl:grid xl:w-[clamp(23rem,28.9vw,42rem)] xl:grid-cols-6 xl:pt-0">
+              {t.hero.highlights.map((lines, i) => (
+                <div key={highlightIcons[i]} className="hero-highlight relative flex flex-col items-center gap-1 px-2 py-2 short:gap-0.5 short:py-1.5 sm:gap-1.5 sm:py-2.5 lg:gap-1 lg:py-1.5 xl:col-span-2 xl:justify-start xl:gap-[min(0.8vw,1.2vh)] xl:py-[0.3vw] desk-short:min-h-0 desk-short:gap-1 desk-short:py-0">
+                  <img src={highlightIcons[i]} alt="" className={`relative h-7 w-7 shrink-0 object-contain short:h-6 short:w-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] sm:h-10 sm:w-10 lg:h-9 lg:w-9 xl:h-[clamp(1.75rem,min(3vw,4.5vh),4.5rem)] xl:w-[clamp(1.75rem,min(3vw,4.5vh),4.5rem)] desk-short:h-7 desk-short:w-7 ${i === 0 ? 'xl:mt-1.5' : ''}`} />
+                  <p className="relative text-center font-exo text-[0.8125rem] font-semibold leading-[1.2] text-white short:text-[0.75rem] short:leading-[1.15] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)] sm:text-[0.9375rem] lg:text-[0.875rem] xl:max-w-[160px] xl:text-hero-highlight">
+                    {lines.map((line) => <span key={line} className="xl:block">{line} </span>)}
                   </p>
                 </div>
               ))}

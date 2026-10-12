@@ -19,23 +19,56 @@
 
 @layer components {
   .orange-gradient { background: linear-gradient(90deg, #ed8127 0%, #df4d29 100%); }
+  /* Escritorio: los highlights se anclan a donde empieza la franja azul de fondo_002.png
+     (~70% de su alto), sin importar la proporción de la ventana.
+     Fondo: cover + posición vertical 25% → alto escalado Hs = max(H, (100vw - 260px) · 1499/2052)
+     y recorte superior = 0.25 · (Hs - H). Inicio del azul = 0.70·Hs - 0.25·(Hs - H).
+     H = alto de la sección (100% en `top`). El min() evita que el bloque se salga por abajo. */
+  @media (min-width: 1280px) {
+    .hero-highlights {
+      position: absolute;
+      top: min(
+        calc(0.45 * max(100%, (100vw - 260px) * 0.7305) + 25%),
+        calc(100% - 8.5rem)
+      );
+      right: calc(2.5rem + 5.1vw);
+    }
+  }
+  /* Separadores: horizontales cuando los highlights van en columna (<xl), verticales en escritorio */
   .hero-highlights .hero-highlight:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: 18%;
-    right: 0;
-    width: 5px;
-    height: 64%;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 3px;
     background: linear-gradient(
-      to bottom,
+      to right,
       rgba(230, 102, 0, 0) 0%,
-      rgba(230, 102, 0, 0.35) 10%,
-      #f47a22 28%,
-      #e4571c 72%,
-      rgba(230, 102, 0, 0.35) 90%,
+      #f47a22 30%,
+      #e4571c 70%,
       rgba(230, 102, 0, 0) 100%
     );
     filter: drop-shadow(0 0 6px rgba(230, 102, 0, 0.5));
+  }
+  @media (min-width: 1280px) {
+    .hero-highlights .hero-highlight:not(:last-child)::after {
+      top: 18%;
+      bottom: auto;
+      left: auto;
+      right: 0;
+      width: 5px;
+      height: 64%;
+      background: linear-gradient(
+        to bottom,
+        rgba(230, 102, 0, 0) 0%,
+        rgba(230, 102, 0, 0.35) 10%,
+        #f47a22 28%,
+        #e4571c 72%,
+        rgba(230, 102, 0, 0.35) 90%,
+        rgba(230, 102, 0, 0) 100%
+      );
+    }
   }
   .blue-gradient { background: linear-gradient(135deg, #2c3bfa 0%, #121874 100%); }
   .orange-underline { border-bottom: 2px solid #e66600; }
