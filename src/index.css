@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 @layer base {
   :root {
@@ -77,7 +78,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 0.9s cubic-bezier(0.45, 0.05, 0.25, 1); /* giro suave y pausado */
     transform-style: preserve-3d;
   }
   .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
@@ -93,4 +94,182 @@
     overflow: hidden;
   }
   .flip-card-back { transform: rotateY(180deg); }
+  @media (prefers-reduced-motion: reduce) { .flip-card-inner { transition-duration: 0.01ms; } }
+}
+
+/* ===================== Quiénes somos =====================
+   Móvil/tablet: foto del equipo arriba (versión que se funde al azul marino) y azul debajo.
+   container-type permite medir el logo y los textos con cqw (% del ancho de la sección). */
+.somos {
+  container-type: inline-size;
+  /* La foto empieza debajo del header fijo (4.5rem); arriba, franja del mismo blanco del cielo */
+  background:
+    linear-gradient(#fcfcfc, #fcfcfc) top / 100% 4.5rem no-repeat,
+    url('/seccion02/somos_fondo_movil.jpg') center 4.5rem / 100% auto no-repeat,
+    #131977;
+}
+
+/* Escritorio: réplica de public/modelos/somos.png (área de 1548×1080 a la derecha del riel).
+   --u = 1px del diseño, escalado al ancho real de la sección (container query units).
+   Todas las medidas de abajo son píxeles del diseño × var(--u). Va fuera de @layer para
+   ganarle a las utilidades de Tailwind del componente. */
+@media (min-width: 1280px) {
+  .somos {
+    container-type: inline-size;
+    aspect-ratio: 1548 / 1080; /* alto mínimo: crece si el contenido lo necesita (overflow visible) */
+    overflow: visible;
+    padding: 0;
+    background:
+      linear-gradient(to bottom, rgba(19, 25, 119, 0) 52%, #131977 58%, #141a7b 64%, #171f8e 79%, #1c26a9 88%, #2836e5 100%),
+      url('/seccion02/somos_fondo.jpg') top / 100% auto no-repeat,
+      #131977;
+  }
+  .somos > * { --u: calc(100cqw / 1548); }
+
+  .somos__logo { top: calc(var(--u) * 116); left: calc(var(--u) * 633); width: calc(var(--u) * 340); transform: none; }
+  .somos__inner { padding: calc(var(--u) * 499) calc(var(--u) * 42) calc(var(--u) * 31) calc(var(--u) * 99); }
+
+  /* Fila 1: título · párrafo · eslogan */
+  .somos__intro { grid-template-columns: calc(var(--u) * 322) calc(var(--u) * 657) 1fr; gap: 0; align-items: start; }
+  .somos__title { font-size: max(1.75rem, calc(var(--u) * 50)); line-height: 1.0; text-align: left; }
+  .somos__lead { font-size: max(0.875rem, calc(var(--u) * 18.5)); line-height: 1.75; max-width: calc(var(--u) * 530); margin-top: calc(var(--u) * 19); }
+  .somos__slogan { font-size: max(1.125rem, calc(var(--u) * 29.5)); line-height: 1.42; margin-top: calc(var(--u) * 33); }
+  .somos__divider { height: max(1px, calc(var(--u) * 1.5)); margin: calc(var(--u) * 22) calc(var(--u) * 23) 0 calc(var(--u) * -7); background: rgba(230, 102, 0, 0.6); }
+
+  /* Fila 2: "Nuestra gente" · carrusel de áreas */
+  .somos__team { grid-template-columns: calc(var(--u) * 266) 1fr; gap: 0; margin-top: calc(var(--u) * 25); }
+  .somos__people-title { font-size: max(1rem, calc(var(--u) * 24.4)); line-height: 1.32; }
+  .somos__people-text { font-size: max(0.8125rem, calc(var(--u) * 16)); line-height: 1.7; max-width: max(calc(var(--u) * 200), 11.5rem); margin-top: calc(var(--u) * 14); }
+  .somos__carousel { padding-left: calc(var(--u) * 53); }
+  .somos__cards { grid-template-columns: repeat(4, calc(var(--u) * 211)); gap: calc(var(--u) * 42); }
+  .somos__card { height: max(calc(var(--u) * 222), 11rem); min-height: 0; }
+  .somos__card-face { border: 0; border-radius: calc(var(--u) * 22); box-shadow: 0 0 calc(var(--u) * 16) calc(var(--u) * 2) rgba(30, 110, 255, 0.85); }
+  /* Contenido centrado vertical: mismo espacio arriba y abajo en cada tarjeta */
+  .somos__card-face:not(.somos__card-back) { padding: 0 calc(var(--u) * 8); justify-content: center; }
+  .somos__card-icon { width: calc(var(--u) * 57); height: calc(var(--u) * 57); margin-bottom: calc(var(--u) * 12); }
+  .somos__card-title { font-size: max(0.75rem, calc(var(--u) * 18)); line-height: 1.35; }
+  .somos__card-text { font-size: max(0.75rem, calc(var(--u) * 14.5)); line-height: 1.6; margin-top: calc(var(--u) * 3); }
+  .somos__card-back { font-size: max(0.75rem, calc(var(--u) * 14)); }
+  .somos__card-back-icon { width: calc(var(--u) * 30); height: calc(var(--u) * 30); }
+  .somos__card-back-row { margin-top: calc(var(--u) * 18); }
+  .somos__arrow { display: block; position: absolute; top: 50%; width: calc(var(--u) * 21); height: calc(var(--u) * 21); transform: translate(-50%, -50%); }
+  .somos__arrow--prev { left: calc(var(--u) * 10); }
+  .somos__arrow--next { left: calc(var(--u) * 1076); }
+
+  /* Fila 3: barra "¿Necesitas atención?" */
+  .somos__help {
+    display: grid; text-align: left;
+    grid-template-columns: 320fr 428fr 344fr 320fr; gap: 0; padding: 0;
+    height: calc(var(--u) * 113); margin-top: calc(var(--u) * 38);
+    border: max(1px, calc(var(--u) * 1.5)) solid #e66600; border-radius: calc(var(--u) * 42);
+    background: rgba(35, 47, 206, 0.35);
+  }
+  .somos__help-cell { position: relative; padding: 0; justify-content: flex-start; }
+  .somos__help-cell + .somos__help-cell::before {
+    content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: max(1px, calc(var(--u) * 1.5)); height: calc(var(--u) * 72); background: rgba(255, 255, 255, 0.75);
+  }
+  .somos__help-cell:nth-child(1) { padding-left: calc(var(--u) * 20); gap: calc(var(--u) * 23); }
+  .somos__help-cell:nth-child(2) { padding-left: calc(var(--u) * 21); }
+  .somos__help-cell:nth-child(3) { padding-left: calc(var(--u) * 24); gap: calc(var(--u) * 26); }
+  .somos__help-cell:nth-child(4) { padding-left: calc(var(--u) * 37); gap: calc(var(--u) * 25); }
+  .somos__help-headset { width: calc(var(--u) * 88); height: calc(var(--u) * 83); }
+  .somos__help-title { font-size: max(1rem, calc(var(--u) * 30)); line-height: 1.04; }
+  .somos__help-text { font-size: max(0.8125rem, calc(var(--u) * 19.75)); line-height: 1.3; }
+  .somos__help-text-sub { display: inline-block; margin-top: calc(var(--u) * 12); font-size: max(0.8125rem, calc(var(--u) * 20.4)); }
+  .somos__help-phone { width: calc(var(--u) * 48); height: calc(var(--u) * 48); }
+  .somos__help-tel { font-size: max(1.125rem, calc(var(--u) * 32.4)); }
+  .somos__help-label { font-size: max(0.8125rem, calc(var(--u) * 20)); margin-top: calc(var(--u) * 6); }
+  .somos__help-cta-wrap .somos__help-label { margin-top: calc(var(--u) * 4); }
+  .somos__help-wa { width: calc(var(--u) * 46); height: calc(var(--u) * 46); }
+  .somos__help-cta { width: calc(var(--u) * 169); height: calc(var(--u) * 42); padding: 0; font-size: max(0.75rem, calc(var(--u) * 17)); }
+}
+
+/* ===================== Soluciones logísticas (20 km) =====================
+   Móvil/tablet: puerto escalado por alto (34rem) detrás del título; azul marino debajo. */
+.svc {
+  container-type: inline-size;
+  /* Texto sobre blanco arriba; la foto del puerto aparece debajo como franja y se funde al azul */
+  background:
+    linear-gradient(to bottom, #fcfcfc 9.5rem, rgba(252, 252, 252, 0) 13.5rem),
+    url('/seccion01/soluciones_fondo_movil.jpg') 30% 8.5rem / auto 23rem no-repeat,
+    #131977;
+}
+@media (min-width: 640px) {
+  .svc { background-size: auto, 100% auto, auto; background-position: 0 0, center 12rem, 0 0; }
+}
+.svc__sign { width: min(16rem, 100%); container-type: inline-size; }
+.svc__sign--ops { width: min(20.5rem, 100%); }
+/* Texto del letrero en % del ancho del letrero: misma proporción en cualquier tamaño */
+.svc__sign-text { left: 21.7cqw; top: 19%; font-size: 7.6cqw; line-height: 1.27; text-align: left; }
+.svc__sign--ops .svc__sign-text { left: 16.8cqw; font-size: 5.95cqw; }
+.svc__flow { background: linear-gradient(to bottom, rgba(10, 14, 92, 0.85) 70%, rgba(10, 14, 92, 0)); }
+.svc__flow-title { font-size: 0.875rem; text-align: left; }
+.svc__steps { font-size: 0.8125rem; }
+.svc__chevron { width: 1.1rem; height: 0.55rem; margin: 0.45rem 0 0.35rem; }
+.svc__trailer-label { font-size: 0.8125rem; }
+.svc__trailer { height: 3.25rem; }
+/* Tablet: letreros más chicos (su texto escala con el ancho del letrero) y remolques más bajos */
+@media (min-width: 640px) and (max-width: 1279px) {
+  .svc__flow-title { font-size: 0.875rem; }
+  .svc__trailer { height: 3.5rem; }
+  .svc__trailer-label { font-size: 0.875rem; }
+}
+
+/* Escritorio: réplica de public/modelos/soluciones.jpg (área de 1550×1080 a la derecha del riel).
+   Bloques en posición absoluta con coordenadas del diseño × var(--u). */
+@media (min-width: 1280px) {
+  .svc {
+    aspect-ratio: 1550 / 1080;
+    padding: 0;
+    background:
+      linear-gradient(to bottom, rgba(19, 24, 116, 0) 31%, #131874 42%, #131977 64%, #171f8e 79%, #1c24a9 88%, #2835e6 100%),
+      url('/seccion01/soluciones_fondo.jpg') top / 100% auto no-repeat,
+      #131874;
+  }
+  .svc > * { --u: calc(100cqw / 1550); }
+  .svc__intro, .svc__metrics, .svc__grid > div { position: absolute; margin: 0; max-width: none; min-height: 0; text-align: left; }
+  .svc__grid { position: static; margin: 0; display: block; }
+
+  /* Título y párrafo */
+  .svc__intro { left: calc(var(--u) * 103); top: calc(var(--u) * 92); }
+  .svc__title { font-size: max(1.75rem, calc(var(--u) * 40)); line-height: 1.24; }
+  .svc__lead { margin-top: calc(var(--u) * 9); font-size: max(0.875rem, calc(var(--u) * 18.2)); line-height: 1.54; }
+
+  /* Métricas: cada ícono en su x del diseño */
+  .svc__metrics { display: block; left: 0; top: calc(var(--u) * 417); width: 100%; height: calc(var(--u) * 38.73); }
+  .svc__metric { position: absolute; left: calc(var(--u) * var(--x)); top: 0; height: 100%; gap: calc(var(--u) * 10); justify-content: flex-start; }
+  .svc__metric-icon { height: calc(var(--u) * 38.73); }
+  .svc__metric-text { font-size: max(0.75rem, calc(var(--u) * 14.7)); line-height: 1.15; white-space: nowrap; }
+
+  /* Infraestructura */
+  .svc__infra { left: calc(var(--u) * 84); top: calc(var(--u) * 499); }
+  .svc__sign { width: calc(var(--u) * 303.6); margin: 0; }
+  .svc__sign--ops { width: calc(var(--u) * 393.6); margin-left: calc(var(--u) * 2); }
+  .svc__infra-list { margin: calc(var(--u) * 22) 0 0 calc(var(--u) * 22); gap: calc(var(--u) * 19); max-width: none; font-size: max(0.75rem, calc(var(--u) * 16)); line-height: 1.2; }
+  .svc__infra-list > li { min-height: 2.4em; }
+
+  /* Operación integral: letrero + paneles de importación / exportación */
+  .svc__ops { left: calc(var(--u) * 431); top: calc(var(--u) * 499); }
+  .svc__flows { grid-template-columns: repeat(2, calc(var(--u) * 191)); gap: calc(var(--u) * 19); margin: calc(var(--u) * 41) 0 0; max-width: none; }
+  .svc__flow { height: calc(var(--u) * 345); padding: calc(var(--u) * 20) calc(var(--u) * 10) 0; border-radius: calc(var(--u) * 18); }
+  .svc__flow-head { gap: calc(var(--u) * 26); }
+  .svc__flow-title { font-size: max(0.875rem, calc(var(--u) * 20)); line-height: 1.15; }
+  .svc__flow-icon { width: calc(var(--u) * 45); height: calc(var(--u) * 45); }
+  .svc__steps { margin-top: calc(var(--u) * 14); font-size: max(0.75rem, calc(var(--u) * 15)); line-height: 1.2; }
+  .svc__chevron { width: calc(var(--u) * 23); height: calc(var(--u) * 12); margin: calc(var(--u) * 11) 0 calc(var(--u) * 7); }
+
+  /* Capacidades */
+  .svc__caps { left: calc(var(--u) * 870); top: calc(var(--u) * 640); }
+  .svc__caps-title { font-size: max(1.25rem, calc(var(--u) * 29.5)); }
+  .svc__caps-list { margin: calc(var(--u) * 15) 0 0; max-width: none; font-size: max(0.8125rem, calc(var(--u) * 18)); }
+  .svc__cap { width: calc(var(--u) * 235); white-space: nowrap; padding: calc(var(--u) * 7) 0 calc(var(--u) * 9); border-bottom-width: max(1px, calc(var(--u) * 1.5)); }
+
+  /* Tipo de remolques */
+  .svc__grid > .svc__trailers { left: calc(var(--u) * 1191); top: calc(var(--u) * 512); width: calc(var(--u) * 282); text-align: center; }
+  .svc__trailers-title { font-size: max(1.125rem, calc(var(--u) * 25.3)); white-space: nowrap; }
+  .svc__trailer-list { margin-top: calc(var(--u) * 23); gap: calc(var(--u) * 16.7); max-width: none; }
+  .svc__trailer { height: calc(var(--u) * 76); }
+  .svc__trailer-face { border-radius: calc(var(--u) * 16); }
+  .svc__trailer-label { font-size: max(0.75rem, calc(var(--u) * 18)); white-space: nowrap; }
 }

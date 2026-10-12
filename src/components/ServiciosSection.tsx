@@ -1,59 +1,65 @@
-import { useState } from 'react';
-import type { ReactNode } from 'react';
+import { useState, type CSSProperties } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
-type Metric = {
-  icon: string;
-  text: string;
-  iconClass?: string;
-  columnClass: string;
-  alignClass?: string;
-};
-
-const metrics: Metric[] = [
-  { icon: '/seccion01/svg/unidades.svg', text: 'unidades propias\nen operación.', columnClass: 'lg:col-span-2' },
-  { icon: '/seccion01/svg/colaboradores.svg', text: 'colaboradores\ncapacitados.', columnClass: 'lg:col-span-2', alignClass: 'justify-center' },
-  { icon: '/seccion01/svg/patio_almacen.svg', text: 'de patio y\nalmacén propio.', columnClass: 'lg:col-span-3', alignClass: 'justify-center' },
-  { icon: '/seccion01/svg/4km.svg', text: 'del Puerto de\nVeracruz.', columnClass: 'lg:col-span-2' },
-  { icon: '/seccion01/svg/estacion_diesel.svg', text: 'Estación propia\nde diésel.', iconClass: 'h-8 w-8 sm:h-10 sm:w-10', columnClass: 'lg:col-span-3' },
+// Íconos de métricas (ya incluyen el número) y su posición x en el diseño de escritorio
+const metricIcons = [
+  { src: '/seccion01/svg/unidades.svg', x: 96 },
+  { src: '/seccion01/svg/colaboradores.svg', x: 411 },
+  { src: '/seccion01/svg/patio_almacen.svg', x: 732 },
+  { src: '/seccion01/svg/4km.svg', x: 1015 },
+  { src: '/seccion01/svg/estacion_diesel.svg', x: 1279 },
 ];
 
-const infrastructure = [
-  <>Patio y almacén propio<br /><em>(3 hectáreas)</em></>,
-  <>Resguardo de contenedores<br /><em>(vacíos y cargados).</em></>,
-  <>Ubicación a minutos del<br /><em>Puerto de Veracruz.</em></>,
-  <>Maquinaria especializada<br /><em>para carga y descarga.</em></>,
-  <>Estación propia de <em>diésel.</em></>,
-  <><em>Parque logístico MIL519</em><br /><em>(en desarrollo,<br />4 km del puerto).</em></>,
-];
+// Une líneas con salto solo en escritorio (xl); en móvil/tablet el texto fluye
+function DesktopLines({ lines }: { lines: readonly string[] }) {
+  return <>{lines.map((line, i) => <span key={line}>{line}{i < lines.length - 1 && <>{' '}<br className="hidden xl:inline" /></>}</span>)}</>;
+}
 
-const imports = ['Puerto', 'Patio LUTSA', 'Maniobras', 'Transporte', 'Planta / CEDIS', 'Retorno optimizado.'];
-const exports = ['Planta / CEDIS', 'Recolección', 'Patio LUTSA', 'Maniobras', 'Puerto', 'Embarque.'];
-const capabilities = ['Transporte nacional y regional', 'Carga contenerizada y suelta', 'Refrigerados con genset', 'Desconsolidación / consolidación', 'Segregación, etiquetado y emplayado', 'Trincado certificado', 'Preloading y preparación de carga'];
-const trailers = ['Sencillo con porta contenedor', 'Sencillo plataforma', 'Full de portacontenedores', 'Plana con carga suelta', 'Caja seca de 53'];
-
-function Sign({ children, wide = false }: { children: ReactNode; wide?: boolean }) {
+// Letrero naranja con "KM 20" (SVG) y el título encima
+function Sign({ src, lines, variant }: { src: string; lines: readonly string[]; variant: 'infra' | 'ops' }) {
   return (
-    <div className={`orange-gradient inline-flex items-center rounded-lg border-2 border-[#f7c29e] p-1 shadow-lg ${wide ? 'w-full' : ''}`}>
-      <div className={`inline-flex items-center gap-2 rounded-md border-2 border-white/90 px-1.5 py-1 pr-3 ${wide ? 'w-full' : ''}`}>
-        <img src="/seccion01/svg/km20.svg" alt="KM20" className="h-8 w-8 shrink-0 object-contain" />
-        <h2 className={`font-exo font-bold uppercase leading-none text-white ${wide ? 'text-[12px] whitespace-nowrap' : 'text-[13px]'}`}>{children}</h2>
+    <>
+      <div className={`svc__sign svc__sign--${variant} relative mx-auto hidden xl:block`}>
+        <img src={src} alt="" className="block h-auto w-full" />
+        <h3 className="svc__sign-text absolute font-exo font-bold uppercase text-white">
+          {lines[0]}<br /><span className="text-[#10227f]">{lines[1]}</span>
+        </h3>
       </div>
-    </div>
+      {/* Celular y tablet: letrero en código, ambos del mismo ancho (2 líneas en celular, 1 en tablet) */}
+      <div className="orange-gradient mx-auto w-full max-w-[20.5rem] rounded-lg border-2 border-[#f7c29e] p-1 shadow-lg sm:max-w-[26rem] xl:hidden">
+        <div className="flex items-center gap-2.5 rounded-md border-2 border-white/90 py-1.5 pl-1.5 pr-[2.6rem] sm:py-1 sm:pr-[2.3rem]">
+          <img src="/seccion01/svg/km20.svg" alt="" className="h-9 w-auto shrink-0 sm:h-7" />
+          <h3 className="flex-1 text-center font-exo text-[1rem] font-bold uppercase leading-[1.15] text-white sm:whitespace-nowrap sm:text-[0.9375rem] sm:leading-none">
+            {lines[0]}<br className="sm:hidden" /><span className="hidden sm:inline"> </span><span className="text-[#10227f]">{lines[1]}</span>
+          </h3>
+        </div>
+      </div>
+    </>
   );
 }
 
-function FlowColumn({ title, steps, icon }: { title: string; steps: string[]; icon: string }) {
+function Chevron() {
   return (
-    <div className="col-span-6 rounded-xl bg-[#080f65]/75 p-3 shadow-inner sm:p-4">
-      <div className="mb-3 flex items-center justify-center gap-2">
-        <h3 className="font-exo text-[10px] font-bold uppercase leading-[.9] text-white">{title.slice(0, 4)}<br /><span className="text-[#f0782d]">{title.slice(4)}</span></h3>
-        <img src={icon} alt="" className="h-10 w-10 shrink-0 object-contain" />
+    <svg viewBox="0 0 24 12" className="svc__chevron" fill="none" stroke="#e66600" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2 2l10 8 10-8" />
+    </svg>
+  );
+}
+
+function FlowPanel({ title, steps, icon }: { title: readonly string[]; steps: readonly string[]; icon: string }) {
+  return (
+    <div className="svc__flow rounded-2xl px-2 pb-5 pt-4">
+      <div className="svc__flow-head flex items-center justify-center gap-2">
+        <h4 className="svc__flow-title font-exo font-bold uppercase leading-[1.1] text-white">
+          <span className="text-[#f47621]">{title[0]}</span><br className="hidden xl:inline" />{title[1]}
+        </h4>
+        <img src={icon} alt="" className="svc__flow-icon h-10 w-10 shrink-0 object-contain" />
       </div>
-      <ol className="flex flex-col items-center gap-1 text-center font-exo text-[10px] font-semibold text-white">
+      <ol className="svc__steps mt-3 flex flex-col items-center text-center font-condensed font-bold text-white">
         {steps.map((step, index) => (
-          <li key={step} className="flex w-full flex-col items-center">
-            {index > 0 && <img src="/seccion01/svg/avanzando.svg" alt="" className="mb-1 h-3 w-4 object-contain" />}
-            <span><b className="text-[#f0782d]">{index + 1}</b> {step}</span>
+          <li key={step} className="flex flex-col items-center">
+            {index > 0 && <Chevron />}
+            <span><span className="text-[#f47621]">{index + 1}</span> {step}</span>
           </li>
         ))}
       </ol>
@@ -61,96 +67,102 @@ function FlowColumn({ title, steps, icon }: { title: string; steps: string[]; ic
   );
 }
 
-function FlipCard({ label, image }: { label: string; image: string }) {
+function TrailerCard({ label, image }: { label: string; image: string }) {
+  const { t } = useLanguage();
   const [flipped, setFlipped] = useState(false);
   return (
     <button
       type="button"
       onClick={() => setFlipped((f) => !f)}
-      className={`flip-card relative block w-full ${flipped ? 'flipped' : ''}`}
-      style={{ height: '80px' }}
+      aria-pressed={flipped}
+      aria-label={`${flipped ? t.services.hideTrailer : t.services.showTrailer} ${label}`}
+      className={`svc__trailer flip-card relative block h-16 w-full ${flipped ? 'flipped' : ''}`}
     >
-      <div className="flip-card-inner">
-        <div className="flip-card-face orange-gradient px-4 py-5 shadow-glow">
-          <span className="whitespace-nowrap font-exo text-[10px] font-bold uppercase leading-none text-white">
-            {label}
-          </span>
-        </div>
-        <div className="flip-card-face flip-card-back bg-white shadow-glow">
-          <img src={image} alt={label} className="h-full w-full object-contain" />
-        </div>
-      </div>
+      <span className="flip-card-inner block">
+        <span className="svc__trailer-face flip-card-face orange-gradient px-4 shadow-glow">
+          <span className="svc__trailer-label font-condensed font-bold leading-tight text-white">{label}</span>
+        </span>
+        <span className="svc__trailer-face flip-card-face flip-card-back bg-white shadow-glow">
+          <img src={image} alt="" className="h-full w-full object-contain" />
+        </span>
+      </span>
     </button>
   );
 }
 
+/*
+ * Escritorio (xl): réplica de public/modelos/soluciones.jpg. Las posiciones y tamaños viven en
+ * index.css (bloque "Soluciones logísticas") en píxeles del diseño × --u (= ancho / 1550).
+ * Móvil/tablet: columna centrada con las clases de Tailwind de este archivo.
+ */
 export function ServiciosSection() {
+  const { t } = useLanguage();
+  const s = t.services;
+
   return (
-    <section id="servicios" className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/seccion01/fondo-difuminado.png')" }} />
-      <div className="relative z-10 px-4 pt-20 pb-10 sm:px-8 lg:px-10 lg:pt-24 lg:pb-12">
-        <div className="w-full">
-          <div className="mt-4 max-w-[640px]">
-            <h1 className="text-center font-exo text-[24px] font-bold uppercase leading-[.98] tracking-[-.04em] text-[#10227f] sm:text-left sm:text-[38px] lg:text-[60px]">
-              <span className="block pb-[1px]">Soluciones logísticas</span>
-              <span className="block pb-[1px] text-[#e66600]">que impulsan tu negocio.</span>
-            </h1>
-            <div className="relative mt-3 max-w-[540px]">
-              <div className="absolute -inset-x-4 -inset-y-3 rounded-full bg-white/70 blur-xl" />
-              <p className="relative max-w-[510px] font-exo text-[14px] font-semibold leading-[1.45] text-[#515151]">
-                Contamos con la infraestructura, experiencia y capacidad<br />para ofrecerte servicios integrales de logística, transporte<br />y comercio exterior.
-              </p>
-            </div>
-          </div>
+    <section id="servicios" className="svc relative overflow-hidden px-5 pb-24 pt-16 sm:px-8 sm:pt-24 lg:px-10 lg:pb-16">
 
-          <div className="mt-24 -mx-4 bg-gradient-to-r from-[#141c80]/40 via-[#132085]/35 to-[#11166d]/40 px-4 pt-6 pb-2 sm:-mx-8 sm:px-8 sm:pt-8 sm:pb-2 lg:-mx-10 lg:px-10">
-            <div className="grid grid-cols-12 gap-x-4 gap-y-4 sm:gap-x-6 lg:gap-x-4 xl:gap-x-6">
-              {metrics.map((metric) => (
-                <div key={metric.text} className={`col-span-12 flex items-center gap-2 sm:col-span-6 sm:gap-3 ${metric.columnClass} ${metric.alignClass ?? ''}`}>
-                  <div className={`flex shrink-0 items-center justify-center ${metric.iconClass ? metric.iconClass : 'h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20'}`}>
-                    <img src={metric.icon} alt="" className="max-h-full max-w-full object-contain" />
-                  </div>
-                  <p className="whitespace-nowrap font-exo text-[10px] font-bold leading-[1.15] text-white">
-                    {metric.text.split('\n').map((line: string) => <span key={line} className="block">{line}</span>)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="svc__intro relative mx-auto min-h-[15.5rem] max-w-[40rem] text-center sm:min-h-[calc(5.5rem+34cqw)]">
+        <h2 className="svc__title font-exo text-[clamp(1.3rem,5.4cqw,2.4rem)] font-bold uppercase leading-[1.15] text-[#10227f]">
+          {s.title}{' '}<br className="hidden xl:inline" /><span className="text-[#e66600]">{s.titleAccent}</span>
+        </h2>
+        <p className="svc__lead mt-3 font-exo text-[clamp(0.8125rem,2.2cqw,1rem)] font-semibold leading-[1.55] text-[#4a4a4a]">
+          <DesktopLines lines={s.leadLines} />
+        </p>
+      </div>
 
-          <div className="mt-0 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-8 xl:gap-x-8">
-            <div className="min-w-0 sm:col-span-1 lg:col-span-2">
-              <Sign>Infraestructura<br /><span className="text-[#10227f]">y ubicación</span></Sign>
-              <ul className="mt-4 space-y-3 font-exo text-[10px] font-normal uppercase leading-[1.05] text-white">
-                {infrastructure.map((point, index) => <li key={index} className="font-normal [&_em]:font-normal [&_em]:not-italic [&_em]:text-[#f0782d]">{point}</li>)}
-              </ul>
-            </div>
-            <div className="min-w-0 sm:col-span-1 lg:col-span-4">
-              <Sign wide>Operación integral<br /><span className="text-[#10227f]">flujos operativos</span></Sign>
-              <div className="mt-6 grid grid-cols-12 gap-3">
-                <FlowColumn title="Importación" steps={imports} icon="/seccion01/svg/btn_impo.svg" />
-                <FlowColumn title="Exportación" steps={exports} icon="/seccion01/svg/btn_expo.svg" />
-              </div>
-            </div>
-            <div className="grid min-w-0 gap-8 sm:col-span-2 sm:grid-cols-2 lg:contents">
-              <div className="min-w-0 lg:col-span-3 lg:pt-[108px]">
-                <h2 className="font-exo text-[18px] font-bold uppercase leading-none text-[#f0782d]">Capacidades</h2>
-                <ul className="mt-3 space-y-2 font-exo text-[10px] font-semibold text-white">
-                  {capabilities.map((item) => <li key={item} className="border-b border-[#f0782d] pb-0.5">{item}</li>)}
-                </ul>
-              </div>
-              <div className="min-w-0 lg:col-span-3">
-                <h2 className="text-center font-exo text-[18px] font-bold uppercase leading-none text-white">Tipo de remolques</h2>
-                <ul className="mt-3 grid grid-cols-1 gap-2">
-                  {trailers.map((item, index) => (
-                    <li key={item}>
-                      <FlipCard label={item} image={`/seccion01/remolques/camion${index + 1}.png`} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+      <ul className="svc__metrics relative -mx-2 mt-0 flex max-w-[44rem] items-start justify-center sm:mx-auto">
+        {s.metrics.map((metric, i) => (
+          <li key={metricIcons[i].src} className="svc__metric flex w-1/5 flex-col items-center justify-center gap-1 px-0.5 text-center sm:gap-1.5 sm:px-0 xl:w-auto xl:flex-row xl:text-left" style={{ '--x': metricIcons[i].x } as CSSProperties}>
+            <img src={metricIcons[i].src} alt={metric.value} className="svc__metric-icon h-[1.05rem] w-auto max-w-full shrink-0 sm:h-6" />
+            <p className="svc__metric-text font-exo text-[0.5625rem] font-semibold leading-[1.2] text-white sm:text-[0.6875rem] md:text-[0.75rem]">
+              {metric.lines[0]}<br className="hidden sm:inline" /> {metric.lines[1]}
+            </p>
+          </li>
+        ))}
+      </ul>
+
+      <div className="svc__grid relative mt-12 grid grid-cols-1 gap-12">
+        <div className="svc__infra text-center">
+          <Sign src="/seccion01/svg/letrero_infraestructura.svg" lines={s.infraTitle} variant="infra" />
+          <ul className="svc__infra-list mx-auto mt-6 flex max-w-[22rem] flex-col gap-3.5 sm:max-w-[30rem] font-exo text-[0.75rem] font-medium uppercase leading-[1.25] text-white">
+            {s.infra.map((item, i) => (
+              <li key={i}>
+                {item.map((line, j) => (
+                  <span key={j}>
+                    {line.map(([text, accent], k) => <span key={k} className={accent ? 'text-[#f47621]' : undefined}>{text}</span>)}
+                    {j < item.length - 1 && <>{' '}<br className="hidden xl:inline" /></>}
+                  </span>
+                ))}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="svc__ops text-center">
+          <Sign src="/seccion01/svg/letrero%20.svg" lines={s.opsTitle} variant="ops" />
+          <div className="svc__flows mx-auto mt-6 grid max-w-[20rem] grid-cols-1 gap-4 sm:max-w-[40rem] sm:grid-cols-2 sm:gap-5">
+            <FlowPanel title={s.imports.title} steps={s.imports.steps} icon="/seccion01/svg/btn_impo.svg" />
+            <FlowPanel title={s.exports.title} steps={s.exports.steps} icon="/seccion01/svg/btn_expo.svg" />
           </div>
+        </div>
+
+        <div className="svc__caps text-center">
+          <h3 className="svc__caps-title font-exo text-[1.25rem] sm:text-[1.375rem] font-bold uppercase leading-none text-[#f47621]">{s.capabilitiesTitle}</h3>
+          <ul className="svc__caps-list mx-auto mt-4 flex max-w-[22rem] flex-col font-condensed text-[0.8125rem] font-bold text-white sm:grid sm:max-w-[40rem] sm:grid-flow-col sm:grid-rows-4 sm:gap-x-8 sm:text-[0.875rem] xl:flex">
+            {s.capabilities.map((item) => <li key={item} className="svc__cap border-b border-[#e66600]/80 py-2">{item}</li>)}
+          </ul>
+        </div>
+
+        <div className="svc__trailers text-center">
+          <h3 className="svc__trailers-title font-exo text-[1.125rem] sm:text-[1.25rem] font-bold uppercase leading-none text-white">{s.trailersTitle}</h3>
+          <ul className="svc__trailer-list mx-auto mt-4 grid max-w-[22rem] grid-cols-1 gap-3 sm:max-w-[40rem] sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-3 sm:gap-x-5 xl:grid-flow-row xl:grid-cols-1 xl:grid-rows-none">
+            {s.trailers.map((item, index) => (
+              <li key={item}>
+                <TrailerCard label={item} image={`/seccion01/remolques/camion${index + 1}.png`} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

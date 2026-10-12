@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useActiveSection } from '../hooks/useActiveSection';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const NAV_WIDTH = 260;
 
@@ -18,6 +19,9 @@ const stops = [
 const TRUCK_HEIGHT = 200;
 const TRUCK_WIDTH = 95;
 const BULLET_HEIGHT = 17;
+// Barra móvil: la cabina del camioncito está al ~84% de su largo (desde la caja)
+const MINI_TRUCK_CAB = 0.84;
+const STOP_LABEL_MS = 2200; // tiempo que se ve el letrero grande de la parada
 
 export function ScrollTruckNav() {
   const activeSection = useActiveSection(stops.filter((s) => s.id !== '__fin__').map((stop) => stop.id));
@@ -26,7 +30,37 @@ export function ScrollTruckNav() {
   const [truckTop, setTruckTop] = useState('calc(24px + 0%)');
   const [lineBounds, setLineBounds] = useState<{ top: number; bottom: number } | null>(null);
 
+  const { t } = useLanguage();
   const activeIndex = stops.findIndex((s) => s.id === activeSection);
+  const activeKm = stops[activeIndex]?.label.match(/^(\d+) KM/)?.[1];
+
+  // Letrero grande: se muestra al cambiar de parada (no en la carga inicial) y se oculta solo
+  const [showStopLabel, setShowStopLabel] = useState(false);
+  const firstActive = useRef(true);
+  useEffect(() => {
+    if (firstActive.current) { firstActive.current = false; return; }
+    setShowStopLabel(true);
+    const timer = window.setTimeout(() => setShowStopLabel(false), STOP_LABEL_MS);
+    return () => window.clearTimeout(timer);
+  }, [activeSection]);
+
+  // Camioncito de la barra móvil: se desliza al km activo y se voltea si regresa
+  const mobileStopRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [miniTruck, setMiniTruck] = useState({ x: 0, facingLeft: false });
+
+  const updateMiniTruck = useCallback(() => {
+    // La barra móvil muestra stops.slice(0, -1): sus índices coinciden con activeIndex
+    const link = mobileStopRefs.current[Math.max(activeIndex, 0)];
+    if (!link) return;
+    const x = link.offsetLeft + link.offsetWidth / 2;
+    setMiniTruck((prev) => (prev.x === x ? prev : { x, facingLeft: x < prev.x }));
+  }, [activeIndex]);
+
+  useLayoutEffect(() => {
+    updateMiniTruck();
+    window.addEventListener('resize', updateMiniTruck);
+    return () => window.removeEventListener('resize', updateMiniTruck);
+  }, [updateMiniTruck]);
 
   const updateLineBounds = useCallback(() => {
     const rail = railRef.current;
@@ -80,10 +114,52 @@ export function ScrollTruckNav() {
 
   return (
     <>
-      <nav className="fixed inset-x-3 bottom-3 z-50 flex items-center justify-between rounded-full border border-white/20 bg-[#0b145f]/95 px-3 py-2 shadow-2xl backdrop-blur-md lg:hidden" aria-label="Navegación rápida">
-        {stops.slice(1, -1).map((stop) => {
+      <nav className="fixed inset-x-3 bottom-3 z-50 flex items-center justify-between rounded-full border border-white/20 bg-[#0b145f]/95 px-2 py-1.5 shadow-2xl backdrop-blur-md lg:hidden" aria-label={t.nav.quickNav}>
+        {/* Letrero grande con el nombre de la parada; aparece al llegar y se desvanece */}
+        <span
+          className={`pointer-events-none absolute bottom-full left-1/2 mb-7 flex -translate-x-1/2 items-baseline gap-2 whitespace-nowrap rounded-full border border-white/20 bg-[#0b145f]/95 px-4 py-1.5 font-condensed font-bold uppercase text-white shadow-xl backdrop-blur-md transition-all duration-300 motion-reduce:transition-none ${showStopLabel ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
+          aria-hidden="true"
+        >
+          {activeKm && <span className="text-sm text-[#ff8a39]">{activeKm} KM</span>}
+          <span className="text-lg leading-none">{t.nav.stops[activeSection] ?? ''}</span>
+        </span>
+
+        {/* Camioncito encima de la barra; su cabina queda sobre la parada activa */}
+        <span
+          className="pointer-events-none absolute bottom-full left-0 mb-1 transition-transform duration-700 ease-in-out motion-reduce:transition-none"
+          style={{ transform: `translateX(${miniTruck.x}px)` }}
+          aria-hidden="true"
+        >
+          <img
+            src="/camion_mini.png"
+            alt=""
+            className="block h-[14px] w-auto max-w-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.6)]"
+            style={{ transform: miniTruck.facingLeft ? `translateX(-${(1 - MINI_TRUCK_CAB) * 100}%) scaleX(-1)` : `translateX(-${MINI_TRUCK_CAB * 100}%)` }}
+          />
+        </span>
+
+        {stops.slice(0, -1).map((stop, i) => {
           const isActive = activeSection === stop.id;
-          return <a key={stop.id} href={`#${stop.id}`} className={`flex h-8 min-w-8 items-center justify-center rounded-full px-2 font-condensed text-xs font-bold transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`} aria-label={stop.label.replace(/\n/g, ' ')}>{stop.label.split('\n')[0].replace(' KM', '')}</a>;
+          const km = stop.label.match(/^(\d+) KM/)?.[1];
+          return (
+            <a
+              key={stop.id}
+              ref={(el) => { mobileStopRefs.current[i] = el; }}
+              href={`#${stop.id}`}
+              aria-label={km ? `${km} KM, ${t.nav.stops[stop.id]}` : t.nav.stops[stop.id]}
+              aria-current={isActive ? 'location' : undefined}
+              className={`flex h-9 w-9 shrink-0 flex-col items-center justify-center rounded-full font-condensed font-bold leading-none transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`}
+            >
+              {km ? (
+                <>
+                  <span className="text-xs">{km}</span>
+                  <span className="mt-0.5 text-[0.5rem] tracking-wide">KM</span>
+                </>
+              ) : (
+                <img src="/favicon.svg" alt="" className={`h-5 w-5 rounded-full ${isActive ? 'bg-white p-0.5' : 'bg-white/90 p-0.5'}`} />
+              )}
+            </a>
+          );
         })}
       </nav>
 
