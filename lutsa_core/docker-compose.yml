@@ -1,0 +1,39 @@
+# Entorno local de LUTSA-CORE: API + MongoDB.
+# Puertos NO tradicionales (8000/27017 ya están ocupados en el equipo): API 8090 · Mongo 27037.
+#
+#   docker compose up -d --build        # API (:8090) + Mongo (:27037)
+#   docker compose up -d mongo          # solo Mongo, para correr la API con `python app.py`
+#   docker compose down                 # detiene (los datos persisten en el volumen)
+#   docker compose down -v              # detiene y BORRA los datos
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: lutsa-mongo
+    restart: unless-stopped
+    ports:
+      - '27037:27017'
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    container_name: lutsa-core
+    restart: unless-stopped
+    env_file: private/.env.sandbox
+    environment:
+      # Dentro de la red de compose, Mongo se llama `mongo` y escucha en su puerto interno.
+      MONGODB_URI: mongodb://mongo:27017
+    ports:
+      - '8090:8090'
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+volumes:
+  mongo-data:

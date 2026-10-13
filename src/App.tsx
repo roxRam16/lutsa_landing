@@ -42,7 +42,7 @@ function App() {
                 <DesktopLines lines={t.hero.titleLines} />{' '}<br className="hidden xl:inline" />
                 <span className="text-[#e66600]"><DesktopLines lines={t.hero.titleAccentLines} /></span>
               </h1>
-              <p className="mt-3 font-exo text-[clamp(0.9375rem,2.2vw,1.125rem)] font-semibold leading-[1.45] text-[#515151] sm:mt-4 xl:mt-[clamp(1rem,1.05vw,1.75rem)] xl:text-hero-lead">
+              <p className="mt-3 font-exo text-[clamp(1.0625rem,2.7vw,1.3125rem)] font-semibold leading-[1.45] text-[#515151] sm:mt-4 xl:mt-[clamp(1rem,1.05vw,1.75rem)] xl:text-hero-lead">
                 <DesktopLines lines={t.hero.leadLines} />
               </p>
               <a href="#quienes-somos" className="orange-gradient mt-5 inline-flex h-11 items-center gap-4 rounded-full px-8 font-exo text-sm font-bold uppercase text-white shadow-[0_6px_20px_rgba(230,102,0,0.8),0_0_12px_rgba(230,102,0,0.6)] transition-transform hover:scale-105 active:scale-95 sm:mt-6 sm:h-12 sm:text-base xl:mt-[clamp(1.5rem,1.75vw,2.5rem)] xl:h-[clamp(2.75rem,2.25vw,3.5rem)] xl:w-[clamp(12rem,11.7vw,17rem)] xl:justify-center xl:gap-[1.6vw] xl:px-0 xl:text-hero-btn">

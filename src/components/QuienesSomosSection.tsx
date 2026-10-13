@@ -1,21 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import { useAutoFlip } from '../hooks/useAutoFlip';
 import { useLanguage } from '../i18n/LanguageContext';
-
-// Volteo automático de las tarjetas: una a la vez, en orden aleatorio
-const AUTO_FLIP_START_MS = 1500; // espera al entrar la sección en pantalla
-const AUTO_FLIP_HOLD_MS = 2200; // tiempo que se ve el reverso (contacto)
-const AUTO_FLIP_GAP_MS = 1600; // pausa entre una tarjeta y la siguiente
-
-// Orden aleatorio por rondas: cada tarjeta se voltea una vez por ronda y nunca la misma dos veces seguidas
-function shuffledRound(count: number, avoidFirst: number | null): number[] {
-  const order = Array.from({ length: count }, (_, i) => i);
-  for (let i = order.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [order[i], order[j]] = [order[j], order[i]];
-  }
-  if (count > 1 && order[0] === avoidFirst) [order[0], order[1]] = [order[1], order[0]];
-  return order;
-}
 
 // Datos de contacto de cada área (mismo orden que t.about.cards)
 const teamContacts = [
@@ -44,8 +29,10 @@ type TeamCardProps = {
 function TeamFlipCard({ contact, title, text, autoFlipped }: TeamCardProps) {
   const { t } = useLanguage();
   const [flipped, setFlipped] = useState(false);
+  // Escritorio: al pasar el mouse se voltea (muestra el contacto)
+  const [hovered, setHovered] = useState(false);
   const name = title.join(' ');
-  const showBack = flipped || autoFlipped;
+  const showBack = flipped || hovered || autoFlipped;
 
   return (
     <button
@@ -53,6 +40,8 @@ function TeamFlipCard({ contact, title, text, autoFlipped }: TeamCardProps) {
       aria-label={`${flipped ? t.about.showInfo : t.about.showDetails} ${name}`}
       aria-pressed={flipped}
       onClick={() => setFlipped((current) => !current)}
+      onPointerEnter={(e) => { if (e.pointerType === 'mouse') setHovered(true); }}
+      onPointerLeave={() => setHovered(false)}
       className={`somos__card flip-card h-full min-h-[11rem] w-full text-center ${showBack ? 'flipped' : ''}`}
     >
       <span className="flip-card-inner block">
@@ -93,43 +82,8 @@ export function QuienesSomosSection() {
   const { t } = useLanguage();
   const a = t.about;
 
-  // Volteo automático: solo con la sección visible y sin interacción del usuario
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [autoIndex, setAutoIndex] = useState<number | null>(null);
-  const [inView, setInView] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const cardCount = a.cards.length;
-
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.4 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!inView || paused || reduceMotion) {
-      setAutoIndex(null);
-      return;
-    }
-    let round = shuffledRound(cardCount, null);
-    let last: number | null = null;
-    let timer: number;
-    const flipNext = () => {
-      if (round.length === 0) round = shuffledRound(cardCount, last);
-      const index = round.shift()!;
-      last = index;
-      setAutoIndex(index);
-      timer = window.setTimeout(() => {
-        setAutoIndex(null);
-        timer = window.setTimeout(flipNext, AUTO_FLIP_GAP_MS);
-      }, AUTO_FLIP_HOLD_MS);
-    };
-    timer = window.setTimeout(flipNext, AUTO_FLIP_START_MS);
-    return () => window.clearTimeout(timer);
-  }, [inView, paused, cardCount]);
+  // Volteo automático: una tarjeta a la vez, en orden aleatorio
+  const { autoIndex, containerProps } = useAutoFlip<HTMLDivElement>(a.cards.length);
 
   return (
     <section id="quienes-somos" className="somos relative overflow-hidden px-5 pb-24 pt-[calc(37%+4.5rem)] sm:px-8 lg:px-10 lg:pb-16">
@@ -156,14 +110,7 @@ export function QuienesSomosSection() {
             <p className="somos__people-text mx-auto mt-3 max-w-[36rem] font-exo text-[clamp(0.8125rem,2.3cqw,1rem)] font-medium leading-[1.65] text-white">{a.peopleText}</p>
           </div>
 
-          <div
-            ref={carouselRef}
-            className="somos__carousel relative"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onFocus={() => setPaused(true)}
-            onBlur={() => setPaused(false)}
-          >
+          <div {...containerProps} className="somos__carousel relative">
             <span className="somos__arrow somos__arrow--prev hidden" aria-hidden="true">
               <img src="/seccion02/svg/circle-left.svg" alt="" className="h-full w-full object-contain" />
             </span>
