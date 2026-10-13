@@ -124,7 +124,7 @@ function RadialDiagram({ active, caption, alt, names, centerR, id, className, se
 
       {/* Logo central */}
       <div className="absolute" style={{ left: pct(center.x - center.r, DIAGRAM_W), top: pct(center.y - center.r, DIAGRAM_H), width: pct(2 * center.r, DIAGRAM_W) }}>
-        <img src="/seccion04/eco_centro.webp" alt="" className="eco__center-img block h-auto w-full rounded-full" />
+        <img loading="lazy" decoding="async" src="/seccion04/eco_centro.webp" alt="" className="eco__center-img block h-auto w-full rounded-full" />
         <p className="eco__radial-caption absolute inset-x-0 top-[70%] text-center font-exo text-[clamp(0.5rem,2.3cqw,0.8125rem)] font-bold uppercase leading-[1.15] text-[#10227f]">
           {caption[0]}<br />{caption[1]}
         </p>
@@ -146,7 +146,7 @@ function RadialDiagram({ active, caption, alt, names, centerR, id, className, se
             filter: on(i) ? 'grayscale(0) drop-shadow(0 0 10px rgba(244, 118, 33, 0.65))' : 'grayscale(1) drop-shadow(0 0 0 rgba(244, 118, 33, 0))',
           }}
         >
-          <img src={`/seccion04/eco_${key}.webp`} alt="" className="block h-auto w-full rounded-full" />
+          <img loading="lazy" decoding="async" src={`/seccion04/eco_${key}.webp`} alt="" className="block h-auto w-full rounded-full" />
         </button>
       ))}
     </div>
@@ -171,7 +171,7 @@ function DesktopLines({ lines }: { lines: readonly string[] }) {
 }
 
 /*
- * Escritorio (xl): réplica de public/modelos/ecosistema.jpg. El diagrama (círculos y flechas) es una
+ * Escritorio (xl): réplica de docs/referencias/ecosistema.jpg. El diagrama (círculos y flechas) es una
  * imagen sin textos; los textos van encima en HTML para poder traducirlos. Medidas en index.css
  * (bloque "Ecosistema") en píxeles del diseño × --u (= ancho / 1550).
  * Diagrama animado (una empresa a color por turno; mouse/toque la fija). Móvil/tablet: debajo solo el
@@ -241,8 +241,8 @@ export function EcosistemaSection() {
         <ul className="eco__goal-list grid w-full grid-cols-3 gap-2">
           {s.goals.map((goal, i) => (
             <li key={goalIcons[i]} className="eco__goal-item grid grid-cols-[auto_1fr] items-center gap-x-1.5 gap-y-1.5 sm:gap-x-3" style={{ '--i': i } as CSSProperties}>
-              <img src="/seccion04/svg/flecha-lateral.svg" alt="" className={`eco__goal-arrow row-span-2 h-4 w-auto sm:h-6 ${i === 0 ? 'hidden xl:block' : ''}`} />
-              <img src={`/seccion04/svg/${goalIcons[i]}`} alt="" className="eco__goal-icon col-start-2 h-8 w-auto justify-self-center sm:h-9" />
+              <img loading="lazy" decoding="async" src="/seccion04/svg/flecha-lateral.svg" alt="" className={`eco__goal-arrow row-span-2 h-4 w-auto sm:h-6 ${i === 0 ? 'hidden xl:block' : ''}`} />
+              <img loading="lazy" decoding="async" src={`/seccion04/svg/${goalIcons[i]}`} alt="" className="eco__goal-icon col-start-2 h-8 w-auto justify-self-center sm:h-9" />
               <span className="eco__goal-text col-start-2 text-center font-exo text-[0.6875rem] font-medium leading-[1.35] text-white sm:text-[0.875rem]">
                 <DesktopLines lines={goal} />
               </span>

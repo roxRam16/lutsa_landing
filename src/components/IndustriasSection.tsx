@@ -89,7 +89,7 @@ function DesktopLines({ lines }: { lines: readonly string[] }) {
 }
 
 /*
- * Escritorio (xl): réplica de public/modelos/industrias.jpg. Posiciones y tamaños en index.css
+ * Escritorio (xl): réplica de docs/referencias/industrias.jpg. Posiciones y tamaños en index.css
  * (bloque "Industrias") en píxeles del diseño × --u (= ancho / 1550).
  * Móvil/tablet: columna centrada; el mapa va después del párrafo introductorio.
  */
@@ -111,13 +111,13 @@ export function IndustriasSection() {
 
       {/* Mapa flotante */}
       <div className="ind__map relative mx-auto mt-10 w-full max-w-[36rem] sm:mt-12">
-        <img src="/seccion03/map.png" alt={s.mapAlt} className="ind__map-img block h-auto w-full" />
+        <img loading="lazy" decoding="async" src="/seccion03/map.webp" alt={s.mapAlt} className="ind__map-img block h-auto w-full" />
       </div>
 
       <ul ref={metricsRef} className="ind__metrics relative mx-auto mt-8 grid max-w-[44rem] grid-cols-3 gap-3 sm:gap-6">
         {s.metrics.map((metric, i) => (
           <li key={metric.value} className="ind__metric flex flex-col items-center gap-2 text-center">
-            <img src={`/seccion03/svg/${metricIcons[i]}`} alt="" className="ind__metric-icon h-11 w-11 shrink-0 sm:h-14 sm:w-14" />
+            <img loading="lazy" decoding="async" src={`/seccion03/svg/${metricIcons[i]}`} alt="" className="ind__metric-icon h-11 w-11 shrink-0 sm:h-14 sm:w-14" />
             <div className="ind__metric-body">
               <p className="ind__metric-value font-exo text-[1.375rem] font-semibold leading-none text-[#e66600] sm:text-[1.875rem]"><CountUpValue value={metric.value} progress={progress[i]} /></p>
               <p className="ind__metric-text mt-1.5 font-exo text-[0.6875rem] font-medium leading-[1.35] text-[#10227f] sm:text-[0.8125rem]">
@@ -135,7 +135,7 @@ export function IndustriasSection() {
         <ul className="ind__presence-list mt-4 grid grid-cols-3 items-start gap-2 font-exo text-[0.75rem] font-medium leading-[1.25] text-[#10227f] sm:flex sm:justify-center sm:gap-8 sm:text-[0.875rem]">
           {s.presence.map((item, i) => (
             <li key={presenceIcons[i]} className="ind__presence-item flex flex-col items-center gap-1.5 text-center sm:flex-row sm:gap-2.5 sm:text-left">
-              <img src={`/seccion03/svg/${presenceIcons[i]}`} alt="" className="ind__presence-icon h-6 w-6 shrink-0 object-contain" />
+              <img loading="lazy" decoding="async" src={`/seccion03/svg/${presenceIcons[i]}`} alt="" className="ind__presence-icon h-6 w-6 shrink-0 object-contain" />
               {item}
             </li>
           ))}
@@ -145,7 +145,7 @@ export function IndustriasSection() {
       <ul className="ind__bar relative mx-auto mt-12 grid max-w-[44rem] grid-cols-4 gap-y-6 rounded-3xl px-1 py-6 sm:gap-y-8 sm:px-2 sm:py-7">
         {s.list.map((label, i) => (
           <li key={industryIcons[i].src} className="ind__item relative flex flex-col items-center justify-end gap-2 text-center" style={{ '--h': industryIcons[i].h } as CSSProperties}>
-            <img src={`/seccion03/svg/${industryIcons[i].src}`} alt="" className="ind__item-icon h-10 w-auto sm:h-14" />
+            <img loading="lazy" decoding="async" src={`/seccion03/svg/${industryIcons[i].src}`} alt="" className="ind__item-icon h-10 w-auto sm:h-14" />
             <span className="ind__item-label font-exo text-[clamp(0.5rem,2.55cqw,0.625rem)] font-bold uppercase leading-none text-[#f47621] sm:text-[0.875rem]">{label}</span>
           </li>
         ))}

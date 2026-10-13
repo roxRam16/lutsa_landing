@@ -46,7 +46,7 @@ function TeamFlipCard({ contact, title, text, autoFlipped }: TeamCardProps) {
     >
       <span className="flip-card-inner block">
         <span className="somos__card-face flip-card-face flex-col justify-center bg-[#121874] px-3 py-4 shadow-[0_0_14px_rgba(30,110,255,0.75)]">
-          <img src={`/seccion02/svg/${contact.icon}`} alt="" className="somos__card-icon mb-2.5 h-11 w-11 object-contain" />
+          <img loading="lazy" decoding="async" src={`/seccion02/svg/${contact.icon}`} alt="" className="somos__card-icon mb-2.5 h-11 w-11 object-contain" />
           <span className="somos__card-title font-exo text-[0.8125rem] sm:text-[0.875rem] font-bold uppercase leading-[1.1] text-[#f47621]">
             {title.map((line) => <span key={line} className="block">{line}</span>)}
           </span>
@@ -56,11 +56,11 @@ function TeamFlipCard({ contact, title, text, autoFlipped }: TeamCardProps) {
         </span>
         <span className="somos__card-face somos__card-back flip-card-face flip-card-back flex-col bg-[#101c91] px-2 py-4 font-exo text-[0.75rem] shadow-[0_0_14px_rgba(30,110,255,0.75)] leading-none text-white">
           <span className="flex flex-col items-center gap-1.5">
-            <img src="/seccion02/svg/phone.svg" alt="" className="somos__card-back-icon h-6 w-6 object-contain" />
+            <img loading="lazy" decoding="async" src="/seccion02/svg/phone.svg" alt="" className="somos__card-back-icon h-6 w-6 object-contain" />
             <span>{contact.phone}</span>
           </span>
           <span className="somos__card-back-row mt-4 flex flex-col items-center gap-1.5">
-            <img src="/seccion02/svg/whats.svg" alt="" className="somos__card-back-icon h-6 w-6 object-contain" />
+            <img loading="lazy" decoding="async" src="/seccion02/svg/whats.svg" alt="" className="somos__card-back-icon h-6 w-6 object-contain" />
             <span>{contact.whatsapp}</span>
           </span>
           <span className="somos__card-back-row mt-4 flex flex-col items-center gap-1.5">
@@ -74,7 +74,7 @@ function TeamFlipCard({ contact, title, text, autoFlipped }: TeamCardProps) {
 }
 
 /*
- * Escritorio (xl): réplica del diseño public/modelos/somos.png. Las medidas viven en index.css
+ * Escritorio (xl): réplica del diseño docs/referencias/somos.png. Las medidas viven en index.css
  * (bloque "Quiénes somos") y escalan con el ancho de la sección: --u = ancho / 1548px del diseño.
  * Móvil/tablet: clases de Tailwind de este archivo.
  */
@@ -87,7 +87,7 @@ export function QuienesSomosSection() {
 
   return (
     <section id="quienes-somos" className="somos relative overflow-hidden px-5 pb-24 pt-[calc(37%+4.5rem)] sm:px-8 lg:px-10 lg:pb-16">
-      <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="somos__logo absolute left-1/2 top-[4rem] z-20 w-[28cqw] max-w-[13rem] -translate-x-1/2 object-contain" />
+      <img loading="lazy" decoding="async" src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="somos__logo absolute left-1/2 top-[4rem] z-20 w-[28cqw] max-w-[13rem] -translate-x-1/2 object-contain" />
       <div className="somos__inner relative">
 
         <div className="somos__intro relative z-10 grid grid-cols-1 gap-4 text-center sm:gap-5">
@@ -112,20 +112,20 @@ export function QuienesSomosSection() {
 
           <div {...containerProps} className="somos__carousel relative">
             <span className="somos__arrow somos__arrow--prev hidden" aria-hidden="true">
-              <img src="/seccion02/svg/circle-left.svg" alt="" className="h-full w-full object-contain" />
+              <img loading="lazy" decoding="async" src="/seccion02/svg/circle-left.svg" alt="" className="h-full w-full object-contain" />
             </span>
             <div className="somos__cards grid grid-cols-2 gap-4 md:grid-cols-4">
               {a.cards.map((card, i) => <TeamFlipCard key={teamContacts[i].icon} contact={teamContacts[i]} title={card.title} text={card.text} autoFlipped={autoIndex === i} />)}
             </div>
             <span className="somos__arrow somos__arrow--next hidden" aria-hidden="true">
-              <img src="/seccion02/svg/circle-right.svg" alt="" className="h-full w-full object-contain" />
+              <img loading="lazy" decoding="async" src="/seccion02/svg/circle-right.svg" alt="" className="h-full w-full object-contain" />
             </span>
           </div>
         </div>
 
         <div className="somos__help relative z-10 mt-10 grid grid-cols-2 gap-x-2 gap-y-5 rounded-3xl border border-[#f47621] bg-[#2330cf]/40 px-4 py-6 text-center sm:grid-cols-2 sm:gap-x-4 sm:gap-y-6">
           <div className="somos__help-cell col-span-2 flex items-center justify-center gap-3 sm:col-span-1">
-            <img src="/seccion02/svg/diadema.svg" alt="" className="somos__help-headset h-10 w-10 shrink-0 object-contain" />
+            <img loading="lazy" decoding="async" src="/seccion02/svg/diadema.svg" alt="" className="somos__help-headset h-10 w-10 shrink-0 object-contain" />
             <p className="somos__help-title font-exo text-[clamp(1rem,3.4cqw,1.375rem)] sm:text-[1.0625rem] font-bold uppercase leading-[1.1] text-white">
               {a.help.title}{' '}<br className="hidden xl:inline" /><span className="text-[#f47621]">{a.help.titleAccent}</span>
             </p>
@@ -136,14 +136,14 @@ export function QuienesSomosSection() {
             </p>
           </div>
           <div className="somos__help-cell flex items-center justify-center gap-2 sm:gap-3">
-            <img src="/seccion02/svg/phone.svg" alt="" className="somos__help-phone h-7 w-7 sm:h-11 sm:w-11 shrink-0 object-contain" />
+            <img loading="lazy" decoding="async" src="/seccion02/svg/phone.svg" alt="" className="somos__help-phone h-7 w-7 sm:h-11 sm:w-11 shrink-0 object-contain" />
             <div>
               <p className="somos__help-tel whitespace-nowrap font-exo text-[0.9375rem] font-bold sm:text-[1.25rem] leading-none text-white">229 989 0000</p>
               <p className="somos__help-label mt-1 whitespace-nowrap font-exo text-[0.6875rem] font-medium text-white sm:text-[0.8125rem]">{a.help.phoneLabel}</p>
             </div>
           </div>
           <div className="somos__help-cell flex items-center justify-center gap-2 sm:gap-3">
-            <img src="/seccion02/svg/whats.svg" alt="" className="somos__help-wa h-7 w-7 sm:h-11 sm:w-11 shrink-0 object-contain" />
+            <img loading="lazy" decoding="async" src="/seccion02/svg/whats.svg" alt="" className="somos__help-wa h-7 w-7 sm:h-11 sm:w-11 shrink-0 object-contain" />
             <div className="somos__help-cta-wrap flex flex-col items-center">
               <button type="button" className="somos__help-cta orange-gradient whitespace-nowrap rounded-full px-3 py-1.5 font-exo text-[0.6875rem] sm:px-5 sm:py-2 sm:text-[12px] font-bold uppercase leading-none text-white transition-transform hover:-translate-y-0.5">{a.help.cta}</button>
               <p className="somos__help-label mt-1 whitespace-nowrap font-exo text-[0.6875rem] font-medium text-white sm:text-[0.8125rem]">{a.help.ctaSub}</p>

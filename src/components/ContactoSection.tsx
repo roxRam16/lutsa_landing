@@ -54,7 +54,7 @@ const hintCls = 'quote__hint mt-1.5 block px-4 font-condensed text-[0.8125rem] f
 const invalidRing = 'ring-2 ring-[#e0464a]';
 
 /*
- * Escritorio (xl): réplica de public/modelos/cotizacion.png. Medidas en index.css (bloque "Cotización")
+ * Escritorio (xl): réplica de docs/referencias/cotizacion.png. Medidas en index.css (bloque "Cotización")
  * en píxeles del diseño × --u (= ancho / 1550). Móvil/tablet: banner centrado y formulario en 1–2 columnas.
  * El formulario se envía al API LUTSA-CORE (lutsa_core/), protegido con reCAPTCHA.
  */
@@ -204,8 +204,8 @@ export function ContactoSection() {
           <h2 className="quote__title mt-3 font-exo text-[clamp(1.75rem,7.4cqw,3.25rem)] sm:text-[clamp(1.75rem,4.6cqw,2.375rem)] font-bold uppercase leading-[1.1] text-white">{q.title}</h2>
         </div>
         <div className="quote__truck-wrap pointer-events-none absolute bottom-0 right-[-4%] z-0 w-[min(62%,24rem)] sm:w-[48%] sm:max-w-[26rem]">
-          <img src="/seccion07/circle-fondo.svg" alt="" className="quote__arc absolute bottom-0 left-[-30%] w-[125%] max-w-none" />
-          <img src="/seccion07/camion-cotizacion.png" alt={q.truckAlt} className="quote__truck relative block w-full" />
+          <img loading="lazy" decoding="async" src="/seccion07/circle-fondo.svg" alt="" className="quote__arc absolute bottom-0 left-[-30%] w-[125%] max-w-none" />
+          <img loading="lazy" decoding="async" src="/seccion07/camion-cotizacion.webp" alt={q.truckAlt} className="quote__truck relative block w-full" />
         </div>
       </div>
 

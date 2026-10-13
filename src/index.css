@@ -109,7 +109,7 @@
     #131977;
 }
 
-/* Escritorio: réplica de public/modelos/somos.png (área de 1548×1080 a la derecha del riel).
+/* Escritorio: réplica de docs/referencias/somos.png (área de 1548×1080 a la derecha del riel).
    --u = 1px del diseño, escalado al ancho real de la sección (container query units).
    Todas las medidas de abajo son píxeles del diseño × var(--u). Va fuera de @layer para
    ganarle a las utilidades de Tailwind del componente. */
@@ -253,7 +253,7 @@
   .svc__trailer-label { font-size: 1rem; }
 }
 
-/* Escritorio: réplica de public/modelos/soluciones.jpg (área de 1550×1080 a la derecha del riel).
+/* Escritorio: réplica de docs/referencias/soluciones.jpg (área de 1550×1080 a la derecha del riel).
    Bloques en posición absoluta con coordenadas del diseño × var(--u). */
 @media (min-width: 1280px) {
   .svc {
@@ -328,7 +328,7 @@
   container-type: inline-size;
   background:
     linear-gradient(to top, #111751 0, #111751 7rem, rgba(17, 23, 81, 0) 15rem),
-    url('/seccion03/industrias.png') center bottom 6rem / auto 30rem no-repeat,
+    url('/seccion03/industrias.webp') center bottom 6rem / auto 30rem no-repeat,
     #fcfcfc;
 }
 /* Mapa que "flota": vaivén suave y una sombra que se separa cuando sube */
@@ -352,14 +352,14 @@
   box-shadow: 0 0 1.2rem 0.15rem rgba(0, 120, 220, 0.75), inset 0 -0.6rem 1.4rem rgba(40, 70, 255, 0.45);
 }
 
-/* Escritorio: réplica de public/modelos/industrias.jpg (área de 1550×1080 a la derecha del riel). */
+/* Escritorio: réplica de docs/referencias/industrias.jpg (área de 1550×1080 a la derecha del riel). */
 @media (min-width: 1280px) {
   .ind {
     aspect-ratio: 1550 / 1080;
     padding: 0;
     background:
       linear-gradient(to bottom, rgba(17, 23, 81, 0) 68%, rgba(17, 23, 81, 0.6) 75%, #111751 79.5%),
-      url('/seccion03/industrias.png') 0 calc(-10 * 100cqw / 1550) / 100% auto no-repeat,
+      url('/seccion03/industrias.webp') 0 calc(-10 * 100cqw / 1550) / 100% auto no-repeat,
       #fcfcfc;
   }
   .ind > * { --u: calc(100cqw / 1550); position: absolute; margin: 0; max-width: none; text-align: left; }
@@ -426,7 +426,7 @@
   40% { opacity: 0.35; filter: none; }
 }
 @media (prefers-reduced-motion: reduce) { .eco__goal-item { animation: none; opacity: 1; } }
-/* Escritorio: réplica de public/modelos/ecosistema.jpg (área de 1550×1080 a la derecha del riel). */
+/* Escritorio: réplica de docs/referencias/ecosistema.jpg (área de 1550×1080 a la derecha del riel). */
 @media (min-width: 1280px) {
   .eco { aspect-ratio: 1550 / 1080; padding: 0; background-size: 100% 100%; }
   .eco > * { --u: calc(100cqw / 1550); position: absolute; margin: 0; max-width: none; }
@@ -478,7 +478,7 @@
 .quote { container-type: inline-size; }
 .quote__banner { background: linear-gradient(100deg, #151d8c 0%, #1b28b2 45%, #2437f5 100%); }
 
-/* Escritorio: réplica de public/modelos/cotizacion.png (área de 1550 de ancho a la derecha del riel). */
+/* Escritorio: réplica de docs/referencias/cotizacion.png (área de 1550 de ancho a la derecha del riel). */
 @media (min-width: 1280px) {
   .quote > * { --u: calc(100cqw / 1550); }
   .quote__banner { height: calc(var(--u) * 400); padding: 0; }

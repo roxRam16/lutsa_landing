@@ -6,6 +6,7 @@ import { QuienesSomosSection } from './components/QuienesSomosSection';
 import { ScrollTruckNav } from './components/ScrollTruckNav';
 import { ServiciosSection } from './components/ServiciosSection';
 import { useLanguage } from './i18n/LanguageContext';
+import { pathFor } from './i18n/routes';
 
 // Íconos en el mismo orden que t.hero.highlights
 const highlightIcons = ['/seccion00/svg/icono_conectamos.svg', '/seccion00/svg/icono_segur.svg', '/seccion00/svg/icono_veracruz.svg'];
@@ -16,7 +17,7 @@ function DesktopLines({ lines }: { lines: readonly string[] }) {
 }
 
 function App() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const scrollToContact = useCallback((): void => {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
@@ -27,7 +28,7 @@ function App() {
       <Header onContact={scrollToContact} />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
-        <div id="inicio" className="relative min-h-screen bg-cover bg-[center_25%] bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_002.png')" }}>
+        <div id="inicio" className="relative min-h-screen bg-cover bg-[center_25%] bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_002.webp')" }}>
           {/* Móvil/tablet (<xl): columna centrada (logo → texto → highlights junto al camión).
               Escritorio (xl): rejilla de 12 columnas medida sobre el diseño de 1920px. */}
           {/* Velo claro para que el texto no se pierda sobre el arco naranja en móvil/tablet */}
@@ -45,7 +46,7 @@ function App() {
               <p className="mt-3 font-exo text-[clamp(1.0625rem,2.7vw,1.3125rem)] font-semibold leading-[1.45] text-[#515151] sm:mt-4 xl:mt-[clamp(1rem,1.05vw,1.75rem)] xl:text-hero-lead">
                 <DesktopLines lines={t.hero.leadLines} />
               </p>
-              <a href="#quienes-somos" className="orange-gradient mt-5 inline-flex h-11 items-center gap-4 rounded-full px-8 font-exo text-sm font-bold uppercase text-white shadow-[0_6px_20px_rgba(230,102,0,0.8),0_0_12px_rgba(230,102,0,0.6)] transition-transform hover:scale-105 active:scale-95 sm:mt-6 sm:h-12 sm:text-base xl:mt-[clamp(1.5rem,1.75vw,2.5rem)] xl:h-[clamp(2.75rem,2.25vw,3.5rem)] xl:w-[clamp(12rem,11.7vw,17rem)] xl:justify-center xl:gap-[1.6vw] xl:px-0 xl:text-hero-btn">
+              <a href={pathFor(lang, 'quienes-somos')} onClick={(e) => { e.preventDefault(); document.getElementById('quienes-somos')?.scrollIntoView({ behavior: 'smooth' }); }} className="orange-gradient mt-5 inline-flex h-11 items-center gap-4 rounded-full px-8 font-exo text-sm font-bold uppercase text-white shadow-[0_6px_20px_rgba(230,102,0,0.8),0_0_12px_rgba(230,102,0,0.6)] transition-transform hover:scale-105 active:scale-95 sm:mt-6 sm:h-12 sm:text-base xl:mt-[clamp(1.5rem,1.75vw,2.5rem)] xl:h-[clamp(2.75rem,2.25vw,3.5rem)] xl:w-[clamp(12rem,11.7vw,17rem)] xl:justify-center xl:gap-[1.6vw] xl:px-0 xl:text-hero-btn">
                 <span>{t.hero.cta}</span>
                 <span aria-hidden="true" className="text-lg leading-none">▶</span>
               </a>

@@ -1,4 +1,5 @@
 # LUTSA-CORE
+n🇪🇸 Español · [🇺🇸 English](README.en.md)
 
 Backend de la **landing de LUTSA Transportes**: recibe las solicitudes de cotización del formulario,
 las guarda en **MongoDB** y avisa por **correo** al equipo comercial.

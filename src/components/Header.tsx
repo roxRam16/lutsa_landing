@@ -51,7 +51,7 @@ export function Header({ onContact }: HeaderProps) {
           id="header-menu"
           className={`absolute right-4 top-full flex w-56 origin-top flex-col gap-3 rounded-2xl border border-white/60 bg-white/95 p-3 shadow-[0_12px_30px_rgba(20,33,110,0.45)] backdrop-blur-md transition-all duration-300 ease-out motion-reduce:transition-none sm:contents ${menuOpen ? 'visible translate-y-0 scale-y-100 opacity-100' : 'invisible -translate-y-2 scale-y-90 opacity-0 sm:visible'}`}
         >
-        <a href="#inicio" onClick={closeMenu} className="flex h-9 items-center justify-center gap-2 rounded-lg bg-white px-5 py-0 sm:px-12 shadow-[0_8px_16px_rgba(20,33,110,0.65)] transition-colors hover:bg-[#f0f3ff] lg:bg-gradient-to-b lg:from-[#e2e2e2] lg:to-white lg:shadow-[0_8px_18px_rgba(40,50,90,0.35)] lg:h-[clamp(2.25rem,2.4vw,3.5rem)] lg:w-[clamp(10rem,11.1vw,16rem)] lg:px-0" aria-label={t.header.homeLabel}>
+        <a href={`/${lang}/`} onClick={(e) => { e.preventDefault(); closeMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex h-9 items-center justify-center gap-2 rounded-lg bg-white px-5 py-0 sm:px-12 shadow-[0_8px_16px_rgba(20,33,110,0.65)] transition-colors hover:bg-[#f0f3ff] lg:bg-gradient-to-b lg:from-[#e2e2e2] lg:to-white lg:shadow-[0_8px_18px_rgba(40,50,90,0.35)] lg:h-[clamp(2.25rem,2.4vw,3.5rem)] lg:w-[clamp(10rem,11.1vw,16rem)] lg:px-0" aria-label={t.header.homeLabel}>
           {/* Diseño @1920: píldora 213×46px, logo ~109px de ancho */}
           <img src="/seccion01/svg/logo-lutsa.svg" alt="LUTSA Transportes" className="h-5 w-auto object-contain lg:h-auto lg:w-[clamp(4.75rem,5.7vw,8.5rem)]" />
         </a>

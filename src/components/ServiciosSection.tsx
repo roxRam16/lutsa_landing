@@ -21,7 +21,7 @@ function Sign({ src, lines, variant }: { src: string; lines: readonly string[]; 
   return (
     <>
       <div className={`svc__sign svc__sign--${variant} relative mx-auto hidden xl:block`}>
-        <img src={src} alt="" className="block h-auto w-full" />
+        <img loading="lazy" decoding="async" src={src} alt="" className="block h-auto w-full" />
         <h3 className="svc__sign-text absolute font-exo font-bold uppercase text-white">
           {lines[0]}<br /><span className="text-[#10227f]">{lines[1]}</span>
         </h3>
@@ -29,7 +29,7 @@ function Sign({ src, lines, variant }: { src: string; lines: readonly string[]; 
       {/* Celular y tablet: letrero en código, ambos del mismo ancho (2 líneas en celular, 1 en tablet) */}
       <div className="orange-gradient mx-auto w-full rounded-lg border-2 border-[#f7c29e] p-1 shadow-lg sm:max-w-[40rem] xl:hidden">
         <div className="flex items-center gap-2.5 rounded-md border-2 border-white/90 py-1.5 pl-1.5 pr-3 sm:justify-center sm:gap-3 sm:py-1 sm:pr-1.5">
-          <img src="/seccion01/svg/km20.svg" alt="" className="h-8 w-auto shrink-0 sm:h-7" />
+          <img loading="lazy" decoding="async" src="/seccion01/svg/km20.svg" alt="" className="h-8 w-auto shrink-0 sm:h-7" />
           <h3 className="svc__sign-line flex-1 whitespace-nowrap sm:flex-none text-center font-exo font-bold uppercase leading-none text-white" style={{ '--len': (lines[0].length + lines[1].length + 1) * 0.58 } as CSSProperties}>
             {lines[0]} <span className="text-[#10227f]">{lines[1]}</span>
           </h3>
@@ -54,7 +54,7 @@ function FlowPanel({ title, steps, icon, delay }: { title: readonly string[]; st
         <h4 className="svc__flow-title font-exo font-bold uppercase leading-[1.1] text-white">
           <span className="text-[#f47621]">{title[0]}</span><br className="hidden xl:inline" />{title[1]}
         </h4>
-        <img src={icon} alt="" className="svc__flow-icon h-7 w-7 shrink-0 object-contain sm:h-10 sm:w-10" />
+        <img loading="lazy" decoding="async" src={icon} alt="" className="svc__flow-icon h-7 w-7 shrink-0 object-contain sm:h-10 sm:w-10" />
       </div>
       <ol className="svc__steps mt-3 grid grid-flow-col grid-cols-3 grid-rows-[repeat(2,auto)] items-start gap-x-1 text-center font-condensed font-bold text-white sm:flex sm:flex-col sm:items-center">
         {steps.map((step, index) => (
@@ -106,7 +106,7 @@ function MetricsCarousel({ metrics }: { metrics: readonly { value: string; lines
               aria-hidden={k < n || k >= 2 * n ? true : undefined}
               className={`svc__carousel-item flex shrink-0 flex-col items-center gap-2 px-1 text-center sm:px-3 ${animate ? `transition-opacity ${CAROUSEL_ANIM}` : ''} ${active ? 'opacity-100' : 'opacity-40 sm:opacity-30'}`}
             >
-              <img src={metricIcons[i].src} alt={metrics[i].value} className={`h-8 w-auto max-w-full origin-bottom sm:h-11 ${animate ? `transition-[transform,filter] ${CAROUSEL_ANIM}` : ''} ${active ? 'scale-[1.7] drop-shadow-[0_0_8px_rgba(255,140,40,0.6)]' : 'scale-90 sm:scale-[0.7]'}`} />
+              <img loading="lazy" decoding="async" src={metricIcons[i].src} alt={metrics[i].value} className={`h-8 w-auto max-w-full origin-bottom sm:h-11 ${animate ? `transition-[transform,filter] ${CAROUSEL_ANIM}` : ''} ${active ? 'scale-[1.7] drop-shadow-[0_0_8px_rgba(255,140,40,0.6)]' : 'scale-90 sm:scale-[0.7]'}`} />
               <p className="font-exo text-[0.6875rem] font-semibold leading-[1.25] text-white sm:text-[0.875rem]">
                 {metrics[i].lines[0]}<br />{metrics[i].lines[1]}
               </p>
@@ -138,7 +138,7 @@ function TrailerCard({ label, image, autoFlipped }: { label: string; image: stri
           <span className="svc__trailer-label font-condensed font-bold leading-tight text-white">{label}</span>
         </span>
         <span className="svc__trailer-face flip-card-face flip-card-back bg-white shadow-glow">
-          <img src={image} alt="" className="h-full w-full object-contain" />
+          <img loading="lazy" decoding="async" src={image} alt="" className="h-full w-full object-contain" />
         </span>
       </span>
     </button>
@@ -146,7 +146,7 @@ function TrailerCard({ label, image, autoFlipped }: { label: string; image: stri
 }
 
 /*
- * Escritorio (xl): réplica de public/modelos/soluciones.jpg. Las posiciones y tamaños viven en
+ * Escritorio (xl): réplica de docs/referencias/soluciones.jpg. Las posiciones y tamaños viven en
  * index.css (bloque "Soluciones logísticas") en píxeles del diseño × --u (= ancho / 1550).
  * Móvil/tablet: columna centrada con las clases de Tailwind de este archivo.
  */
@@ -173,7 +173,7 @@ export function ServiciosSection() {
       <ul className="svc__metrics hidden">
         {s.metrics.map((metric, i) => (
           <li key={metricIcons[i].src} className="svc__metric flex w-1/3 flex-col items-center justify-center gap-1.5 px-1 text-center sm:gap-2 sm:px-0 xl:w-auto xl:flex-row xl:text-left" style={{ '--x': metricIcons[i].x, '--i': i } as CSSProperties}>
-            <img src={metricIcons[i].src} alt={metric.value} className="svc__metric-icon h-7 w-auto max-w-full shrink-0 sm:h-10" />
+            <img loading="lazy" decoding="async" src={metricIcons[i].src} alt={metric.value} className="svc__metric-icon h-7 w-auto max-w-full shrink-0 sm:h-10" />
             <p className="svc__metric-text font-exo text-[0.6875rem] font-semibold leading-[1.25] text-white sm:text-[0.875rem]">
               {metric.lines[0]}<br className="hidden sm:inline" /> {metric.lines[1]}
             </p>
@@ -218,7 +218,7 @@ export function ServiciosSection() {
           <ul {...containerProps} className="svc__trailer-list mx-auto mt-4 grid max-w-[40rem] grid-cols-2 gap-3 sm:gap-5 xl:grid-cols-1">
             {s.trailers.map((item, index) => (
               <li key={item}>
-                <TrailerCard label={item} image={`/seccion01/remolques/camion${index + 1}.png`} autoFlipped={autoIndex === index} />
+                <TrailerCard label={item} image={`/seccion01/remolques/camion${index + 1}.webp`} autoFlipped={autoIndex === index} />
               </li>
             ))}
           </ul>

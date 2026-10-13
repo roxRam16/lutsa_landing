@@ -1,20 +1,22 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useLanguage } from '../i18n/LanguageContext';
+import { pathFor, type SectionId } from '../i18n/routes';
 
 const NAV_WIDTH = 260;
 
+// Paradas del recorrido. El nombre de cada una sale de las traducciones (t.nav.rail / t.nav.stops).
 const stops = [
-  { id: 'inicio', label: 'RECORRIDO\nLUTSA' },
-  { id: 'quienes-somos', label: '10 KM\nQUIENES\nSOMOS' },
-  { id: 'servicios', label: '20 KM\nSERVICIOS' },
-  { id: 'industrias', label: '30 KM\nINDUSTRIAS' },
-  { id: 'ecosistema', label: '40 KM\nECOSISTEMA\nDE EMPRESAS' },
-  { id: 'esr', label: '50 KM\nESR' },
-  { id: 'certificaciones', label: '60 KM\nCERTIFICACIONES' },
-  { id: 'contacto', label: '70 KM\nCOTIZACIÓN\nY CONTACTO' },
-  { id: '__fin__', label: '' },
-];
+  { id: 'inicio', km: null },
+  { id: 'quienes-somos', km: 10 },
+  { id: 'servicios', km: 20 },
+  { id: 'industrias', km: 30 },
+  { id: 'ecosistema', km: 40 },
+  { id: 'galeria', km: 50 },
+  { id: 'certificaciones', km: 60 },
+  { id: 'contacto', km: 70 },
+  { id: '__fin__', km: null },
+] as const;
 
 const TRUCK_HEIGHT = 200;
 const TRUCK_WIDTH = 95;
@@ -30,9 +32,19 @@ export function ScrollTruckNav() {
   const [truckTop, setTruckTop] = useState('calc(24px + 0%)');
   const [lineBounds, setLineBounds] = useState<{ top: number; bottom: number } | null>(null);
 
-  const { t } = useLanguage();
+  const { t, lang, setSection } = useLanguage();
+  // Enlaces con ruta real (rastreables por Google); el clic hace scroll sin recargar
+  const go = (id: string) => (e: MouseEvent) => {
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
   const activeIndex = stops.findIndex((s) => s.id === activeSection);
-  const activeKm = stops[activeIndex]?.label.match(/^(\d+) KM/)?.[1];
+
+  // La sección visible define la URL (/es/servicios, /en/services…) y los metadatos
+  useEffect(() => {
+    if (activeSection && activeSection !== '__fin__') setSection(activeSection as SectionId);
+  }, [activeSection, setSection]);
+  const activeKm = stops[activeIndex]?.km;
 
   // Letrero grande: se muestra al cambiar de parada (no en la carga inicial) y se oculta solo
   const [showStopLabel, setShowStopLabel] = useState(false);
@@ -140,12 +152,13 @@ export function ScrollTruckNav() {
 
         {stops.slice(0, -1).map((stop, i) => {
           const isActive = activeSection === stop.id;
-          const km = stop.label.match(/^(\d+) KM/)?.[1];
+          const km = stop.km;
           return (
             <a
               key={stop.id}
               ref={(el) => { mobileStopRefs.current[i] = el; }}
-              href={`#${stop.id}`}
+              href={pathFor(lang, stop.id as SectionId)}
+              onClick={go(stop.id)}
               aria-label={km ? `${km} KM, ${t.nav.stops[stop.id]}` : t.nav.stops[stop.id]}
               aria-current={isActive ? 'location' : undefined}
               className={`flex h-9 w-9 shrink-0 flex-col items-center justify-center rounded-full font-condensed font-bold leading-none transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`}
@@ -166,12 +179,12 @@ export function ScrollTruckNav() {
       <aside
         className="fixed left-0 top-0 z-40 hidden h-screen overflow-hidden border-r border-white/10 lg:block"
         style={{ width: `${NAV_WIDTH}px` }}
-        aria-label="Navegación por kilómetros"
+        aria-label={t.nav.railLabel}
       >
         <div
           className="absolute inset-0 bg-center-top bg-no-repeat"
           style={{
-            backgroundImage: "url('/carretera_vertical.png')",
+            backgroundImage: "url('/carretera_vertical.webp')",
             backgroundSize: '100% 100%',
           }}
           aria-hidden="true"
@@ -192,7 +205,8 @@ export function ScrollTruckNav() {
               return (
                 <a
                   key={stop.id}
-                  href={isEmpty ? undefined : `#${stop.id}`}
+                  href={isEmpty ? undefined : pathFor(lang, stop.id as SectionId)}
+                  onClick={isEmpty ? undefined : go(stop.id)}
                   ref={(el) => { stopRefs.current[index] = el; }}
                   className={`group relative flex items-center gap-3 text-left font-condensed text-[10px] font-medium uppercase leading-[1.05] tracking-tight text-white transition-colors ${isEmpty ? 'pointer-events-none mb-6' : 'hover:text-[#ff8a39]'}`}
                 >
@@ -201,7 +215,7 @@ export function ScrollTruckNav() {
                   </span>
                   {!isEmpty && (
                     <span className={isActive ? 'text-[#ff812f]' : 'text-white'}>
-                      {stop.label.split('\n').map((line: string) => <span key={line} className="block">{line}</span>)}
+                      {[...(stop.km ? [`${stop.km} KM`] : []), ...(t.nav.rail[stop.id] ?? [])].map((line) => <span key={line} className="block">{line}</span>)}
                     </span>
                   )}
                 </a>
@@ -215,9 +229,9 @@ export function ScrollTruckNav() {
             onClick={goNext}
             disabled={isLast}
             className="mt-5 flex flex-col items-start gap-2 pl-[32px] text-left font-condensed text-[10px] font-medium leading-tight text-white transition-opacity hover:text-[#ff8a39] disabled:opacity-40"
-            aria-label="Avanzar a la siguiente sección"
+            aria-label={t.nav.keepGoingLabel}
           >
-            <span>Sigue<br />avanzando</span>
+            <span>{t.nav.keepGoing[0]}<br />{t.nav.keepGoing[1]}</span>
             <img
               src="/seccion01/svg/flecha_avanzando.svg"
               alt=""
@@ -227,8 +241,8 @@ export function ScrollTruckNav() {
 
           {/* Camión que se desliza a la sección activa */}
           <img
-            src="/camion.png"
-            alt="Camión recorriendo el riel"
+            src="/camion.webp"
+            alt={t.nav.truckAlt}
             className="pointer-events-none absolute z-20 h-[200px] w-[95px] object-contain"
             style={{ top: truckTop, left: '114px', transition: 'top 5000ms cubic-bezier(0.25, 0.1, 0.25, 1)' }}
           />
