@@ -163,7 +163,7 @@ export function ServiciosSection() {
         <h2 className="svc__title font-exo text-[clamp(1.3rem,5.4cqw,2.4rem)] font-bold uppercase leading-[1.15] text-[#10227f]">
           {s.title}{' '}<br className="hidden xl:inline" /><span className="text-[#e66600]">{s.titleAccent}</span>
         </h2>
-        <p className="svc__lead mt-3 font-exo text-[clamp(0.9375rem,2.7cqw,1.1875rem)] font-semibold leading-[1.55] text-[#4a4a4a]">
+        <p className="svc__lead mt-3 font-exo text-[clamp(1rem,2.7cqw,1.1875rem)] font-semibold leading-[1.55] text-[#4a4a4a]">
           <DesktopLines lines={s.leadLines} />
         </p>
       </div>
