@@ -113,7 +113,7 @@ ruff check . && ruff format --check .
 ## 10. Pendientes y limitaciones conocidas
 
 - Botón flotante de WhatsApp (requiere número oficial).
-- Secciones de **Galería** y **Certificaciones**: aún son marcadores.
+- Sección de **Galería**: aún es un marcador.
 - El contenido se pinta con JavaScript; los metadatos sí están prerenderizados por ruta. Si Search Console
   pide el contenido en el HTML, se migraría a prerender completo o SSR.
 - SMTP y claves reales de reCAPTCHA pendientes de configurar.

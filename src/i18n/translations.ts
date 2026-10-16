@@ -42,9 +42,37 @@ export const translations = {
       keepGoingLabel: 'Avanzar a la siguiente sección',
       truckAlt: 'Camión recorriendo la carretera',
     },
+    cert: {
+      titleBold: 'Comprometidos',
+      title: 'con un mejor',
+      titleAccent: 'México',
+      leadLines: ['Trabajamos cada día con calidad,', 'responsabilidad y orgullo para generar un', 'impacto positivo en nuestros clientes, en la', 'sociedad y en el desarrollo de nuestro país.'],
+      photoAlt: 'Equipo de LUTSA chocando las manos con niños en una cancha de basquetbol recién pintada',
+      showDetails: 'Ver detalle de',
+      showInfo: 'Ver distintivo de',
+      cards: [
+        {
+          title: ['Certificación', 'ISO 9001:2015'],
+          backTitle: ['Certificación', 'ISO 9001:2015'],
+          logoAlt: 'Sello de certificación ISO 9001:2015, MB Certification',
+          text: ['Nuestro sistema de gestión', 'de calidad está certificado', 'bajo la norma ISO 9001:2015,', 'lo que respalda nuestro', 'compromiso con la mejora', 'continua, la eficiencia de', 'nuestros procesos y la', 'satisfacción de nuestros', 'clientes.'],
+        },
+        {
+          title: ['Distintivo Empresa', 'Socialmente', 'Responsable (ESR)'],
+          backTitle: ['Distintivo Empresa', 'Socialmente Responsable', '(ESR)'],
+          logoAlt: 'Distintivo ESR, Empresa Socialmente Responsable (Cemefi)',
+          text: ['Este distintivo refleja nuestro', 'compromiso con una gestión', 'empresarial responsable,', 'promoviendo prácticas que', 'consideran el impacto de', 'nuestras decisiones en las', 'personas, la comunidad y el', 'entorno.'],
+        },
+        {
+          title: ['Distintivo', 'Hecho en México'],
+          backTitle: ['Distintivo', 'Hecho en México'],
+          logoAlt: 'Distintivo Hecho en México',
+          text: ['Nos sentimos orgullosos de', 'contribuir al desarrollo de', 'nuestro país. Este distintivo', 'representa nuestra identidad', 'como empresa mexicana y', 'nuestro compromiso con el', 'talento, la capacidad', 'productiva y la calidad que', 'distingue a México.'],
+        },
+      ],
+    },
     placeholders: {
       galeria: { title: 'Galería', text: 'Nuestra operación en imágenes: flota, patio, maniobras y equipo.' },
-      certificaciones: { title: 'Certificaciones', text: 'Procesos confiables, trazables y listos para los retos de tu operación.' },
     } as Record<string, { title: string; text: string }>,
     hero: {
       titleLines: ['Siempre en', 'movimiento,'],
@@ -256,9 +284,37 @@ export const translations = {
       keepGoingLabel: 'Go to the next section',
       truckAlt: 'Truck driving along the road',
     },
+    cert: {
+      titleBold: 'Committed',
+      title: 'to a better',
+      titleAccent: 'Mexico',
+      leadLines: ['We work every day with quality,', 'responsibility and pride to make a positive', 'impact on our clients, on society and on', 'the development of our country.'],
+      photoAlt: 'LUTSA team members high-fiving children on a freshly painted basketball court',
+      showDetails: 'See details of',
+      showInfo: 'See badge of',
+      cards: [
+        {
+          title: ['ISO 9001:2015', 'Certification'],
+          backTitle: ['ISO 9001:2015', 'Certification'],
+          logoAlt: 'ISO 9001:2015 certification seal, MB Certification',
+          text: ['Our quality management', 'system is certified under', 'the ISO 9001:2015 standard,', 'which backs our commitment', 'to continuous improvement,', 'the efficiency of our', 'processes and the', 'satisfaction of our', 'clients.'],
+        },
+        {
+          title: ['Socially Responsible', 'Company (ESR)', 'Distinction'],
+          backTitle: ['Socially Responsible', 'Company (ESR)', 'Distinction'],
+          logoAlt: 'ESR distinction, Socially Responsible Company (Cemefi)',
+          text: ['This distinction reflects', 'our commitment to', 'responsible business', 'management, promoting', 'practices that consider', 'the impact of our', 'decisions on people, the', 'community and the', 'environment.'],
+        },
+        {
+          title: ['Made in Mexico', 'Distinction'],
+          backTitle: ['Made in Mexico', 'Distinction'],
+          logoAlt: 'Made in Mexico distinction',
+          text: ['We are proud to contribute', 'to the development of our', 'country. This distinction', 'represents our identity as', 'a Mexican company and our', 'commitment to the talent,', 'productive capacity and', 'quality that set Mexico', 'apart.'],
+        },
+      ],
+    },
     placeholders: {
       galeria: { title: 'Gallery', text: 'Our operation in pictures: fleet, yard, handling and team.' },
-      certificaciones: { title: 'Certifications', text: 'Reliable, traceable processes, ready for the challenges of your operation.' },
     } as Record<string, { title: string; text: string }>,
     hero: {
       titleLines: ['Always on', 'the move,'],

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 336 439">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-2 {
+        filter: url(#drop-shadow-2);
+      }
+
+      .cls-3 {
+        fill: #121874;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        fill-rule: evenodd;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: url(#Degradado_sin_nombre_126);
+      }
+
+      .cls-5 {
+        fill: url(#Degradado_sin_nombre_129);
+      }
+    </style>
+    <filter id="drop-shadow-1" x="0" y="0" width="336" height="439" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="13"/>
+      <feFlood flood-color="#000" flood-opacity=".3"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="drop-shadow-2" x="0" y="0" width="336" height="439" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-2" stdDeviation="9.34"/>
+      <feFlood flood-color="#000" flood-opacity=".3"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="Degradado_sin_nombre_129" data-name="Degradado sin nombre 129" x1="39.88" y1="186.07" x2="296.07" y2="186.07" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e18030"/>
+      <stop offset=".25" stop-color="#dc702e"/>
+      <stop offset=".71" stop-color="#d6572c"/>
+      <stop offset="1" stop-color="#d44f2c"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_126" data-name="Degradado sin nombre 126" x1="167.97" y1="169.31" x2="167.97" y2="247.48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#e5e5e5"/>
+    </linearGradient>
+    <clipPath id="clip-tarjeta"><rect x="39.88" y="39.19" width="256.19" height="360.8" rx="32.4" ry="32.4"/></clipPath>
+  </defs>
+  <g class="cls-1">
+    <rect class="cls-6" x="39.88" y="39.19" width="256.19" height="360.8" rx="32.4" ry="32.4"/>
+  </g>
+  <g class="cls-2" clip-path="url(#clip-tarjeta)">
+    <path class="cls-3" d="M39.88,163.08v-91.48c0-17.9,14.51-32.4,32.4-32.4h191.39c17.9,0,32.4,14.51,32.4,32.4v91.48"/>
+  </g>
+  <path class="cls-5" d="M39.89,288.44c1.32-5.42,15.2-69.5,129.46-76.58l5.51-60.59c83.32-6.99,119.93-55.88,121.22-67.58v47.54L39.88,245.39v43.05Z"/>
+  <path class="cls-4" d="M296.07,248.46s-127.75-71.16-256.19-.96v-119.71s131.2,51.6,256.19,2.4v118.27Z"/>
+</svg>

@@ -112,7 +112,7 @@ ruff check . && ruff format --check .
 ## 10. Known pending items and limitations
 
 - Floating WhatsApp button (needs the official number).
-- **Gallery** and **Certifications** sections: still placeholders.
+- **Gallery** section: still a placeholder.
 - Content is painted with JavaScript; metadata is prerendered per route. If Search Console requires the
   content in the HTML, the site would move to full prerendering or SSR.
 - Real SMTP and reCAPTCHA keys still to be configured.

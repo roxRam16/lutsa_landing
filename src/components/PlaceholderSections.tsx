@@ -1,9 +1,10 @@
 import { useLanguage } from '../i18n/LanguageContext';
+import { CertificacionesSection } from './CertificacionesSection';
 import { EcosistemaSection } from './EcosistemaSection';
 import { IndustriasSection } from './IndustriasSection';
 
-// Secciones aún sin diseño final: Galería (50 km) y Certificaciones (60 km)
-const placeholderIds = ['galeria', 'certificaciones'];
+// Secciones aún sin diseño final: Galería (50 km)
+const placeholderIds = ['galeria'];
 
 export function PlaceholderSections() {
   const { t } = useLanguage();
@@ -21,5 +22,6 @@ export function PlaceholderSections() {
         </div>
       </section>
     ))}
+    <CertificacionesSection />
   </>;
 }

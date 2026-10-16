@@ -38,7 +38,7 @@ Probar desde el celular con ngrok: `ngrok http 5173` (un solo túnel; Vite reenv
 
 ```text
 src/
-├── components/        Secciones (Quiénes somos, Servicios, Industrias, Ecosistema, Cotización),
+├── components/        Secciones (Quiénes somos, Servicios, Industrias, Ecosistema, Certificaciones, Cotización),
 │                      header, barra de kilómetros y componentes del formulario (quote/)
 ├── hooks/             useActiveSection · useAutoFlip (tarjetas que giran solas)
 ├── i18n/              translations.ts (ES/EN) · routes.ts (URLs y SEO) · seo.ts · LanguageContext.tsx
@@ -101,7 +101,7 @@ Plantilla: [`.env.example`](.env.example).
 ## Pendientes conocidos
 
 Ver el backlog (`docs/LUTSA_Product_Backlog.xlsx`). Principales: botón flotante de WhatsApp, secciones
-de Galería y Certificaciones, SMTP y reCAPTCHA reales, publicación en `lutsa.mx`.
+de Galería, SMTP y reCAPTCHA reales, publicación en `lutsa.mx`.
 
 ## Historial de cambios
 

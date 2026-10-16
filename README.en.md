@@ -38,7 +38,7 @@ To test from a phone with ngrok: `ngrok http 5173` (a single tunnel; Vite proxie
 
 ```text
 src/
-├── components/        Sections (About, Services, Industries, Ecosystem, Quote),
+├── components/        Sections (About, Services, Industries, Ecosystem, Certifications, Quote),
 │                      header, kilometer bar and form components (quote/)
 ├── hooks/             useActiveSection · useAutoFlip (self-flipping cards)
 ├── i18n/              translations.ts (ES/EN) · routes.ts (URLs and SEO) · seo.ts · LanguageContext.tsx
@@ -90,5 +90,5 @@ Template: [`.env.example`](.env.example).
 
 ## Known pending items
 
-See the backlog (`docs/LUTSA_Product_Backlog.xlsx`). Main ones: floating WhatsApp button, Gallery and
-Certifications sections, real SMTP and reCAPTCHA, publishing on `lutsa.mx`.
+See the backlog (`docs/LUTSA_Product_Backlog.xlsx`). Main ones: floating WhatsApp button, Gallery
+section, real SMTP and reCAPTCHA, publishing on `lutsa.mx`.
