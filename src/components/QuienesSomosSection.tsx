@@ -48,9 +48,9 @@ function TeamFlipCard({ contact, title, text, autoFlipped }: TeamCardProps) {
     >
       <span className="flip-card-inner block">
         {/* Frente: icono + título + texto descriptivo */}
-        <span className="somos__card-face flip-card-face flex-col justify-center bg-[#121874] px-4 py-5 max-xl:px-6 max-xl:py-8 shadow-[0_0_14px_rgba(30,110,255,0.75)]">
+        <span className="somos__card-face flip-card-face flex-col justify-center bg-brand-navy-deep px-4 py-5 below-xl:px-6 below-xl:py-8 shadow-[0_0_14px_rgba(30,110,255,0.75)]">
           <img loading="lazy" decoding="async" src={`/seccion02/svg/${contact.icon}`} alt="" className="somos__card-icon mb-3 h-14 w-14 sm:h-16 sm:w-16 object-contain" />
-          <span className="somos__card-title font-exo text-[1.125rem] sm:text-[1.1875rem] font-bold uppercase leading-[1.15] text-[#f47621]">
+          <span className="somos__card-title font-exo text-[1.125rem] sm:text-[1.1875rem] font-bold uppercase leading-[1.15] text-brand-orange">
             {title.map((line) => <span key={line} className="block">{line}</span>)}
           </span>
           <span className="somos__card-text mt-2.5 font-exo text-[1rem] sm:text-[1.0625rem] font-medium leading-[1.5] text-white">
@@ -58,18 +58,18 @@ function TeamFlipCard({ contact, title, text, autoFlipped }: TeamCardProps) {
           </span>
         </span>
         {/* Reverso: datos de contacto – en móvil fila horizontal (icono + dato), en tablet/desk columna */}
-        <span className="somos__card-face somos__card-back flip-card-face flip-card-back flex-col justify-center bg-[#101c91] px-4 py-5 max-xl:px-5 max-xl:py-8 font-exo text-[1rem] sm:text-[0.9375rem] shadow-[0_0_14px_rgba(30,110,255,0.75)] leading-snug text-white">
+        <span className="somos__card-face somos__card-back flip-card-face flip-card-back flex-col justify-center bg-[#101c91] px-4 py-5 below-xl:px-5 below-xl:py-8 font-exo text-[1rem] sm:text-[0.9375rem] shadow-[0_0_14px_rgba(30,110,255,0.75)] leading-snug text-white">
           <span className="flex items-center justify-center gap-3 sm:flex-col sm:gap-1.5">
             <img loading="lazy" decoding="async" src="/seccion02/svg/phone.svg" alt="" className="somos__card-back-icon h-7 w-7 shrink-0 object-contain" />
-            <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="hover:text-[#f47621] transition-colors">{contact.phone}</a>
+            <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="hover:text-brand-orange transition-colors">{contact.phone}</a>
           </span>
           <span className="somos__card-back-row mt-4 flex items-center justify-center gap-3 sm:flex-col sm:gap-1.5">
             <img loading="lazy" decoding="async" src="/seccion02/svg/whats.svg" alt="" className="somos__card-back-icon h-7 w-7 shrink-0 object-contain" />
-            <a href={`https://wa.me/${waNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#f47621] transition-colors">{contact.whatsapp}</a>
+            <a href={`https://wa.me/${waNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-orange transition-colors">{contact.whatsapp}</a>
           </span>
           <span className="somos__card-back-row mt-4 flex items-center justify-center gap-3 sm:flex-col sm:gap-1.5">
             <EnvelopeIcon />
-            <a href={`mailto:${contact.email}`} className="hover:text-[#f47621] transition-colors break-all">{contact.email}</a>
+            <a href={`mailto:${contact.email}`} className="hover:text-brand-orange transition-colors break-all">{contact.email}</a>
           </span>
         </span>
       </span>
@@ -97,20 +97,20 @@ export function QuienesSomosSection() {
 
         <div className="somos__intro relative z-10 grid grid-cols-1 gap-4 text-center sm:gap-5">
           <h2 className="somos__title font-exo text-[clamp(1.75rem,6.5cqw,2.75rem)] font-bold uppercase leading-[1.05] text-white">
-            {a.title}{' '}<br className="hidden xl:inline" /><span className="text-[#f47621]">{a.titleAccent}</span>
+            {a.title}{' '}<br className="hidden xl:inline" /><span className="text-brand-orange">{a.titleAccent}</span>
           </h2>
           {/* Mínimo 1rem (16px) para legibilidad en móvil */}
           <p className="somos__lead mx-auto max-w-[40rem] font-exo text-[clamp(1rem,2.4cqw,1.0625rem)] font-medium leading-[1.65] text-white">{a.lead}</p>
           <p className="somos__slogan font-exo text-[clamp(1rem,3.4cqw,1.375rem)] font-bold uppercase leading-[1.3] text-white">
-            {a.slogan}{' '}<br className="hidden xl:inline" /><span className="text-[#f47621]">{a.sloganAccent}</span>
+            {a.slogan}{' '}<br className="hidden xl:inline" /><span className="text-brand-orange">{a.sloganAccent}</span>
           </p>
         </div>
 
-        <div className="somos__divider my-10 h-px bg-[#f47621]/70" aria-hidden="true" />
+        <div className="somos__divider my-10 h-px bg-brand-orange/70" aria-hidden="true" />
 
         <div className="somos__team relative z-10 grid grid-cols-1 gap-10">
           <div className="somos__people text-center">
-            <p className="somos__people-title font-exo text-[clamp(1rem,3.4cqw,1.375rem)] font-bold uppercase leading-[1.3] text-[#f47621]">
+            <p className="somos__people-title font-exo text-[clamp(1rem,3.4cqw,1.375rem)] font-bold uppercase leading-[1.3] text-brand-orange">
               {a.peopleTitle}{' '}<br className="hidden xl:inline" /><span className="text-white">{a.peopleTitleAccent}</span>
             </p>
             {/* Mínimo 0.9375rem (15px) para mejor legibilidad */}
@@ -132,11 +132,11 @@ export function QuienesSomosSection() {
         </div>
 
         {/* Barra "¿Necesitas atención?" */}
-        <div className="somos__help relative z-10 mt-12 grid grid-cols-1 gap-x-6 gap-y-7 rounded-3xl border border-[#f47621] bg-[#2330cf]/40 px-6 py-8 text-center sm:grid-cols-2 sm:gap-y-8">
+        <div className="somos__help relative z-10 mt-12 grid grid-cols-1 gap-x-6 gap-y-7 rounded-3xl border border-brand-orange bg-[#2330cf]/40 px-6 py-8 text-center sm:grid-cols-2 sm:gap-y-8">
           <div className="somos__help-cell flex items-center justify-center gap-3">
             <img loading="lazy" decoding="async" src="/seccion02/svg/diadema.svg" alt="" className="somos__help-headset h-12 w-12 shrink-0 object-contain" />
             <p className="somos__help-title font-exo text-[1.375rem] font-bold uppercase leading-[1.15] text-white">
-              {a.help.title}{' '}<br className="hidden xl:inline" /><span className="text-[#f47621]">{a.help.titleAccent}</span>
+              {a.help.title}{' '}<br className="hidden xl:inline" /><span className="text-brand-orange">{a.help.titleAccent}</span>
             </p>
           </div>
           <div className="somos__help-cell flex items-center justify-center">
@@ -148,7 +148,7 @@ export function QuienesSomosSection() {
             <img loading="lazy" decoding="async" src="/seccion02/svg/phone.svg" alt="" className="somos__help-phone h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11" />
             <div className="text-left">
               {/* Teléfono como enlace: tap-to-call en móvil */}
-              <a href="tel:+522299890000" className="somos__help-tel block whitespace-nowrap font-exo text-[1.5rem] font-bold leading-none text-white transition-colors hover:text-[#f47621]">229 989 0000</a>
+              <a href="tel:+522299890000" className="somos__help-tel block whitespace-nowrap below-xl:py-2.5 font-exo text-[1.5rem] font-bold leading-none text-white transition-colors hover:text-brand-orange">229 989 0000</a>
               <p className="somos__help-label mt-1.5 whitespace-nowrap font-exo text-[1rem] font-medium text-white">{a.help.phoneLabel}</p>
             </div>
           </div>
@@ -160,7 +160,7 @@ export function QuienesSomosSection() {
                 href="https://wa.me/522299890000"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="somos__help-cta orange-gradient inline-flex items-center justify-center whitespace-nowrap rounded-full px-6 py-3 font-exo text-[1rem] font-bold uppercase leading-none text-white transition-transform hover:-translate-y-0.5 max-xl:min-h-[2.75rem]"
+                className="somos__help-cta orange-gradient inline-flex items-center justify-center whitespace-nowrap rounded-full px-6 py-3 font-exo text-[1rem] font-bold uppercase leading-none text-white transition-transform hover:-translate-y-0.5 below-xl:min-h-[2.75rem]"
               >
                 {a.help.cta}
               </a>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { DesktopLines } from './DesktopLines';
 
 // Empresas del ecosistema en el orden de lectura (móvil/tablet); la posición en escritorio va en index.css
 const nodeOrder = ['transportes', 'magno', 'mil519', 'almacen', 'regionales'] as const;
@@ -125,7 +126,7 @@ function RadialDiagram({ active, caption, alt, names, centerR, id, className, se
       {/* Logo central */}
       <div className="absolute" style={{ left: pct(center.x - center.r, DIAGRAM_W), top: pct(center.y - center.r, DIAGRAM_H), width: pct(2 * center.r, DIAGRAM_W) }}>
         <img loading="lazy" decoding="async" src="/seccion04/eco_centro.webp" alt="" className="eco__center-img block h-auto w-full rounded-full" />
-        <p className="eco__radial-caption absolute inset-x-0 top-[70%] text-center font-exo text-[clamp(0.5rem,2.3cqw,0.8125rem)] font-bold uppercase leading-[1.15] text-[#10227f]">
+        <p className="eco__radial-caption absolute inset-x-0 top-[70%] text-center font-exo text-[clamp(0.625rem,3.1cqw,0.8125rem)] font-bold uppercase leading-[1.15] text-brand-navy">
           {caption[0]}<br />{caption[1]}
         </p>
       </div>
@@ -165,11 +166,6 @@ function twoLines(text: string): [string, string] {
   return [words.slice(0, best).join(' '), words.slice(best).join(' ')];
 }
 
-// Une líneas con salto solo en escritorio (xl); en móvil/tablet el texto fluye
-function DesktopLines({ lines }: { lines: readonly string[] }) {
-  return <>{lines.map((line, i) => <span key={line}>{line}{i < lines.length - 1 && <>{' '}<br className="hidden xl:inline" /></>}</span>)}</>;
-}
-
 /*
  * Escritorio (xl): réplica de docs/referencias/ecosistema.jpg. El diagrama (círculos y flechas) es una
  * imagen sin textos; los textos van encima en HTML para poder traducirlos. Medidas en index.css
@@ -185,12 +181,12 @@ export function EcosistemaSection() {
   const radial = { active, caption: s.center, alt: s.diagramAlt, names, select, release };
 
   return (
-    <section id="ecosistema" className="eco relative overflow-hidden px-5 pb-12 pt-16 sm:px-8 sm:pt-24 lg:px-10">
+    <section id="ecosistema" className="eco relative overflow-hidden px-6 pb-12 pt-16 sm:px-8 sm:pt-24 lg:px-10">
       <div className="eco__intro relative mx-auto max-w-[40rem] text-center">
-        <h2 className="eco__title font-exo text-[clamp(1.3rem,5.4cqw,2.4rem)] font-bold uppercase leading-[1.2] text-[#10227f]">
-          {s.title}{' '}<br className="hidden xl:inline" /><span className="text-[#e66600]">{s.titleAccent}</span>
+        <h2 className="eco__title font-exo text-[clamp(1.3rem,5.4cqw,2.4rem)] font-bold uppercase leading-[1.2] text-brand-navy">
+          {s.title}{' '}<br className="hidden xl:inline" /><span className="text-brand-orange-strong">{s.titleAccent}</span>
         </h2>
-        <p className="eco__lead mt-3 font-exo text-[clamp(0.9375rem,2.7cqw,1.1875rem)] font-semibold leading-[1.5] text-[#4a4a4a]">
+        <p className="eco__lead mt-3 font-exo text-[clamp(0.9375rem,2.7cqw,1.1875rem)] font-semibold leading-[1.5] text-brand-ink">
           <DesktopLines lines={s.leadLines} />
         </p>
       </div>
@@ -206,10 +202,10 @@ export function EcosistemaSection() {
           if (active !== -1 && active !== i) return null;
           return (
             <div key={key} className="eco__active-item animate-[eco-fade_1.6s_ease-in-out]">
-              <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.2] text-[#10227f] sm:text-[1.75rem]">
-                {node.name}<br /><span className="text-[#e66600]">{node.accent}</span>
+              <p className="font-exo text-[1.5rem] font-bold uppercase leading-[1.2] text-brand-navy sm:text-[1.75rem]">
+                {node.name}<br /><span className="text-brand-orange-strong">{node.accent}</span>
               </p>
-              <p className="mt-2 whitespace-nowrap font-exo text-[clamp(0.8125rem,4cqw,1.125rem)] font-semibold leading-[1.45] text-[#10227f]">
+              <p className="mt-2 whitespace-nowrap font-exo text-[clamp(0.9375rem,4cqw,1.125rem)] font-semibold leading-[1.45] text-brand-navy">
                 {twoLines(node.text.join(' ')).map((line, j) => <span key={j} className="block">{line}</span>)}
               </p>
             </div>
@@ -223,10 +219,10 @@ export function EcosistemaSection() {
           const lit = active === -1 || active === i;
           return (
             <li key={key} {...selectProps(i, select, release)} className={`eco__node eco__node--${key} flex cursor-default flex-col transition-opacity ${FADE} ${lit ? 'opacity-100' : 'opacity-35'}`}>
-              <p className="eco__node-name font-exo text-[0.9375rem] font-bold uppercase leading-[1.3] text-[#10227f] xl:mt-0">
-                {node.name}<br /><span className="text-[#e66600]">{node.accent}</span>
+              <p className="eco__node-name font-exo text-[0.9375rem] font-bold uppercase leading-[1.3] text-brand-navy xl:mt-0">
+                {node.name}<br /><span className="text-brand-orange-strong">{node.accent}</span>
               </p>
-              <p className="eco__node-text mt-1.5 font-exo text-[0.75rem] font-semibold leading-[1.4] text-[#10227f] sm:text-[0.8125rem]">
+              <p className="eco__node-text mt-1.5 font-exo text-[0.75rem] font-semibold leading-[1.4] text-brand-navy sm:text-[0.8125rem]">
                 <DesktopLines lines={node.text} />
               </p>
             </li>
@@ -234,16 +230,16 @@ export function EcosistemaSection() {
         })}
       </ul>
 
-      <div className="eco__goal relative mx-auto mt-[2.75rem] flex max-w-[44rem] flex-col items-center gap-5 rounded-3xl px-4 py-6 text-center">
-        <p className="eco__goal-title whitespace-nowrap font-exo text-[clamp(0.8125rem,4.1cqw,1.125rem)] font-bold uppercase leading-[1.3] text-white">
-          {s.goalTitle}{' '}<br className="hidden xl:inline" /><span className="text-[#f47621]">{s.goalAccent}</span>
+      <div className="eco__goal relative mx-auto mt-[2.75rem] flex max-w-[44rem] flex-col items-center gap-5 rounded-3xl px-5 py-7 text-center">
+        <p className="eco__goal-title font-exo text-[clamp(0.9375rem,4.1cqw,1.125rem)] sm:whitespace-nowrap font-bold uppercase leading-[1.3] text-white">
+          {s.goalTitle}{' '}<br className="hidden xl:inline" /><span className="text-brand-orange">{s.goalAccent}</span>
         </p>
-        <ul className="eco__goal-list grid w-full grid-cols-3 gap-2">
+        <ul className="eco__goal-list grid w-full grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-2">
           {s.goals.map((goal, i) => (
-            <li key={goalIcons[i]} className="eco__goal-item grid grid-cols-[auto_1fr] items-center gap-x-1.5 gap-y-1.5 sm:gap-x-3" style={{ '--i': i } as CSSProperties}>
-              <img loading="lazy" decoding="async" src="/seccion04/svg/flecha-lateral.svg" alt="" className={`eco__goal-arrow row-span-2 h-4 w-auto sm:h-6 ${i === 0 ? 'hidden xl:block' : ''}`} />
-              <img loading="lazy" decoding="async" src={`/seccion04/svg/${goalIcons[i]}`} alt="" className="eco__goal-icon col-start-2 h-8 w-auto justify-self-center sm:h-9" />
-              <span className="eco__goal-text col-start-2 text-center font-exo text-[0.6875rem] font-medium leading-[1.35] text-white sm:text-[0.875rem]">
+            <li key={goalIcons[i]} className="eco__goal-item flex items-center gap-4 text-left sm:grid sm:grid-cols-[auto_1fr] sm:gap-x-3 sm:gap-y-1.5 sm:text-center" style={{ '--i': i } as CSSProperties}>
+              <img loading="lazy" decoding="async" src="/seccion04/svg/flecha-lateral.svg" alt="" className={`eco__goal-arrow row-span-2 hidden h-4 w-auto sm:block sm:h-6 ${i === 0 ? 'sm:hidden xl:block' : ''}`} />
+              <img loading="lazy" decoding="async" src={`/seccion04/svg/${goalIcons[i]}`} alt="" className="eco__goal-icon col-start-2 h-10 w-12 shrink-0 justify-self-center object-contain sm:h-9 sm:w-auto" />
+              <span className="eco__goal-text col-start-2 font-exo text-[0.9375rem] font-medium leading-[1.35] text-white sm:text-center sm:text-[0.875rem]">
                 <DesktopLines lines={goal} />
               </span>
             </li>

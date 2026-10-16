@@ -161,12 +161,12 @@ export function ScrollTruckNav() {
               onClick={go(stop.id)}
               aria-label={km ? `${km} KM, ${t.nav.stops[stop.id]}` : t.nav.stops[stop.id]}
               aria-current={isActive ? 'location' : undefined}
-              className={`flex h-9 w-9 shrink-0 flex-col items-center justify-center rounded-full font-condensed font-bold leading-none transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`}
+              className={`flex h-11 w-10 shrink-0 flex-col items-center justify-center rounded-full font-condensed font-bold leading-none transition-all ${isActive ? 'orange-gradient text-white' : 'text-white/75 hover:text-white'}`}
             >
               {km ? (
                 <>
-                  <span className="text-xs">{km}</span>
-                  <span className="mt-0.5 text-[0.5rem] tracking-wide">KM</span>
+                  <span className="text-[0.8125rem]">{km}</span>
+                  <span className="mt-0.5 text-[0.625rem] tracking-wide">KM</span>
                 </>
               ) : (
                 <img src="/favicon.svg" alt="" className={`h-5 w-5 rounded-full ${isActive ? 'bg-white p-0.5' : 'bg-white/90 p-0.5'}`} />
@@ -210,7 +210,7 @@ export function ScrollTruckNav() {
                   ref={(el) => { stopRefs.current[index] = el; }}
                   className={`group relative flex items-center gap-3 text-left font-condensed text-[10px] font-medium uppercase leading-[1.05] tracking-tight text-white transition-colors ${isEmpty ? 'pointer-events-none mb-6' : 'hover:text-[#ff8a39]'}`}
                 >
-                  <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 ${isActive ? 'border-[#f0782d] bg-[#e66600] ring-2 ring-white/20' : isEmpty ? 'border-[#FFAB49] bg-[#FFAB49]/30 ring-2 ring-[#FFAB49]/20' : 'border-white bg-[#07120d] group-hover:border-[#f0782d]'}`}>
+                  <span className={`relative z-10 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border-2 ${isActive ? 'border-[#f0782d] bg-brand-orange-strong ring-2 ring-white/20' : isEmpty ? 'border-[#FFAB49] bg-[#FFAB49]/30 ring-2 ring-[#FFAB49]/20' : 'border-white bg-[#07120d] group-hover:border-[#f0782d]'}`}>
                     {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </span>
                   {!isEmpty && (

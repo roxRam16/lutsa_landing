@@ -3,3 +3,5 @@ node_modules/
 ngrok.exe
 docs/referencias/
 docs/*
+!docs/GUIA_DE_ESTILO.md
+!docs/STYLE_GUIDE.en.md

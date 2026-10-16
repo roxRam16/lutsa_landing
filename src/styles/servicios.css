@@ -1,0 +1,134 @@
+/* ===================== Soluciones logísticas (20 km) =====================
+   Móvil/tablet: puerto escalado por alto (34rem) detrás del título; azul marino debajo. */
+.svc {
+  container-type: inline-size;
+  /* Texto sobre blanco arriba; la foto del puerto aparece debajo como franja y se funde al azul */
+  background:
+    linear-gradient(to bottom, #fcfcfc 11.25rem, rgba(252, 252, 252, 0) 15rem),
+    url('/seccion01/soluciones_fondo_movil.jpg') 30% 10rem / auto 23rem no-repeat,
+    #131977;
+}
+/* Letrero en código (celular): una línea que llena el ancho; el tamaño se calcula del ancho de la sección */
+.svc__sign-line { font-size: clamp(0.9375rem, calc((100cqw - 6.75rem) / var(--len, 20)), 1.25rem); }
+/* Tablet: texto sobre blanco y la foto aparece debajo con una transición larga (sin línea de corte) */
+@media (min-width: 640px) {
+  .svc {
+    background:
+      linear-gradient(to bottom, #fcfcfc 16rem, rgba(252, 252, 252, 0.85) 18.5rem, rgba(252, 252, 252, 0) 24rem),
+      url('/seccion01/soluciones_fondo_movil.jpg') center 14rem / 100% auto no-repeat,
+      #131977;
+  }
+}
+.svc__sign { width: min(16rem, 100%); container-type: inline-size; }
+.svc__sign--ops { width: min(20.5rem, 100%); }
+/* Texto del letrero en % del ancho del letrero: misma proporción en cualquier tamaño */
+.svc__sign-text { left: 21.7cqw; top: 19%; font-size: 7.6cqw; line-height: 1.27; text-align: left; }
+.svc__sign--ops .svc__sign-text { left: 16.8cqw; font-size: 5.95cqw; }
+.svc__flow { background: linear-gradient(to bottom, rgba(10, 14, 92, 0.85) 70%, rgba(10, 14, 92, 0)); }
+.svc__flow-title { font-size: 0.875rem; text-align: left; }
+.svc__steps { font-size: 0.875rem; }
+.svc__chevron { width: 1.1rem; height: 0.55rem; margin: 0.45rem 0 0.35rem; }
+/* Flujos: textos y flechas se encienden en secuencia (1 → flecha → 2 → …), primero Importación
+   y después Exportación (--flow = 0s o 4s). Ciclo completo de 8s; cada paso avanza cada 0.6s. */
+.svc__chevron, .svc__step {
+  animation: svc-glow 8s ease-in-out infinite;
+  animation-delay: calc(var(--step, 0) * 0.6s + var(--flow, 0s));
+}
+.svc__step { animation-delay: calc(var(--step, 0) * 0.6s - 0.3s + var(--flow, 0s)); }
+.svc__chevron { opacity: 0.3; animation-name: svc-chevron; }
+.svc__step { opacity: 0.4; }
+@keyframes svc-chevron {
+  0%, 22%, 100% { opacity: 0.3; filter: none; }
+  10% { opacity: 1; filter: drop-shadow(0 0 4px rgba(255, 140, 40, 0.95)); }
+}
+@keyframes svc-glow {
+  0%, 22%, 100% { opacity: 0.4; text-shadow: none; }
+  10% { opacity: 1; text-shadow: 0 0 8px rgba(255, 160, 80, 0.75); }
+}
+@media (prefers-reduced-motion: reduce) { .svc__chevron, .svc__step, .svc__metric { animation: none; opacity: 1; } }
+/* Carrusel de métricas: 3 visibles en celular, 5 en tablet; --pos es la tarjeta del centro */
+.svc__carousel { --vis: 3; --center: 1; }
+@media (min-width: 768px) { .svc__carousel { --vis: 5; --center: 2; } }
+.svc__carousel-track {
+  width: calc(100% * var(--total) / var(--vis));
+  transform: translateX(calc((var(--center) - var(--pos)) * 100% / var(--total)));
+}
+.svc__carousel-item { width: calc(100% / var(--total)); }
+.svc__trailer-label { font-size: 0.875rem; }
+.svc__trailer { height: 4.75rem; }
+/* Tablet: letreros más chicos (su texto escala con el ancho del letrero) y remolques más bajos */
+@media (min-width: 640px) and (max-width: 1279px) {
+  .svc__flow-title { font-size: 0.875rem; }
+  .svc__steps { font-size: 0.9375rem; }
+  .svc__trailer { height: 5.5rem; }
+  .svc__trailer-label { font-size: 1rem; }
+}
+
+/* Escritorio: réplica de docs/referencias/soluciones.jpg (área de 1550×1080 a la derecha del riel).
+   Bloques en posición absoluta con coordenadas del diseño × var(--u). */
+@media (min-width: 1280px) {
+  .svc {
+    aspect-ratio: 1550 / 1080;
+    padding: 0;
+    background:
+      linear-gradient(to bottom, rgba(19, 24, 116, 0) 31%, #131874 42%, #131977 64%, #171f8e 79%, #1c24a9 88%, #2835e6 100%),
+      url('/seccion01/soluciones_fondo.jpg') top / 100% auto no-repeat,
+      #131874;
+  }
+  .svc > * { --u: calc(100cqw / 1550); }
+  .svc__intro, .svc__metrics, .svc__grid > div { position: absolute; margin: 0; max-width: none; min-height: 0; text-align: left; }
+  .svc__grid { position: static; margin: 0; display: block; }
+
+  /* Título y párrafo */
+  .svc__intro { left: calc(var(--u) * 103); top: calc(var(--u) * 92); }
+  .svc__title { font-size: max(1.75rem, calc(var(--u) * 40)); line-height: 1.24; }
+  .svc__lead { margin-top: calc(var(--u) * 9); font-size: max(0.875rem, calc(var(--u) * 18.2)); line-height: 1.54; }
+
+  /* Métricas: cada ícono en su x del diseño */
+  .svc__metrics { display: block; left: 0; top: calc(var(--u) * 417); width: 100%; height: calc(var(--u) * 38.73); }
+  .svc__metric { position: absolute; left: calc(var(--u) * var(--x)); top: 0; height: 100%; gap: calc(var(--u) * 10); justify-content: flex-start; }
+  .svc__metric-icon { height: calc(var(--u) * 38.73); }
+  .svc__metric-text { font-size: max(0.75rem, calc(var(--u) * 14.7)); line-height: 1.15; white-space: nowrap; }
+  /* Igual que el centro del carrusel de móvil: cada métrica se resalta por turnos (crece y brilla) */
+  .svc__metric {
+    transform-origin: left center;
+    animation: svc-metric-spotlight 17s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 3.4s);
+    opacity: 0.45;
+  }
+  @keyframes svc-metric-spotlight {
+    0%, 26%, 100% { opacity: 0.45; transform: scale(1); filter: none; }
+    6%, 18% { opacity: 1; transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(255, 140, 40, 0.55)); }
+  }
+
+  /* Infraestructura */
+  .svc__infra { left: calc(var(--u) * 84); top: calc(var(--u) * 499); }
+  .svc__sign { width: calc(var(--u) * 303.6); margin: 0; }
+  .svc__sign--ops { width: calc(var(--u) * 393.6); margin-left: calc(var(--u) * 2); }
+  .svc__infra-list { margin: calc(var(--u) * 22) 0 0 calc(var(--u) * 22); gap: calc(var(--u) * 19); max-width: none; font-size: max(0.75rem, calc(var(--u) * 16)); line-height: 1.2; }
+  .svc__infra-list > li { min-height: 2.4em; }
+
+  /* Operación integral: letrero + paneles de importación / exportación */
+  .svc__ops { left: calc(var(--u) * 431); top: calc(var(--u) * 499); }
+  .svc__flows { grid-template-columns: repeat(2, calc(var(--u) * 191)); gap: calc(var(--u) * 19); margin: calc(var(--u) * 41) 0 0; max-width: none; }
+  .svc__flow { height: calc(var(--u) * 345); padding: calc(var(--u) * 20) calc(var(--u) * 10) 0; border-radius: calc(var(--u) * 18); }
+  .svc__flow-head { gap: calc(var(--u) * 26); }
+  .svc__flow-title { font-size: max(0.875rem, calc(var(--u) * 20)); line-height: 1.15; }
+  .svc__flow-icon { width: calc(var(--u) * 45); height: calc(var(--u) * 45); }
+  .svc__steps { margin-top: calc(var(--u) * 14); font-size: max(0.75rem, calc(var(--u) * 15)); line-height: 1.2; }
+  .svc__chevron { width: calc(var(--u) * 23); height: calc(var(--u) * 12); margin: calc(var(--u) * 11) 0 calc(var(--u) * 7); }
+
+  /* Capacidades */
+  .svc__caps { left: calc(var(--u) * 870); top: calc(var(--u) * 640); }
+  .svc__caps-title { font-size: max(1.25rem, calc(var(--u) * 29.5)); }
+  .svc__caps-list { margin: calc(var(--u) * 15) 0 0; max-width: none; font-size: max(0.8125rem, calc(var(--u) * 18)); }
+  .svc__cap { width: calc(var(--u) * 235); white-space: nowrap; padding: calc(var(--u) * 7) 0 calc(var(--u) * 9); border-bottom-width: max(1px, calc(var(--u) * 1.5)); }
+
+  /* Tipo de remolques */
+  .svc__grid > .svc__trailers { left: calc(var(--u) * 1191); top: calc(var(--u) * 512); width: calc(var(--u) * 282); text-align: center; }
+  .svc__trailers-title { font-size: max(1.125rem, calc(var(--u) * 25.3)); white-space: nowrap; }
+  .svc__trailer-list { margin-top: calc(var(--u) * 23); gap: calc(var(--u) * 16.7); max-width: none; }
+  .svc__trailer { height: calc(var(--u) * 76); }
+  .svc__trailer-face { border-radius: calc(var(--u) * 16); }
+  .svc__trailer-label { font-size: max(0.75rem, calc(var(--u) * 18)); white-space: nowrap; }
+}

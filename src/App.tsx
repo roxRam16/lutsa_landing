@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { ContactoSection } from './components/ContactoSection';
+import { DesktopLines } from './components/DesktopLines';
 import { Header } from './components/Header';
 import { PlaceholderSections } from './components/PlaceholderSections';
 import { QuienesSomosSection } from './components/QuienesSomosSection';
@@ -11,11 +12,6 @@ import { pathFor } from './i18n/routes';
 // Íconos en el mismo orden que t.hero.highlights
 const highlightIcons = ['/seccion00/svg/icono_conectamos.svg', '/seccion00/svg/icono_segur.svg', '/seccion00/svg/icono_veracruz.svg'];
 
-// Une líneas con salto solo en escritorio (xl); en móvil/tablet el texto fluye
-function DesktopLines({ lines }: { lines: readonly string[] }) {
-  return <>{lines.map((line, i) => <span key={line}>{line}{i < lines.length - 1 && <>{' '}<br className="hidden xl:inline" /></>}</span>)}</>;
-}
-
 function App() {
   const { t, lang } = useLanguage();
   const scrollToContact = useCallback((): void => {
@@ -23,7 +19,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#121874]" style={{ scrollPaddingTop: '60px' }}>
+    <div className="min-h-screen bg-brand-navy-deep" style={{ scrollPaddingTop: '60px' }}>
       <ScrollTruckNav />
       <Header onContact={scrollToContact} />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
@@ -39,9 +35,9 @@ function App() {
             </div>
 
             <div className="mx-auto mt-5 max-w-[36rem] text-center sm:mt-7 xl:col-span-4 xl:col-start-1 xl:row-start-1 xl:mx-0 xl:mt-0 xl:max-w-[480px] xl:self-start xl:text-left">
-              <h1 className="font-exo text-[clamp(1.625rem,5vw,2.5rem)] font-bold uppercase leading-[1.15] text-[#10227f] xl:text-hero-title">
+              <h1 className="font-exo text-[clamp(1.625rem,5vw,2.5rem)] font-bold uppercase leading-[1.15] text-brand-navy xl:text-hero-title">
                 <DesktopLines lines={t.hero.titleLines} />{' '}<br className="hidden xl:inline" />
-                <span className="text-[#e66600]"><DesktopLines lines={t.hero.titleAccentLines} /></span>
+                <span className="text-brand-orange-strong"><DesktopLines lines={t.hero.titleAccentLines} /></span>
               </h1>
               <p className="mt-3 font-exo text-[clamp(1.0625rem,2.7vw,1.3125rem)] font-semibold leading-[1.45] text-[#515151] sm:mt-4 xl:mt-[clamp(1rem,1.05vw,1.75rem)] xl:text-hero-lead">
                 <DesktopLines lines={t.hero.leadLines} />
@@ -58,7 +54,7 @@ function App() {
               {t.hero.highlights.map((lines, i) => (
                 <div key={highlightIcons[i]} className="hero-highlight relative flex flex-col items-center gap-1 px-2 py-2 short:gap-0.5 short:py-1.5 sm:gap-1.5 sm:py-2.5 lg:gap-1 lg:py-1.5 xl:col-span-2 xl:justify-start xl:gap-[min(0.8vw,1.2vh)] xl:py-[0.3vw] desk-short:min-h-0 desk-short:gap-1 desk-short:py-0">
                   <img src={highlightIcons[i]} alt="" className={`relative h-7 w-7 shrink-0 object-contain short:h-6 short:w-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] sm:h-10 sm:w-10 lg:h-9 lg:w-9 xl:h-[clamp(1.75rem,min(3vw,4.5vh),4.5rem)] xl:w-[clamp(1.75rem,min(3vw,4.5vh),4.5rem)] desk-short:h-7 desk-short:w-7 ${i === 0 ? 'xl:mt-1.5' : ''}`} />
-                  <p className="relative text-center font-exo text-[0.8125rem] font-semibold leading-[1.2] text-white short:text-[0.75rem] short:leading-[1.15] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)] sm:text-[0.9375rem] lg:text-[0.875rem] xl:max-w-[160px] xl:text-hero-highlight">
+                  <p className="relative text-center font-exo text-[0.875rem] font-semibold leading-[1.2] text-white short:text-[0.8125rem] short:leading-[1.15] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)] sm:text-[0.9375rem] lg:text-[0.875rem] xl:max-w-[160px] xl:text-hero-highlight">
                     {lines.map((line) => <span key={line} className="xl:block">{line} </span>)}
                   </p>
                 </div>

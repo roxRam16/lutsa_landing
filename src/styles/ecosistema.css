@@ -1,0 +1,69 @@
+/* ===================== Ecosistema de empresas (40 km) =====================
+   Móvil/tablet: degradado claro → azul; tarjetas centradas. */
+.eco {
+  container-type: inline-size;
+  background: url('/seccion04/fondo_eco.jpg') center / cover no-repeat, #e9ecf7;
+}
+@keyframes eco-fade { from { opacity: 0; transform: translateY(0.4rem); } to { opacity: 1; transform: none; } }
+/* Círculo central: anillo claro como en el diseño */
+.eco__center-img { border: 0.6rem solid rgba(240, 243, 251, 0.95); box-shadow: 0 0 0 1px rgba(200, 208, 230, 0.9), 0 0.6rem 1.6rem rgba(40, 60, 140, 0.25); }
+/* Barra "Un ecosistema, un solo objetivo" */
+.eco__goal { background: #131874; box-shadow: 0 0 1.4rem 0.2rem rgba(40, 120, 255, 0.7); }
+/* Cada objetivo (flecha, ícono y texto) se ilumina por turnos; los demás quedan tenues */
+.eco__goal-item {
+  opacity: 0.35;
+  animation: eco-goal 9s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 3s);
+}
+@keyframes eco-goal {
+  0%, 100% { opacity: 0.35; filter: none; }
+  12%, 28% { opacity: 1; filter: drop-shadow(0 0 6px rgba(255, 150, 50, 0.75)); }
+  40% { opacity: 0.35; filter: none; }
+}
+@media (prefers-reduced-motion: reduce) { .eco__goal-item { animation: none; opacity: 1; } }
+/* Escritorio: réplica de docs/referencias/ecosistema.jpg (área de 1550×1080 a la derecha del riel). */
+@media (min-width: 1280px) {
+  .eco { aspect-ratio: 1550 / 1080; padding: 0; background-size: 100% 100%; }
+  .eco > * { --u: calc(100cqw / 1550); position: absolute; margin: 0; max-width: none; }
+
+  .eco__intro { left: calc(var(--u) * 103); top: calc(var(--u) * 92); text-align: left; }
+  .eco__title { font-size: max(1.75rem, calc(var(--u) * 45.4)); line-height: 1.2; white-space: nowrap; }
+  .eco__lead { margin-top: calc(var(--u) * 7); font-size: max(0.875rem, calc(var(--u) * 18.5)); line-height: 1.51; }
+
+  .eco__radial--desk { left: calc(var(--u) * 395); top: calc(var(--u) * 250); width: calc(var(--u) * 702); }
+  .eco__radial--desk .eco__radial-caption { top: 71%; font-size: max(0.75rem, calc(var(--u) * 18.3)); line-height: 1.32; }
+  .eco__radial--desk .eco__center-img { border-width: calc(var(--u) * 13); }
+
+  /* Textos de cada empresa alrededor del diagrama */
+  .eco__nodes { inset: 0; display: block; pointer-events: none; }
+  .eco__node { pointer-events: auto; }
+  .eco__node { position: absolute; align-items: flex-start; text-align: left; }
+  .eco__node-name { font-size: max(0.8125rem, calc(var(--u) * 17.2)); line-height: 1.3; }
+  .eco__node-text { margin-top: calc(var(--u) * 8); font-size: max(0.75rem, calc(var(--u) * 16)); line-height: 1.38; white-space: nowrap; }
+  .eco__node--transportes { left: calc(var(--u) * 872); top: calc(var(--u) * 277); }
+  .eco__node--transportes .eco__node-text { text-align: center; margin-left: calc(var(--u) * 3); margin-top: calc(var(--u) * 3); }
+  .eco__node--magno { left: calc(var(--u) * 1114); top: calc(var(--u) * 490); }
+  .eco__node--mil519 { left: calc(var(--u) * 1007); top: calc(var(--u) * 749); }
+  .eco__node--regionales, .eco__node--almacen { align-items: flex-end; text-align: right; transform: translateX(-100%); }
+  .eco__node--regionales { left: calc(var(--u) * 374); top: calc(var(--u) * 490); }
+  .eco__node--almacen { left: calc(var(--u) * 481); top: calc(var(--u) * 750); }
+
+  /* Barra inferior */
+  .eco__goal { display: block; left: calc(var(--u) * 97); top: calc(var(--u) * 923); width: calc(var(--u) * 1327); height: calc(var(--u) * 111); padding: 0; border-radius: calc(var(--u) * 26); text-align: left; }
+  .eco__goal-title { position: absolute; left: calc(var(--u) * 48); top: calc(var(--u) * 26); font-size: max(1rem, calc(var(--u) * 22)); line-height: 1.38; }
+  .eco__goal-list { display: block; position: absolute; inset: 0; }
+  .eco__goal-item { position: absolute; inset: 0; display: block; }
+  .eco__goal-item > * { position: absolute; }
+  .eco__goal-arrow { display: block; top: calc(var(--u) * 41); width: calc(var(--u) * 16.5); height: calc(var(--u) * 29); }
+  .eco__goal-icon { top: calc(var(--u) * 28); height: calc(var(--u) * 53); width: auto; }
+  .eco__goal-text { top: calc(var(--u) * 32); font-size: max(0.75rem, calc(var(--u) * 16)); line-height: 1.6; white-space: nowrap; text-align: left; }
+  .eco__goal-item:nth-child(1) .eco__goal-arrow { left: calc(var(--u) * 319); }
+  .eco__goal-item:nth-child(1) .eco__goal-icon { left: calc(var(--u) * 383); }
+  .eco__goal-item:nth-child(1) .eco__goal-text { left: calc(var(--u) * 464); }
+  .eco__goal-item:nth-child(2) .eco__goal-arrow { left: calc(var(--u) * 620); }
+  .eco__goal-item:nth-child(2) .eco__goal-icon { left: calc(var(--u) * 678); top: calc(var(--u) * 31); height: calc(var(--u) * 49); }
+  .eco__goal-item:nth-child(2) .eco__goal-text { left: calc(var(--u) * 753); }
+  .eco__goal-item:nth-child(3) .eco__goal-arrow { left: calc(var(--u) * 954); }
+  .eco__goal-item:nth-child(3) .eco__goal-icon { left: calc(var(--u) * 1022); top: calc(var(--u) * 31); height: calc(var(--u) * 49); }
+  .eco__goal-item:nth-child(3) .eco__goal-text { left: calc(var(--u) * 1104); }
+}

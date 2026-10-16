@@ -12,6 +12,7 @@ cotización conectado a su propio API.
 | **Backend** | FastAPI + MongoDB, en [`lutsa_core/`](lutsa_core/README.md) |
 | **Idiomas** | Español (`/es/…`) e inglés (`/en/…`) |
 | **Documentación técnica** | [Hoja técnica](docs/HOJA_TECNICA.md) · [Technical sheet](docs/TECHNICAL_SHEET.en.md) |
+| **Guía de estilo y mantenimiento** | [Guía de estilo](docs/GUIA_DE_ESTILO.md) · [Style guide](docs/STYLE_GUIDE.en.md) |
 | **Avance del proyecto** | [`docs/LUTSA_Product_Backlog.xlsx`](docs/LUTSA_Product_Backlog.xlsx) |
 
 ## Puesta en marcha
@@ -21,6 +22,7 @@ npm install
 npm run dev          # http://localhost:5173 (reenvía /api al API local, puerto 8090)
 npm run build        # compila + genera una página por ruta/idioma + sitemap.xml y robots.txt
 npm run preview      # sirve la carpeta dist/
+npm run check        # tipos + que español e inglés tengan los mismos textos
 ```
 
 Para probar el formulario hay que levantar también el API (ver [`lutsa_core/README.md`](lutsa_core/README.md)):
@@ -41,6 +43,7 @@ src/
 ├── components/        Secciones (Quiénes somos, Servicios, Industrias, Ecosistema, Certificaciones, Cotización),
 │                      header, barra de kilómetros y componentes del formulario (quote/)
 ├── hooks/             useActiveSection · useAutoFlip (tarjetas que giran solas)
+├── styles/            Un CSS por sección (réplica de escritorio); lo común está en index.css
 ├── i18n/              translations.ts (ES/EN) · routes.ts (URLs y SEO) · seo.ts · LanguageContext.tsx
 ├── services/          quoteApi.ts (cliente del API)
 ├── App.tsx · main.tsx · index.css

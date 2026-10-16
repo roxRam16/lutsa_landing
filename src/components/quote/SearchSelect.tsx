@@ -79,10 +79,10 @@ export function SearchSelect({ id, label, placeholder, searchPlaceholder, noResu
         aria-describedby={describedBy}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={(e) => { if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); setOpen(true); } }}
-        className={`quote__control flex w-full items-center justify-between rounded-full border-0 bg-[#eeeeee] pl-4 pr-4 text-left font-condensed text-[0.9375rem] font-bold tracking-[0.06em] outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-[#f47621] h-10 ${invalid ? 'ring-2 ring-[#e0464a]' : ''} ${selected ? 'text-[#10227f]' : 'text-[#ababab]'}`}
+        className={`quote__control flex w-full items-center justify-between rounded-full border-0 bg-[#eeeeee] pl-4 pr-4 text-left font-condensed text-[1rem] font-bold tracking-[0.06em] outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-brand-orange h-12 ${invalid ? 'ring-2 ring-[#e0464a]' : ''} ${selected ? 'text-brand-navy' : 'text-[#ababab]'}`}
       >
         <span className="truncate">{selected ? selected.label : placeholder}</span>
-        <svg aria-hidden="true" className={`quote__chevron h-2 w-3 shrink-0 text-[#f47621] transition-transform ${open ? 'rotate-180' : ''}`} viewBox="0 0 12 8" fill="none">
+        <svg aria-hidden="true" className={`quote__chevron h-2 w-3 shrink-0 text-brand-orange transition-transform ${open ? 'rotate-180' : ''}`} viewBox="0 0 12 8" fill="none">
           <path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
@@ -104,7 +104,7 @@ export function SearchSelect({ id, label, placeholder, searchPlaceholder, noResu
               aria-label={searchPlaceholder}
               aria-controls={listId}
               aria-activedescendant={filtered[active] ? `${listId}-${filtered[active].value}` : undefined}
-              className="h-9 w-full rounded-full bg-[#f4f5f9] pl-9 pr-3 font-condensed text-[0.9375rem] font-medium text-[#10227f] outline-none placeholder:text-[#a3a8ba] focus:ring-2 focus:ring-[#f47621]"
+              className="h-11 w-full rounded-full bg-[#f4f5f9] pl-9 pr-3 font-condensed text-[1rem] font-medium text-brand-navy outline-none placeholder:text-[#a3a8ba] focus:ring-2 focus:ring-brand-orange"
             />
           </div>
           <ul id={listId} role="listbox" aria-label={label} className="max-h-60 overflow-y-auto py-1">
@@ -117,11 +117,11 @@ export function SearchSelect({ id, label, placeholder, searchPlaceholder, noResu
                 aria-selected={option.value === value}
                 onPointerEnter={() => setActive(i)}
                 onClick={() => choose(option)}
-                className={`flex cursor-pointer items-center justify-between px-4 py-2 font-condensed text-[0.9375rem] font-bold tracking-[0.04em] ${i === active ? 'bg-[#eef1ff] text-[#10227f]' : 'text-[#3c4677]'}`}
+                className={`flex min-h-11 cursor-pointer items-center justify-between px-4 py-2 font-condensed text-[1rem] font-bold tracking-[0.04em] ${i === active ? 'bg-[#eef1ff] text-brand-navy' : 'text-[#3c4677]'}`}
               >
                 {option.label}
                 {option.value === value && (
-                  <svg aria-hidden="true" className="h-3.5 w-3.5 text-[#f47621]" viewBox="0 0 16 16" fill="none">
+                  <svg aria-hidden="true" className="h-3.5 w-3.5 text-brand-orange" viewBox="0 0 16 16" fill="none">
                     <path d="m3 8.5 3.2 3L13 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )}

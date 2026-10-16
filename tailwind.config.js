@@ -6,10 +6,21 @@ export default {
       // Teléfonos de poca altura (p. ej. 360×740): variantes compactas
       // desk-short: laptops con escalado (p. ej. 1920×1080 al 125% → viewport ~1536×730)
       screens: {
+        // Solo celular y tablet (menos que el escritorio xl): para ajustes que no deben tocar el diseño de escritorio
+        'below-xl': { max: '1279px' },
         short: { raw: '(max-width: 639px) and (max-height: 800px)' },
         'desk-short': { raw: '(min-width: 1280px) and (max-height: 900px)' },
       },
       colors: {
+        // Paleta de marca: ÚNICA fuente de los colores. En TSX se usan como text-brand-navy, bg-brand-orange…;
+        // en CSS como theme('colors.brand.navy'). No escribir hex sueltos para estos colores.
+        brand: {
+          navy: '#10227f', // títulos y textos azules sobre fondo claro
+          'navy-deep': '#121874', // fondos azul marino (tarjetas, encabezados)
+          ink: '#4a4a4a', // texto gris de párrafos sobre fondo claro
+          orange: '#f47621', // acentos y títulos naranja sobre fondo oscuro
+          'orange-strong': '#e66600', // acentos naranja sobre fondo claro
+        },
         blanco: '#ffffff',
         'gris-claro': '#dedede',
         'gris-texto': '#666666',

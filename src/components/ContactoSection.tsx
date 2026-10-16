@@ -48,9 +48,9 @@ function clean(value: string, multiline = false): string {
     .join('');
 }
 
-const control = 'quote__control w-full border-0 bg-[#eeeeee] px-4 font-condensed text-[0.9375rem] font-bold tracking-[0.06em] text-[#10227f] outline-none transition-shadow placeholder:text-[#ababab] focus:ring-2 focus:ring-[#f47621]';
+const control = 'quote__control w-full border-0 bg-[#eeeeee] px-4 font-condensed text-[1rem] font-bold tracking-[0.06em] text-brand-navy outline-none transition-shadow placeholder:text-[#ababab] focus:ring-2 focus:ring-brand-orange';
 const labelCls = 'quote__label mb-2 block font-condensed text-[0.9375rem] font-bold tracking-[0.08em] text-[#000061]';
-const hintCls = 'quote__hint mt-1.5 block px-4 font-condensed text-[0.8125rem] font-medium text-[#878787]';
+const hintCls = 'quote__hint mt-1.5 block px-4 font-condensed text-[0.875rem] font-medium text-[#6f6f6f] xl:text-[#878787]';
 const invalidRing = 'ring-2 ring-[#e0464a]';
 
 /*
@@ -158,7 +158,7 @@ export function ContactoSection() {
           aria-invalid={isBad(key) || undefined}
           aria-describedby={`${id}-hint`}
           placeholder={field.label}
-          className={`${control} h-10 rounded-full ${isBad(key) ? invalidRing : ''}`}
+          className={`${control} h-12 rounded-full ${isBad(key) ? invalidRing : ''}`}
         />
         <span id={`${id}-hint`} className={hintCls}>{field.hint}</span>
       </div>
@@ -198,9 +198,9 @@ export function ContactoSection() {
 
   return (
     <section id="contacto" className="quote relative overflow-hidden bg-white">
-      <div className="quote__banner relative overflow-hidden px-5 pb-[min(40cqw,13rem)] pt-20 text-center sm:flex sm:min-h-[20rem] sm:items-center sm:px-8 sm:py-16 sm:text-left">
+      <div className="quote__banner relative overflow-hidden px-6 pb-[min(40cqw,13rem)] pt-20 text-center sm:flex sm:min-h-[20rem] sm:items-center sm:px-8 sm:py-16 sm:text-left">
         <div className="quote__intro relative z-10 mx-auto max-w-[40rem] sm:mx-0 sm:max-w-[52%] xl:text-center">
-          <p className="quote__kicker font-condensed text-[clamp(0.8125rem,3.3cqw,1.125rem)] font-bold uppercase tracking-[0.18em] text-[#e66600]">{q.kicker}</p>
+          <p className="quote__kicker font-condensed text-[clamp(0.875rem,3.3cqw,1.125rem)] font-bold uppercase tracking-[0.18em] text-brand-orange-strong">{q.kicker}</p>
           <h2 className="quote__title mt-3 font-exo text-[clamp(1.75rem,7.4cqw,3.25rem)] sm:text-[clamp(1.75rem,4.6cqw,2.375rem)] font-bold uppercase leading-[1.1] text-white">{q.title}</h2>
         </div>
         <div className="quote__truck-wrap pointer-events-none absolute bottom-0 right-[-4%] z-0 w-[min(62%,24rem)] sm:w-[48%] sm:max-w-[26rem]">
@@ -211,7 +211,7 @@ export function ContactoSection() {
 
       <form
         noValidate
-        className="quote__form mx-auto grid max-w-[44rem] grid-cols-1 gap-x-5 gap-y-4 px-5 pb-24 pt-8 sm:grid-cols-2 sm:px-8 lg:pb-16"
+        className="quote__form mx-auto grid max-w-[44rem] grid-cols-1 gap-x-5 gap-y-4 px-6 pb-24 pt-8 sm:grid-cols-2 sm:px-8 lg:pb-16"
         onSubmit={onSubmit}
       >
         {textField('name', 'q-name', { autoComplete: 'name' })}
@@ -237,7 +237,7 @@ export function ContactoSection() {
             placeholder={q.fields.comments.label}
             className={`${control} quote__textarea block min-h-32 resize-none rounded-2xl pb-7 pt-3`}
           />
-          <span className="pointer-events-none absolute bottom-2 right-4 font-condensed text-[0.75rem] font-medium text-[#9a9a9a]" aria-hidden="true">
+          <span className="pointer-events-none absolute bottom-2 right-4 font-condensed text-[0.8125rem] font-medium text-[#767676] xl:text-[0.75rem] xl:text-[#9a9a9a]" aria-hidden="true">
             {form.comments.length}/{MAX.comments}
           </span>
         </div>

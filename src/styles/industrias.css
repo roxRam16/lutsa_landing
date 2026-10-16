@@ -1,0 +1,80 @@
+/* ===================== Industrias (30 km) =====================
+   Móvil/tablet: fondo claro arriba; la Tierra abajo se funde al azul marino detrás de la barra de industrias. */
+.ind {
+  container-type: inline-size;
+  background:
+    linear-gradient(to top, #111751 0, #111751 7rem, rgba(17, 23, 81, 0) 15rem),
+    url('/seccion03/industrias.webp') center bottom 6rem / auto 30rem no-repeat,
+    #fcfcfc;
+}
+/* Mapa que "flota": vaivén suave y una sombra que se separa cuando sube */
+.ind__map-img {
+  animation: ind-float 6s ease-in-out infinite;
+  filter: drop-shadow(0 1.4rem 1.2rem rgba(12, 24, 90, 0.35));
+  will-change: transform;
+}
+@keyframes ind-float {
+  0%, 100% { transform: translateY(0); filter: drop-shadow(0 1.4rem 1.2rem rgba(12, 24, 90, 0.35)); }
+  50% { transform: translateY(-0.9rem); filter: drop-shadow(0 2.3rem 1.6rem rgba(12, 24, 90, 0.22)); }
+}
+@media (prefers-reduced-motion: reduce) { .ind__map-img { animation: none; } }
+/* Móvil/tablet: 4 por fila con divisores verticales entre columnas (como en escritorio) */
+.ind__item:not(:nth-child(4n + 1))::before {
+  content: ''; position: absolute; left: 0; top: 8%; width: 1px; height: 84%; background: rgba(255, 255, 255, 0.4);
+}
+/* Barra de industrias: azul con brillo, como en el diseño */
+.ind__bar {
+  background: linear-gradient(to bottom, #111775 0%, #141b8a 55%, #1f2bb9 100%);
+  box-shadow: 0 0 1.2rem 0.15rem rgba(0, 120, 220, 0.75), inset 0 -0.6rem 1.4rem rgba(40, 70, 255, 0.45);
+}
+
+/* Escritorio: réplica de docs/referencias/industrias.jpg (área de 1550×1080 a la derecha del riel). */
+@media (min-width: 1280px) {
+  .ind {
+    aspect-ratio: 1550 / 1080;
+    padding: 0;
+    background:
+      linear-gradient(to bottom, rgba(17, 23, 81, 0) 68%, rgba(17, 23, 81, 0.6) 75%, #111751 79.5%),
+      url('/seccion03/industrias.webp') 0 calc(-10 * 100cqw / 1550) / 100% auto no-repeat,
+      #fcfcfc;
+  }
+  .ind > * { --u: calc(100cqw / 1550); position: absolute; margin: 0; max-width: none; text-align: left; }
+
+  .ind__intro { left: calc(var(--u) * 103); top: calc(var(--u) * 92); }
+  .ind__title { font-size: max(1.75rem, calc(var(--u) * 40)); line-height: 1.24; }
+  .ind__lead { margin-top: calc(var(--u) * 9); font-size: max(0.875rem, calc(var(--u) * 18.5)); line-height: 1.46; }
+
+  .ind__map { left: calc(var(--u) * 452); top: calc(var(--u) * 235); width: calc(var(--u) * 1000); }
+  .ind__map-img { animation-name: ind-float-desk; }
+  @keyframes ind-float-desk {
+    0%, 100% { transform: translateY(0); filter: drop-shadow(0 calc(var(--u) * 26) calc(var(--u) * 22) rgba(12, 24, 90, 0.35)); }
+    50% { transform: translateY(calc(var(--u) * -14)); filter: drop-shadow(0 calc(var(--u) * 42) calc(var(--u) * 30) rgba(12, 24, 90, 0.22)); }
+  }
+
+  /* Métricas: columna con divisores */
+  .ind__metrics { left: calc(var(--u) * 97); top: calc(var(--u) * 261); width: calc(var(--u) * 337); display: block; }
+  .ind__metric { flex-direction: row; align-items: flex-start; gap: calc(var(--u) * 22); text-align: left; padding: calc(var(--u) * 24) 0 calc(var(--u) * 15.5); border-bottom: max(1px, calc(var(--u) * 1.5)) solid #1d2a8f; }
+  .ind__metric:last-child { border-bottom: 0; }
+  .ind__metric-icon { width: calc(var(--u) * 67); height: calc(var(--u) * 67); }
+  .ind__metric-value { font-size: max(1.5rem, calc(var(--u) * 40)); margin-top: calc(var(--u) * -2); }
+  .ind__metric-text { margin-top: calc(var(--u) * 6); font-size: max(0.75rem, calc(var(--u) * 16)); line-height: 1.44; white-space: nowrap; }
+
+  /* Presencia que conecta */
+  .ind__presence { left: calc(var(--u) * 1150); top: calc(var(--u) * 272); }
+  .ind__presence-title { font-size: max(1.125rem, calc(var(--u) * 24.8)); line-height: 1.21; }
+  .ind__presence-list { display: block; margin-top: calc(var(--u) * 33); font-size: max(0.8125rem, calc(var(--u) * 17.6)); }
+  .ind__presence-item { gap: calc(var(--u) * 20); height: calc(var(--u) * 40); margin-bottom: calc(var(--u) * 14); }
+  .ind__presence-icon { width: calc(var(--u) * 35); height: calc(var(--u) * 38); }
+
+  /* Barra de industrias: 8 columnas con divisores */
+  .ind__bar {
+    left: calc(var(--u) * 96); top: calc(var(--u) * 812); width: calc(var(--u) * 1352); height: calc(var(--u) * 201);
+    grid-template-columns: repeat(8, calc(var(--u) * 168)); gap: 0; padding: calc(var(--u) * 38) 0 0; border-radius: calc(var(--u) * 40);
+  }
+  .ind__item { position: relative; left: calc(var(--u) * -9); justify-content: flex-start; gap: 0; height: calc(var(--u) * 127); }
+  .ind__item + .ind__item::before {
+    content: ''; position: absolute; left: 0; top: 0; width: max(1px, calc(var(--u) * 1.5)); height: 100%; background: rgba(255, 255, 255, 0.4);
+  }
+  .ind__item-icon { height: calc(var(--u) * var(--h)); margin-top: calc(var(--u) * (84 - var(--h)) / 2); }
+  .ind__item-label { position: absolute; top: calc(var(--u) * 107); font-size: max(0.75rem, calc(var(--u) * 18.3)); white-space: nowrap; }
+}

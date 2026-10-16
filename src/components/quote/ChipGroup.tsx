@@ -37,8 +37,8 @@ export function ChipGroup({ labelId, options, value, onChange, invalid, describe
             tabIndex={on || (index === -1 && i === 0) ? 0 : -1}
             onClick={() => onChange(on ? '' : option.value)}
             onKeyDown={(e) => onKey(e, i)}
-            className={`quote__chip h-10 truncate rounded-full px-2 font-condensed text-[0.9375rem] font-bold tracking-[0.06em] outline-none transition-[background-color,color,box-shadow] duration-200 focus-visible:ring-2 focus-visible:ring-[#f47621] ${
-              on ? 'bg-[#10227f] text-white shadow-[0_6px_14px_rgba(16,34,127,0.3)]' : `bg-[#eeeeee] text-[#9a9a9a] hover:bg-[#e2e5f2] hover:text-[#10227f] ${invalid ? 'ring-2 ring-[#e0464a]' : ''}`
+            className={`quote__chip h-12 truncate rounded-full px-2 font-condensed text-[1rem] font-bold tracking-[0.06em] outline-none transition-[background-color,color,box-shadow] duration-200 focus-visible:ring-2 focus-visible:ring-brand-orange ${
+              on ? 'bg-brand-navy text-white shadow-[0_6px_14px_rgba(16,34,127,0.3)]' : `bg-[#eeeeee] text-[#9a9a9a] hover:bg-[#e2e5f2] hover:text-brand-navy ${invalid ? 'ring-2 ring-[#e0464a]' : ''}`
             }`}
           >
             {option.label}

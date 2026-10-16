@@ -90,6 +90,9 @@ configurar AWS).
 |---|---|
 | Cambiar un texto | `src/i18n/translations.ts` (en `es` **y** `en`) |
 | Cambiar URLs o títulos de SEO | `src/i18n/routes.ts` |
+| Cambiar un color de marca | `tailwind.config.js` → `colors.brand` (única fuente) |
+| Ajustar el diseño de escritorio de una sección | `src/styles/<sección>.css`; el de celular y tablet, en las clases del componente |
+| Verificar antes de entregar | `npm run check` (tipos + mismo contenido en es/en) · guía completa: [GUIA_DE_ESTILO.md](GUIA_DE_ESTILO.md) |
 | Opciones de las listas del formulario | `translations.ts` (`quote.options`) **y** catálogos del API (`lutsa_core/src/models/quote.py`) — deben coincidir |
 | Destinatarios del correo | `QUOTE_NOTIFICATION_EMAILS` |
 | Consultar una solicitud / reenviar su correo | `GET /api/v1/quote-requests/{id}` y `POST …/{id}/notifications` con `X-API-Key` |

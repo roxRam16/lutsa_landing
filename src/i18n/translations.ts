@@ -42,7 +42,7 @@ export const translations = {
       keepGoingLabel: 'Avanzar a la siguiente sección',
       truckAlt: 'Camión recorriendo la carretera',
     },
-    cert: {
+    certifications: {
       titleBold: 'Comprometidos',
       title: 'con un mejor',
       titleAccent: 'México',
@@ -284,7 +284,7 @@ export const translations = {
       keepGoingLabel: 'Go to the next section',
       truckAlt: 'Truck driving along the road',
     },
-    cert: {
+    certifications: {
       titleBold: 'Committed',
       title: 'to a better',
       titleAccent: 'Mexico',

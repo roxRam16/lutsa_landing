@@ -12,6 +12,7 @@ form connected to its own API.
 | **Backend** | FastAPI + MongoDB, in [`lutsa_core/`](lutsa_core/README.en.md) |
 | **Languages** | Spanish (`/es/…`) and English (`/en/…`) |
 | **Technical documentation** | [Technical sheet](docs/TECHNICAL_SHEET.en.md) · [Hoja técnica](docs/HOJA_TECNICA.md) |
+| **Style and maintenance guide** | [Style guide](docs/STYLE_GUIDE.en.md) · [Guía de estilo](docs/GUIA_DE_ESTILO.md) |
 | **Project progress** | [`docs/LUTSA_Product_Backlog.xlsx`](docs/LUTSA_Product_Backlog.xlsx) |
 
 ## Getting started
@@ -21,6 +22,7 @@ npm install
 npm run dev          # http://localhost:5173 (proxies /api to the local API on port 8090)
 npm run build        # compiles + generates one page per route/language + sitemap.xml and robots.txt
 npm run preview      # serves the dist/ folder
+npm run check        # types + Spanish and English must have the same texts
 ```
 
 To try the quote form you also need the API (see [`lutsa_core/README.en.md`](lutsa_core/README.en.md)):
@@ -41,6 +43,7 @@ src/
 ├── components/        Sections (About, Services, Industries, Ecosystem, Certifications, Quote),
 │                      header, kilometer bar and form components (quote/)
 ├── hooks/             useActiveSection · useAutoFlip (self-flipping cards)
+├── styles/            One CSS per section (desktop replica); shared rules live in index.css
 ├── i18n/              translations.ts (ES/EN) · routes.ts (URLs and SEO) · seo.ts · LanguageContext.tsx
 ├── services/          quoteApi.ts (API client)
 ├── App.tsx · main.tsx · index.css

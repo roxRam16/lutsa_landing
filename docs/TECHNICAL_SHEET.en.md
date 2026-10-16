@@ -89,6 +89,9 @@ The automated flow is in `.github/workflows/lutsa-core-deploy.yml` (manual, to E
 |---|---|
 | Change a text | `src/i18n/translations.ts` (in both `es` **and** `en`) |
 | Change URLs or SEO titles | `src/i18n/routes.ts` |
+| Change a brand color | `tailwind.config.js` → `colors.brand` (single source) |
+| Adjust a section's desktop design | `src/styles/<section>.css`; mobile and tablet live in the component's classes |
+| Verify before delivering | `npm run check` (types + same es/en content) · full guide: [STYLE_GUIDE.en.md](STYLE_GUIDE.en.md) |
 | Form dropdown options | `translations.ts` (`quote.options`) **and** the API catalogs (`lutsa_core/src/models/quote.py`) — they must match |
 | Email recipients | `QUOTE_NOTIFICATION_EMAILS` |
 | Look up a request / resend its email | `GET /api/v1/quote-requests/{id}` and `POST …/{id}/notifications` with `X-API-Key` |

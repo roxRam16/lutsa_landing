@@ -1,8 +1,9 @@
 import { useId, useState } from 'react';
 import { useAutoFlip } from '../hooks/useAutoFlip';
 import { useLanguage } from '../i18n/LanguageContext';
+import { DesktopLines } from './DesktopLines';
 
-// Recursos de cada tarjeta (mismo orden que t.cert.cards)
+// Recursos de cada tarjeta (mismo orden que t.certifications.cards)
 const cardAssets = [
   { key: 'iso', icon: 'ico-iso.svg', logo: 'cert-iso.webp', logoW: 373, logoH: 373 },
   { key: 'esr', icon: 'ico-responsable.svg', logo: 'cert-esr.webp', logoW: 773, logoH: 367 },
@@ -35,7 +36,7 @@ function CertCard({ asset, title, backTitle, text, logoAlt, autoFlipped }: CardP
   return (
     <button
       type="button"
-      aria-label={`${flipped ? t.cert.showInfo : t.cert.showDetails} ${name}`}
+      aria-label={`${flipped ? t.certifications.showInfo : t.certifications.showDetails} ${name}`}
       aria-pressed={flipped}
       aria-describedby={descId}
       onClick={() => setFlipped((current) => !current)}
@@ -69,7 +70,7 @@ function CertCard({ asset, title, backTitle, text, logoAlt, autoFlipped }: CardP
  */
 export function CertificacionesSection() {
   const { t } = useLanguage();
-  const c = t.cert;
+  const c = t.certifications;
   const { autoIndex, containerProps } = useAutoFlip<HTMLDivElement>(c.cards.length);
 
   return (
@@ -78,13 +79,13 @@ export function CertificacionesSection() {
       <img src="/seccion06/cert-foto.webp" alt={c.photoAlt} width={2400} height={1634} loading="lazy" decoding="async" className="cert__photo hidden xl:block" />
       <img src="/seccion06/cert-gente.webp" alt={c.photoAlt} width={1500} height={839} loading="lazy" decoding="async" className="cert__people mx-auto block w-[min(100%,36rem)] px-5 pt-[4.5rem] xl:hidden" />
 
-      <div className="cert__intro relative mx-auto max-w-[40rem] px-5 text-center sm:px-8">
-        <h2 className="cert__title font-exo text-[clamp(1.75rem,7cqw,3rem)] uppercase leading-[1.12] text-[#121874]">
+      <div className="cert__intro relative mx-auto max-w-[40rem] px-6 text-center sm:px-8">
+        <h2 className="cert__title font-exo text-[clamp(1.75rem,7cqw,3rem)] uppercase leading-[1.12] text-brand-navy-deep">
           <span className="block font-extrabold tracking-[-0.018em]">{c.titleBold}</span>
-          <span className="block font-medium">{c.title}{' '}<span className="text-[#f47621]">{c.titleAccent}</span></span>
+          <span className="block font-medium">{c.title}{' '}<span className="text-brand-orange">{c.titleAccent}</span></span>
         </h2>
         <p className="cert__lead mt-4 font-exo text-[clamp(1rem,3.2cqw,1.25rem)] font-medium leading-[1.55] text-[#585858]">
-          {c.leadLines.map((line, i) => <span key={line}>{line}{i < c.leadLines.length - 1 && <>{' '}<br className="hidden xl:inline" /></>}</span>)}
+          <DesktopLines lines={c.leadLines} />
         </p>
       </div>
 

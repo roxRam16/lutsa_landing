@@ -1,0 +1,89 @@
+/* ===================== Quiénes somos =====================
+   Móvil/tablet: foto del equipo arriba (versión que se funde al azul marino) y azul debajo.
+   container-type permite medir el logo y los textos con cqw (% del ancho de la sección). */
+.somos {
+  container-type: inline-size;
+  /* La foto empieza debajo del header fijo (4.5rem); arriba, franja del mismo blanco del cielo */
+  background:
+    linear-gradient(#fcfcfc, #fcfcfc) top / 100% 4.5rem no-repeat,
+    url('/seccion02/somos_fondo_movil.jpg') center 4.5rem / 100% auto no-repeat,
+    #131977;
+}
+
+/* Escritorio: réplica de docs/referencias/somos.png (área de 1548×1080 a la derecha del riel).
+   --u = 1px del diseño, escalado al ancho real de la sección (container query units).
+   Todas las medidas de abajo son píxeles del diseño × var(--u). Va fuera de @layer para
+   ganarle a las utilidades de Tailwind del componente. */
+@media (min-width: 1280px) {
+  .somos {
+    container-type: inline-size;
+    aspect-ratio: 1548 / 1080; /* alto mínimo: crece si el contenido lo necesita (overflow visible) */
+    overflow: visible;
+    padding: 0;
+    background:
+      linear-gradient(to bottom, rgba(19, 25, 119, 0) 52%, #131977 58%, #141a7b 64%, #171f8e 79%, #1c26a9 88%, #2836e5 100%),
+      url('/seccion02/somos_fondo.jpg') top / 100% auto no-repeat,
+      #131977;
+  }
+  .somos > * { --u: calc(100cqw / 1548); }
+
+  .somos__logo { top: calc(var(--u) * 116); left: calc(var(--u) * 633); width: calc(var(--u) * 340); transform: none; }
+  .somos__inner { padding: calc(var(--u) * 499) calc(var(--u) * 42) calc(var(--u) * 31) calc(var(--u) * 99); }
+
+  /* Fila 1: título · párrafo · eslogan */
+  .somos__intro { grid-template-columns: calc(var(--u) * 322) calc(var(--u) * 657) 1fr; gap: 0; align-items: start; }
+  .somos__title { font-size: max(1.75rem, calc(var(--u) * 50)); line-height: 1.0; text-align: left; }
+  .somos__lead { font-size: max(0.875rem, calc(var(--u) * 18.5)); line-height: 1.75; max-width: calc(var(--u) * 530); margin-top: calc(var(--u) * 19); }
+  .somos__slogan { font-size: max(1.125rem, calc(var(--u) * 29.5)); line-height: 1.42; margin-top: calc(var(--u) * 33); }
+  .somos__divider { height: max(1px, calc(var(--u) * 1.5)); margin: calc(var(--u) * 22) calc(var(--u) * 23) 0 calc(var(--u) * -7); background: rgba(230, 102, 0, 0.6); }
+
+  /* Fila 2: "Nuestra gente" · carrusel de áreas */
+  .somos__team { grid-template-columns: calc(var(--u) * 266) 1fr; gap: 0; margin-top: calc(var(--u) * 25); }
+  .somos__people-title { font-size: max(1rem, calc(var(--u) * 24.4)); line-height: 1.32; }
+  .somos__people-text { font-size: max(0.8125rem, calc(var(--u) * 16)); line-height: 1.7; max-width: max(calc(var(--u) * 200), 11.5rem); margin-top: calc(var(--u) * 14); }
+  .somos__carousel { padding-left: calc(var(--u) * 53); }
+  .somos__cards { grid-template-columns: repeat(4, calc(var(--u) * 211)); gap: calc(var(--u) * 42); }
+  .somos__card { height: max(calc(var(--u) * 222), 11rem); min-height: 0; }
+  .somos__card-face { border: 0; border-radius: calc(var(--u) * 22); box-shadow: 0 0 calc(var(--u) * 16) calc(var(--u) * 2) rgba(30, 110, 255, 0.85); }
+  /* Contenido centrado vertical: mismo espacio arriba y abajo en cada tarjeta */
+  .somos__card-face:not(.somos__card-back) { padding: 0 calc(var(--u) * 8); justify-content: center; }
+  .somos__card-icon { width: calc(var(--u) * 57); height: calc(var(--u) * 57); margin-bottom: calc(var(--u) * 12); }
+  .somos__card-title { font-size: max(0.75rem, calc(var(--u) * 18)); line-height: 1.35; }
+  .somos__card-text { font-size: max(0.75rem, calc(var(--u) * 14.5)); line-height: 1.6; margin-top: calc(var(--u) * 3); }
+  .somos__card-back { font-size: max(0.75rem, calc(var(--u) * 14)); }
+  .somos__card-back-icon { width: calc(var(--u) * 30); height: calc(var(--u) * 30); }
+  .somos__card-back-row { margin-top: calc(var(--u) * 18); }
+  .somos__arrow { display: block; position: absolute; top: 50%; width: calc(var(--u) * 21); height: calc(var(--u) * 21); transform: translate(-50%, -50%); }
+  .somos__arrow--prev { left: calc(var(--u) * 10); }
+  .somos__arrow--next { left: calc(var(--u) * 1076); }
+
+  /* Fila 3: barra "¿Necesitas atención?" */
+  .somos__help {
+    display: grid; text-align: left;
+    grid-template-columns: 320fr 428fr 344fr 320fr; gap: 0; padding: 0;
+    height: calc(var(--u) * 113); margin-top: calc(var(--u) * 38);
+    border: max(1px, calc(var(--u) * 1.5)) solid theme('colors.brand.orange-strong'); border-radius: calc(var(--u) * 42);
+    background: rgba(35, 47, 206, 0.35);
+  }
+  .somos__help-cell { position: relative; padding: 0; justify-content: flex-start; }
+  .somos__help-cell + .somos__help-cell::before {
+    content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: max(1px, calc(var(--u) * 1.5)); height: calc(var(--u) * 72); background: rgba(255, 255, 255, 0.75);
+  }
+  .somos__help-cell:nth-child(1) { padding-left: calc(var(--u) * 20); gap: calc(var(--u) * 23); }
+  .somos__help-cell:nth-child(2) { padding-left: calc(var(--u) * 21); }
+  .somos__help-cell:nth-child(3) { padding-left: calc(var(--u) * 24); gap: calc(var(--u) * 26); }
+  .somos__help-cell:nth-child(4) { padding-left: calc(var(--u) * 37); gap: calc(var(--u) * 25); }
+  .somos__help-headset { width: calc(var(--u) * 88); height: calc(var(--u) * 83); }
+  .somos__help-title { font-size: max(1rem, calc(var(--u) * 30)); line-height: 1.04; }
+  /* En inglés "ASSISTANCE?" es más largo que "ATENCIÓN?": un poco más chico para no tocar el divisor */
+  html[lang="en"] .somos__help-title { font-size: max(1rem, calc(var(--u) * 25)); }
+  .somos__help-text { font-size: max(0.8125rem, calc(var(--u) * 19.75)); line-height: 1.3; }
+  .somos__help-text-sub { display: inline-block; margin-top: calc(var(--u) * 12); font-size: max(0.8125rem, calc(var(--u) * 20.4)); }
+  .somos__help-phone { width: calc(var(--u) * 48); height: calc(var(--u) * 48); }
+  .somos__help-tel { font-size: max(1.125rem, calc(var(--u) * 32.4)); }
+  .somos__help-label { font-size: max(0.8125rem, calc(var(--u) * 20)); margin-top: calc(var(--u) * 6); }
+  .somos__help-cta-wrap .somos__help-label { margin-top: calc(var(--u) * 4); }
+  .somos__help-wa { width: calc(var(--u) * 46); height: calc(var(--u) * 46); }
+  .somos__help-cta { width: calc(var(--u) * 169); height: calc(var(--u) * 42); padding: 0; font-size: max(0.75rem, calc(var(--u) * 17)); }
+}
