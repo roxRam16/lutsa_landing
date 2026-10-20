@@ -28,12 +28,12 @@ function App() {
       <Header onContact={scrollToContact} />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
-        <div id="inicio" className="relative min-h-screen bg-cover bg-[center_25%] bg-no-repeat" style={{ backgroundImage: `url('${publicUrl('/seccion00/fondo_002.webp')}')` }}>
+        <div id="inicio" className="hero-bg relative min-h-screen max-sm:min-h-[max(100svh,calc(216.5vw+9.5rem))]">
           {/* Móvil/tablet (<xl): columna centrada (logo → texto → highlights junto al camión).
               Escritorio (xl): rejilla de 12 columnas medida sobre el diseño de 1920px. */}
           {/* Velo claro para que el texto no se pierda sobre el arco naranja en móvil/tablet */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[60%] bg-gradient-to-b from-white/75 via-white/45 to-transparent xl:hidden" aria-hidden="true" />
-          <div className="relative z-10 flex min-h-screen flex-col px-5 pb-[3.5rem] pt-20 short:pb-[3.75rem] sm:px-8 sm:pb-20 sm:pt-24 lg:px-10 lg:pb-3 lg:pt-20 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_1fr_auto] xl:gap-4 xl:pl-[clamp(2.5rem,4.9vw,6rem)] xl:pt-[clamp(6rem,5.6vw,8.5rem)] xl:pb-6">
+          <div className="relative z-10 flex min-h-screen max-sm:min-h-[max(100svh,calc(216.5vw+9.5rem))] flex-col px-5 pb-[3.5rem] pt-20 short:pb-[3.75rem] sm:px-8 sm:pb-20 sm:pt-24 lg:px-10 lg:pb-3 lg:pt-20 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_1fr_auto] xl:gap-4 xl:pl-[clamp(2.5rem,4.9vw,6rem)] xl:pt-[clamp(6rem,5.6vw,8.5rem)] xl:pb-6">
             <div className="flex justify-center xl:col-span-4 xl:col-start-5 xl:row-start-1 xl:self-start">
               <img src={publicUrl('/seccion00/svg/logotipo_lutsa.svg')} alt="LUTSA Transportes" className="w-[clamp(8.5rem,28vw,13rem)] object-contain xl:w-[clamp(18rem,23vw,34rem)]" />
             </div>

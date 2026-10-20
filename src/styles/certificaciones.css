@@ -2,6 +2,7 @@
    Tarjetas: todo lo de adentro se mide contra el ancho de la propia tarjeta (cqw y %), así que una tarjeta
    se ve igual en cualquier tamaño. Las medidas salen del SVG del recuadro (336 × 439.5). */
 .cert { container-type: inline-size; background: #fff; }
+.cert__photo { -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 82%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0, #000 82%, transparent 100%); }
 .cert__card {
   container-type: inline-size; display: block; width: 100%; aspect-ratio: 336 / 439.5;
   padding: 0; border: 0; background: none; font: inherit; text-align: center; cursor: pointer; border-radius: 0;
@@ -25,10 +26,10 @@
   .cert { aspect-ratio: 1550 / 1080; padding: 0; }
   .cert > * { --u: calc(100cqw / 1550); position: absolute; margin: 0; max-width: none; }
   .cert__photo {
-    left: calc(var(--u) * 498); top: calc(var(--u) * -37); width: calc(var(--u) * 1075); height: auto;
-    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 68%, transparent 88%), linear-gradient(to right, transparent 0, #000 30%);
+    left: calc(var(--u) * 480); top: calc(var(--u) * -20); width: calc(var(--u) * 1100); height: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 68%, transparent 92%), linear-gradient(to right, transparent 0, #000 28%);
     -webkit-mask-composite: source-in;
-    mask-image: linear-gradient(to bottom, #000 0, #000 68%, transparent 88%), linear-gradient(to right, transparent 0, #000 30%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 68%, transparent 92%), linear-gradient(to right, transparent 0, #000 28%);
     mask-composite: intersect;
   }
   .cert__intro { left: calc(var(--u) * 121); top: calc(var(--u) * 163); padding: 0; text-align: left; }

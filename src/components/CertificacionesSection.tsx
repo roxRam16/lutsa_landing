@@ -76,9 +76,8 @@ export function CertificacionesSection() {
 
   return (
     <section id="certificaciones" className="cert relative overflow-hidden pb-16 sm:pb-20">
-      {/* Escritorio: foto con degradado hacia el blanco. Móvil/tablet: recorte de las personas */}
-      <img src={publicUrl('/seccion06/cert-foto.webp')} alt={c.photoAlt} width={2400} height={1634} loading="lazy" decoding="async" className="cert__photo hidden xl:block" />
-      <img src={publicUrl('/seccion06/cert-gente.webp')} alt={c.photoAlt} width={1500} height={839} loading="lazy" decoding="async" className="cert__people mx-auto block w-[min(100%,36rem)] px-5 pt-[4.5rem] xl:hidden" />
+      {/* Foto única en todos los tamaños: arriba del texto en celular/tablet; a la derecha, con degradado, en escritorio */}
+      <img src={publicUrl('/seccion06/cert-mejorada.webp')} alt={c.photoAlt} width={1029} height={658} loading="lazy" decoding="async" className="cert__photo mx-auto block w-full max-w-[44rem] pt-[4.5rem] xl:max-w-none xl:pt-0" />
 
       <div className="cert__intro relative mx-auto max-w-[40rem] px-6 text-center sm:px-8">
         <h2 className="cert__title font-exo text-[clamp(1.75rem,7cqw,3rem)] uppercase leading-[1.12] text-brand-navy-deep">
