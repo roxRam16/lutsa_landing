@@ -99,12 +99,12 @@
 
 /* Fondo de la portada: una imagen por tamaño (ya trae el camión y el puerto compuestos). Celular y tablet van
    pegadas abajo (el blanco de arriba es el espacio para el logo y el texto); escritorio usa la panorámica. */
-/* Celular: la imagen sube 4.5rem para que el bloque de destacados quede sobre el azul y no sobre el puerto; la
+/* Celular: la imagen sube 9.5rem para que el bloque de destacados quede sobre el azul y no sobre el puerto; la
    franja de abajo se rellena con el azul oscuro del borde inferior de la imagen. */
 .hero-bg {
   background:
-    url('/seccion00/fondo_movil.webp') center calc(100% - 4.5rem) / 100% auto no-repeat,
-    linear-gradient(#0c0f40, #0c0f40) bottom / 100% 5rem no-repeat,
+    url('/seccion00/fondo_movil.webp') center calc(100% - 9.5rem) / 100% auto no-repeat,
+    linear-gradient(#0c0f40, #0c0f40) bottom / 100% 10rem no-repeat,
     #fff;
 }
 @media (min-width: 640px) { .hero-bg { background: #fff url('/seccion00/fondo_tableta.webp') center bottom / 100% auto no-repeat; } }
