@@ -4,17 +4,26 @@
 //
 //   npm run build   →   tsc -b && vite build && node scripts/prerender.mjs
 import { build } from 'esbuild';
+import { loadEnv } from 'vite';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const root = resolve(import.meta.dirname, '..');
-const dist = join(root, 'dist');
+// La versión de pruebas vive en dist-pruebas/ (ver vite.config.ts); la de la raíz, en dist/
+const modeArg = process.argv.indexOf('--mode');
+const dist = join(root, modeArg > -1 && process.argv[modeArg + 1] === 'pruebas' ? 'dist-pruebas' : 'dist');
 
 // routes.ts es TypeScript: se empaqueta a un módulo temporal para reutilizar la MISMA tabla de URLs y SEO.
+// La carpeta base (raíz o /pruebas/) sale del modo: `node scripts/prerender.mjs --mode pruebas`.
+const modeIndex = process.argv.indexOf('--mode');
+const mode = modeIndex > -1 ? process.argv[modeIndex + 1] : 'production';
+const base = loadEnv(mode, root, '').VITE_BASE || '/';
+
 const tmp = join(dist, '__routes.mjs');
-await build({ entryPoints: [join(root, 'src/i18n/routes.ts')], outfile: tmp, bundle: true, format: 'esm', platform: 'node', logLevel: 'silent' });
-const { SEO, SITE_URL, allPaths, pathFor } = await import(pathToFileURL(tmp).href);
+await build({ entryPoints: [join(root, 'src/i18n/routes.ts')], outfile: tmp, bundle: true, format: 'esm', platform: 'node', logLevel: 'silent', define: { 'import.meta.env.BASE_URL': JSON.stringify(base) } });
+const { SEO, SITE_URL, BASE_PATH, allPaths, ogImageUrl, pathFor } = await import(pathToFileURL(tmp).href);
+const isRoot = BASE_PATH === '';
 
 const template = await readFile(join(dist, 'index.html'), 'utf-8');
 const escape = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -23,11 +32,13 @@ function head(lang, section) {
   const seo = SEO[lang];
   const page = seo.pages[section];
   const url = SITE_URL + pathFor(lang, section);
-  const image = SITE_URL + seo.ogImage;
+  const image = ogImageUrl(lang);
   return {
     url,
     replacements: [
       [/<html lang="[^"]*">/, `<html lang="${lang}">`],
+      // La versión de pruebas (subcarpeta) no se indexa en Google
+      [/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="${isRoot ? 'index, follow' : 'noindex, nofollow'}" />`],
       [/<title>[\s\S]*?<\/title>/, `<title>${escape(page.title)}</title>`],
       [/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${escape(page.description)}" />`],
       [/<meta name="keywords" content="[^"]*" \/>/, `<meta name="keywords" content="${escape(seo.keywords)}" />`],
@@ -56,7 +67,7 @@ for (const { lang, section, path } of paths) {
     if (!pattern.test(html)) throw new Error(`prerender: no se encontró ${pattern} en index.html`);
     html = html.replace(pattern, value);
   }
-  const file = join(dist, path, 'index.html');
+  const file = join(dist, path.slice(BASE_PATH.length), 'index.html'); // dentro de dist/ las carpetas no llevan la base
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, html);
 }
@@ -70,9 +81,9 @@ await writeFile(
   join(dist, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`,
 );
-await writeFile(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+await writeFile(join(dist, 'robots.txt'), isRoot ? `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n` : 'User-agent: *\nDisallow: /\n');
 
 // La raíz "/" lleva al idioma por defecto
-await writeFile(join(dist, '_redirects'), '/            /es/   302\n/*           /index.html   200\n');
+await writeFile(join(dist, '_redirects'), `${BASE_PATH || '/'}            ${BASE_PATH}/es/   302\n/*           ${BASE_PATH}/index.html   200\n`);
 await (await import('node:fs/promises')).rm(tmp);
 console.log(`prerender: ${paths.length} rutas + sitemap.xml + robots.txt`);

@@ -4,12 +4,12 @@
   container-type: inline-size;
   /* Texto sobre blanco arriba; la foto del puerto aparece debajo como franja y se funde al azul */
   background:
-    linear-gradient(to bottom, #fcfcfc 11.25rem, rgba(252, 252, 252, 0) 15rem),
-    url('/seccion01/soluciones_fondo_movil.jpg') 30% 10rem / auto 23rem no-repeat,
+    linear-gradient(to bottom, #fcfcfc 14.5rem, rgba(252, 252, 252, 0) 18.25rem),
+    url('/seccion01/soluciones_fondo_movil.jpg') 30% 13.25rem / auto 23rem no-repeat,
     #131977;
 }
 /* Letrero en código (celular): una línea que llena el ancho; el tamaño se calcula del ancho de la sección */
-.svc__sign-line { font-size: clamp(0.9375rem, calc((100cqw - 6.75rem) / var(--len, 20)), 1.25rem); }
+.svc__sign-line { font-size: clamp(1rem, calc((100cqw - 6.75rem) / var(--len, 20)), 1.25rem); }
 /* Tablet: texto sobre blanco y la foto aparece debajo con una transición larga (sin línea de corte) */
 @media (min-width: 640px) {
   .svc {
@@ -25,8 +25,9 @@
 .svc__sign-text { left: 21.7cqw; top: 19%; font-size: 7.6cqw; line-height: 1.27; text-align: left; }
 .svc__sign--ops .svc__sign-text { left: 16.8cqw; font-size: 5.95cqw; }
 .svc__flow { background: linear-gradient(to bottom, rgba(10, 14, 92, 0.85) 70%, rgba(10, 14, 92, 0)); }
-.svc__flow-title { font-size: 0.875rem; text-align: left; }
-.svc__steps { font-size: 0.875rem; }
+.svc__flow-title { font-size: 1.25rem; text-align: left; }
+@media (max-width: 639px) { .svc__flow-title { text-align: center; } }
+.svc__steps { font-size: 1.125rem; }
 .svc__chevron { width: 1.1rem; height: 0.55rem; margin: 0.45rem 0 0.35rem; }
 /* Flujos: textos y flechas se encienden en secuencia (1 → flecha → 2 → …), primero Importación
    y después Exportación (--flow = 0s o 4s). Ciclo completo de 8s; cada paso avanza cada 0.6s. */
@@ -47,15 +48,16 @@
 }
 @media (prefers-reduced-motion: reduce) { .svc__chevron, .svc__step, .svc__metric { animation: none; opacity: 1; } }
 /* Carrusel de métricas: 3 visibles en celular, 5 en tablet; --pos es la tarjeta del centro */
-.svc__carousel { --vis: 3; --center: 1; }
+.svc__carousel { --vis: 1; --center: 0; }
+@media (min-width: 640px) { .svc__carousel { --vis: 3; --center: 1; } }
 @media (min-width: 768px) { .svc__carousel { --vis: 5; --center: 2; } }
 .svc__carousel-track {
   width: calc(100% * var(--total) / var(--vis));
   transform: translateX(calc((var(--center) - var(--pos)) * 100% / var(--total)));
 }
 .svc__carousel-item { width: calc(100% / var(--total)); }
-.svc__trailer-label { font-size: 0.875rem; }
-.svc__trailer { height: 4.75rem; }
+.svc__trailer-label { font-size: 1.1875rem; }
+.svc__trailer { height: 5.5rem; }
 /* Tablet: letreros más chicos (su texto escala con el ancho del letrero) y remolques más bajos */
 @media (min-width: 640px) and (max-width: 1279px) {
   .svc__flow-title { font-size: 0.875rem; }

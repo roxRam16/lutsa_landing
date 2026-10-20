@@ -64,6 +64,7 @@ En producción el API **se niega a arrancar** con la clave de prueba de reCAPTCH
 ## 5. Despliegue
 
 **Landing**
+0. Versión de pruebas en una subcarpeta (`https://lutsa.mx/prueba/`): `npm run build:pruebas` y subir el **contenido** de `dist-pruebas/` a esa carpeta (usa `.env.pruebas`; no se indexa en Google). Para la raíz, `npm run build`.
 1. `npm ci && npm run build` con `VITE_API_URL` y `VITE_RECAPTCHA_SITE_KEY` definidas.
 2. Publicar la carpeta `dist/` (ya incluye una página por ruta e idioma, `sitemap.xml` y `robots.txt`).
 3. El hosting debe responder `index.html` a rutas desconocidas (`/*  /index.html  200`).

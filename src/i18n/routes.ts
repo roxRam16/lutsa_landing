@@ -5,8 +5,11 @@ import type { Lang } from './translations';
 
 export const SITE_URL = 'https://lutsa.mx';
 
+/** Carpeta donde se publica el sitio: '' en la raíz (lutsa.mx) o '/pruebas' en la versión de pruebas. Viene de `base` de Vite. */
+export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 export const SECTION_IDS = [
-  'inicio', 'quienes-somos', 'servicios', 'industrias', 'ecosistema', 'galeria', 'certificaciones', 'contacto',
+  'inicio', 'quienes-somos', 'servicios', 'industrias', 'ecosistema', 'contacto', 'certificaciones', 'galeria',
 ] as const;
 export type SectionId = (typeof SECTION_IDS)[number];
 
@@ -24,12 +27,13 @@ const SLUGS: Record<Lang, Record<SectionId, string>> = {
 /** Ruta de una sección en un idioma: `/en/services`, `/es/` … */
 export function pathFor(lang: Lang, section: SectionId): string {
   const slug = SLUGS[lang][section];
-  return `/${lang}/${slug}`;
+  return `${BASE_PATH}/${lang}/${slug}`;
 }
 
 /** Idioma y sección a partir de la ruta actual. Desconocido → español / inicio. */
 export function parsePath(pathname: string): { lang: Lang | null; section: SectionId } {
-  const [, maybeLang = '', slug = ''] = pathname.toLowerCase().split('/');
+  const local = pathname.toLowerCase().startsWith(BASE_PATH.toLowerCase()) ? pathname.slice(BASE_PATH.length) : pathname;
+  const [, maybeLang = '', slug = ''] = local.toLowerCase().split('/');
   const lang = maybeLang === 'es' || maybeLang === 'en' ? maybeLang : null;
   const table = SLUGS[lang ?? 'es'];
   const section = (Object.keys(table) as SectionId[]).find((id) => table[id] === slug.replace(/\/$/, '')) ?? 'inicio';
@@ -74,3 +78,6 @@ export const SEO: Record<Lang, { keywords: string; ogImage: string; ogLocale: st
     },
   },
 };
+
+/** URL completa de la imagen para compartir (Open Graph) de un idioma. */
+export const ogImageUrl = (lang: Lang) => SITE_URL + BASE_PATH + SEO[lang].ogImage;

@@ -1,4 +1,4 @@
-/* ===================== Cotización y contacto (70 km) =====================
+/* ===================== Cotización y contacto (50 km) =====================
    Móvil/tablet: banner azul con el camión debajo del texto. */
 .quote { container-type: inline-size; }
 .quote__banner { background: linear-gradient(100deg, #151d8c 0%, #1b28b2 45%, #2437f5 100%); }
@@ -31,10 +31,10 @@
   .q-operation { grid-area: 4 / 1; } .q-customs { grid-area: 4 / 3 / 5 / 6; }
   .q-goods { grid-area: 5 / 1; } .q-volume { grid-area: 6 / 1; }
   .q-registry { grid-area: 7 / 1; } .q-comments { grid-area: 5 / 3 / 7 / 6; }
-  /* "No soy un robot" en la fila del padrón (columna derecha) y el botón debajo, del mismo ancho
+  /* Botón en la fila del padrón (columna derecha) y "No soy un robot" justo debajo, del mismo ancho
      que la casilla (304 px fijos de Google) y alineado con ella */
-  .quote__captcha-wrap { grid-area: 7 / 3 / 8 / 6; justify-content: flex-start; align-items: flex-end; }
-  .quote__submit-wrap { grid-area: 8 / 3 / 9 / 6; padding-top: calc(var(--u) * 16); padding-bottom: calc(var(--u) * 18); }
+  .quote__submit-wrap { grid-area: 7 / 3 / 8 / 6; align-self: end; margin-bottom: calc(var(--u) * 22); }
+  .quote__captcha-wrap { grid-area: 8 / 3 / 9 / 6; justify-content: flex-start; padding-top: calc(var(--u) * 16); padding-bottom: calc(var(--u) * 18); }
   .quote__submit-wrap .quote__submit { width: 304px; }
   .quote__status { grid-area: 9 / 1 / 10 / 6; align-self: start; }
 

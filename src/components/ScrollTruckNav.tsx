@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEv
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useLanguage } from '../i18n/LanguageContext';
 import { pathFor, type SectionId } from '../i18n/routes';
+import { publicUrl } from '../utils/publicUrl';
 
 const NAV_WIDTH = 260;
 
@@ -12,9 +13,9 @@ const stops = [
   { id: 'servicios', km: 20 },
   { id: 'industrias', km: 30 },
   { id: 'ecosistema', km: 40 },
-  { id: 'galeria', km: 50 },
+  { id: 'contacto', km: 50 },
   { id: 'certificaciones', km: 60 },
-  { id: 'contacto', km: 70 },
+  { id: 'galeria', km: 70 },
   { id: '__fin__', km: null },
 ] as const;
 
@@ -143,7 +144,7 @@ export function ScrollTruckNav() {
           aria-hidden="true"
         >
           <img
-            src="/camion_mini.png"
+            src={publicUrl('/camion_mini.png')}
             alt=""
             className="block h-[14px] w-auto max-w-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.6)]"
             style={{ transform: miniTruck.facingLeft ? `translateX(-${(1 - MINI_TRUCK_CAB) * 100}%) scaleX(-1)` : `translateX(-${MINI_TRUCK_CAB * 100}%)` }}
@@ -169,7 +170,7 @@ export function ScrollTruckNav() {
                   <span className="mt-0.5 text-[0.625rem] tracking-wide">KM</span>
                 </>
               ) : (
-                <img src="/favicon.svg" alt="" className={`h-5 w-5 rounded-full ${isActive ? 'bg-white p-0.5' : 'bg-white/90 p-0.5'}`} />
+                <img src={publicUrl('/favicon.svg')} alt="" className={`h-5 w-5 rounded-full ${isActive ? 'bg-white p-0.5' : 'bg-white/90 p-0.5'}`} />
               )}
             </a>
           );
@@ -184,7 +185,7 @@ export function ScrollTruckNav() {
         <div
           className="absolute inset-0 bg-center-top bg-no-repeat"
           style={{
-            backgroundImage: "url('/carretera_vertical.webp')",
+            backgroundImage: `url('${publicUrl('/carretera_vertical.webp')}')`,
             backgroundSize: '100% 100%',
           }}
           aria-hidden="true"
@@ -233,7 +234,7 @@ export function ScrollTruckNav() {
           >
             <span>{t.nav.keepGoing[0]}<br />{t.nav.keepGoing[1]}</span>
             <img
-              src="/seccion01/svg/flecha_avanzando.svg"
+              src={publicUrl('/seccion01/svg/flecha_avanzando.svg')}
               alt=""
               className="h-8 w-8 object-contain"
             />
@@ -241,7 +242,7 @@ export function ScrollTruckNav() {
 
           {/* Camión que se desliza a la sección activa */}
           <img
-            src="/camion.webp"
+            src={publicUrl('/camion.webp')}
             alt={t.nav.truckAlt}
             className="pointer-events-none absolute z-20 h-[200px] w-[95px] object-contain"
             style={{ top: truckTop, left: '114px', transition: 'top 5000ms cubic-bezier(0.25, 0.1, 0.25, 1)' }}

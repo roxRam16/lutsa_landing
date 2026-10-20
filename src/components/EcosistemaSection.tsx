@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { DesktopLines } from './DesktopLines';
+import { publicUrl } from '../utils/publicUrl';
 
 // Empresas del ecosistema en el orden de lectura (móvil/tablet); la posición en escritorio va en index.css
 const nodeOrder = ['transportes', 'magno', 'mil519', 'almacen', 'regionales'] as const;
@@ -88,12 +89,14 @@ type RadialProps = {
   names: readonly string[];
   centerR: number;
   id: string;
+  /** Celular/tablet: las empresas inactivas se cubren con un velo azul marino; escritorio las pone en grises. */
+  keepColor?: boolean;
   className: string;
   select: (i: number, holdMs?: number) => void;
   release: () => void;
 };
 
-function RadialDiagram({ active, caption, alt, names, centerR, id, className, select, release }: RadialProps) {
+function RadialDiagram({ active, caption, alt, names, centerR, id, keepColor = false, className, select, release }: RadialProps) {
   const center = { ...CENTER, r: centerR };
   const on = (i: number) => active === -1 || active === i;
   const pct = (v: number, total: number) => `${(v / total) * 100}%`;
@@ -125,13 +128,13 @@ function RadialDiagram({ active, caption, alt, names, centerR, id, className, se
 
       {/* Logo central */}
       <div className="absolute" style={{ left: pct(center.x - center.r, DIAGRAM_W), top: pct(center.y - center.r, DIAGRAM_H), width: pct(2 * center.r, DIAGRAM_W) }}>
-        <img loading="lazy" decoding="async" src="/seccion04/eco_centro.webp" alt="" className="eco__center-img block h-auto w-full rounded-full" />
+        <img loading="lazy" decoding="async" src={publicUrl('/seccion04/eco_centro.webp')} alt="" className="eco__center-img block h-auto w-full rounded-full" />
         <p className="eco__radial-caption absolute inset-x-0 top-[70%] text-center font-exo text-[clamp(0.625rem,3.1cqw,0.8125rem)] font-bold uppercase leading-[1.15] text-brand-navy">
           {caption[0]}<br />{caption[1]}
         </p>
       </div>
 
-      {/* Fotos de las empresas: la activa a color, las demás en escala de grises (mouse o toque la ilumina) */}
+      {/* Fotos de las empresas: la activa resalta con brillo; las demás se tiñen de azul marino en celular/tablet (en escritorio van en grises). Mouse o toque la ilumina */}
       {nodeOrder.map((key, i) => (
         <button
           key={key}
@@ -139,15 +142,17 @@ function RadialDiagram({ active, caption, alt, names, centerR, id, className, se
           aria-label={names[i]}
           aria-pressed={active === i}
           {...selectProps(i, select, release)}
-          className={`absolute cursor-pointer rounded-full transition-[filter,transform,opacity] ${FADE} ${on(i) ? 'scale-110 opacity-100' : 'scale-95 opacity-70'}`}
+          className={`absolute cursor-pointer rounded-full transition-[filter,transform,opacity] ${FADE} ${on(i) ? 'scale-110 opacity-100' : keepColor ? 'scale-95' : 'scale-95 opacity-70'}`}
           style={{
             left: pct(nodePos[key].x - NODE_R, DIAGRAM_W),
             top: pct(nodePos[key].y - NODE_R, DIAGRAM_H),
             width: pct(2 * NODE_R, DIAGRAM_W),
-            filter: on(i) ? 'grayscale(0) drop-shadow(0 0 10px rgba(244, 118, 33, 0.65))' : 'grayscale(1) drop-shadow(0 0 0 rgba(244, 118, 33, 0))',
+            filter: on(i) ? 'grayscale(0) drop-shadow(0 0 10px rgba(244, 118, 33, 0.65))' : `grayscale(${keepColor ? 0 : 1}) drop-shadow(0 0 0 rgba(244, 118, 33, 0))`,
           }}
         >
-          <img loading="lazy" decoding="async" src={`/seccion04/eco_${key}.webp`} alt="" className="block h-auto w-full rounded-full" />
+          <img loading="lazy" decoding="async" src={publicUrl(`/seccion04/eco_${key}.webp`)} alt="" className="block h-auto w-full rounded-full" />
+          {/* Velo azul marino sobre las empresas apagadas (solo celular/tablet); se desvanece al iluminarse */}
+          {keepColor && <span aria-hidden="true" className={`pointer-events-none absolute inset-0 rounded-full bg-brand-navy transition-opacity ${FADE} ${on(i) ? 'opacity-0' : 'opacity-60'}`} />}
         </button>
       ))}
     </div>
@@ -192,7 +197,7 @@ export function EcosistemaSection() {
       </div>
 
       {/* Diagrama animado: móvil/tablet y escritorio (en escritorio, en la posición del diseño) */}
-      <RadialDiagram {...radial} id="eco-m" centerR={480} className="relative mx-auto mt-6 w-full max-w-[34rem] xl:hidden" />
+      <RadialDiagram {...radial} id="eco-m" keepColor centerR={480} className="relative mx-auto mt-6 w-full max-w-[34rem] xl:hidden" />
       <RadialDiagram {...radial} id="eco-d" centerR={560} className="eco__radial--desk hidden xl:block" />
 
       {/* Móvil/tablet: solo el texto de la empresa iluminada, en grande */}
@@ -237,8 +242,8 @@ export function EcosistemaSection() {
         <ul className="eco__goal-list grid w-full grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-2">
           {s.goals.map((goal, i) => (
             <li key={goalIcons[i]} className="eco__goal-item flex items-center gap-4 text-left sm:grid sm:grid-cols-[auto_1fr] sm:gap-x-3 sm:gap-y-1.5 sm:text-center" style={{ '--i': i } as CSSProperties}>
-              <img loading="lazy" decoding="async" src="/seccion04/svg/flecha-lateral.svg" alt="" className={`eco__goal-arrow row-span-2 hidden h-4 w-auto sm:block sm:h-6 ${i === 0 ? 'sm:hidden xl:block' : ''}`} />
-              <img loading="lazy" decoding="async" src={`/seccion04/svg/${goalIcons[i]}`} alt="" className="eco__goal-icon col-start-2 h-10 w-12 shrink-0 justify-self-center object-contain sm:h-9 sm:w-auto" />
+              <img loading="lazy" decoding="async" src={publicUrl('/seccion04/svg/flecha-lateral.svg')} alt="" className={`eco__goal-arrow row-span-2 hidden h-4 w-auto sm:block sm:h-6 ${i === 0 ? 'sm:hidden xl:block' : ''}`} />
+              <img loading="lazy" decoding="async" src={publicUrl(`/seccion04/svg/${goalIcons[i]}`)} alt="" className="eco__goal-icon col-start-2 h-10 w-12 shrink-0 justify-self-center object-contain sm:h-9 sm:w-auto" />
               <span className="eco__goal-text col-start-2 font-exo text-[0.9375rem] font-medium leading-[1.35] text-white sm:text-center sm:text-[0.875rem]">
                 <DesktopLines lines={goal} />
               </span>

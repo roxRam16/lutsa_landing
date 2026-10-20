@@ -71,9 +71,12 @@ export const translations = {
         },
       ],
     },
-    placeholders: {
-      galeria: { title: 'Galería', text: 'Nuestra operación en imágenes: flota, patio, maniobras y equipo.' },
-    } as Record<string, { title: string; text: string }>,
+    // Galería: marcador hasta tener el diseño y las fotos (70 km)
+    gallery: {
+      kicker: '70 KM',
+      title: 'Galería',
+      text: 'Nuestra operación en imágenes: flota, patio, maniobras y equipo.',
+    },
     hero: {
       titleLines: ['Siempre en', 'movimiento,'],
       titleAccentLines: ['conectando', 'posibilidades.'],
@@ -178,7 +181,7 @@ export const translations = {
       goals: [['Mover tu carga', 'con seguridad.'], ['Entregar a tiempo,', 'siempre.'], ['Impulsar tu negocio', 'sin límites.']],
     },
     quote: {
-      kicker: '70 KM / Tu siguiente movimiento',
+      kicker: '50 KM / Tu siguiente movimiento',
       title: 'Hablemos de tu operación.',
       cta: 'Solicita tu cotización',
       sending: 'Enviando…',
@@ -313,9 +316,11 @@ export const translations = {
         },
       ],
     },
-    placeholders: {
-      galeria: { title: 'Gallery', text: 'Our operation in pictures: fleet, yard, handling and team.' },
-    } as Record<string, { title: string; text: string }>,
+    gallery: {
+      kicker: '70 KM',
+      title: 'Gallery',
+      text: 'Our operation in pictures: fleet, yard, handling and team.',
+    },
     hero: {
       titleLines: ['Always on', 'the move,'],
       titleAccentLines: ['connecting', 'possibilities.'],
@@ -419,7 +424,7 @@ export const translations = {
       goals: [['Move your cargo', 'safely.'], ['Deliver on time,', 'every time.'], ['Grow your business', 'without limits.']],
     },
     quote: {
-      kicker: '70 KM / Your next move',
+      kicker: '50 KM / Your next move',
       title: 'Let’s talk about your operation.',
       cta: 'Request a quote',
       sending: 'Sending…',

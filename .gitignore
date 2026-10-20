@@ -5,3 +5,4 @@ docs/referencias/
 docs/*
 !docs/GUIA_DE_ESTILO.md
 !docs/STYLE_GUIDE.en.md
+dist-pruebas/

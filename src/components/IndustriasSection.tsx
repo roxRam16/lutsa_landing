@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { DesktopLines } from './DesktopLines';
+import { publicUrl } from '../utils/publicUrl';
 
 // Íconos de las métricas y de la lista de presencia (mismo orden que las traducciones)
 const metricIcons = ['icono_indus_1.svg', 'icono_indus_2.svg', 'icono_indus_3.svg'];
@@ -107,13 +108,13 @@ export function IndustriasSection() {
 
       {/* Mapa flotante */}
       <div className="ind__map relative mx-auto mt-10 w-full max-w-[36rem] sm:mt-12">
-        <img loading="lazy" decoding="async" src="/seccion03/map.webp" alt={s.mapAlt} className="ind__map-img block h-auto w-full" />
+        <img loading="lazy" decoding="async" src={publicUrl('/seccion03/map.webp')} alt={s.mapAlt} className="ind__map-img block h-auto w-full" />
       </div>
 
       <ul ref={metricsRef} className="ind__metrics relative mx-auto mt-8 grid max-w-[44rem] grid-cols-1 gap-6 sm:grid-cols-3">
         {s.metrics.map((metric, i) => (
           <li key={metric.value} className="ind__metric flex items-center gap-4 text-left sm:flex-col sm:gap-2 sm:text-center">
-            <img loading="lazy" decoding="async" src={`/seccion03/svg/${metricIcons[i]}`} alt="" className="ind__metric-icon h-14 w-14 shrink-0" />
+            <img loading="lazy" decoding="async" src={publicUrl(`/seccion03/svg/${metricIcons[i]}`)} alt="" className="ind__metric-icon h-14 w-14 shrink-0" />
             <div className="ind__metric-body">
               <p className="ind__metric-value font-exo text-[1.375rem] font-semibold leading-none text-brand-orange-strong sm:text-[1.875rem]"><CountUpValue value={metric.value} progress={progress[i]} /></p>
               <p className="ind__metric-text mt-1.5 font-exo text-[0.9375rem] font-medium leading-[1.35] text-brand-navy sm:text-[0.875rem]">
@@ -131,7 +132,7 @@ export function IndustriasSection() {
         <ul className="ind__presence-list mt-5 grid grid-cols-1 justify-items-center gap-4 font-exo text-[0.9375rem] font-medium leading-[1.3] text-brand-navy sm:justify-items-stretch sm:leading-[1.25] sm:flex sm:items-start sm:justify-center sm:gap-8 sm:text-[0.875rem]">
           {s.presence.map((item, i) => (
             <li key={presenceIcons[i]} className="ind__presence-item flex items-center gap-2.5 text-left">
-              <img loading="lazy" decoding="async" src={`/seccion03/svg/${presenceIcons[i]}`} alt="" className="ind__presence-icon h-6 w-6 shrink-0 object-contain" />
+              <img loading="lazy" decoding="async" src={publicUrl(`/seccion03/svg/${presenceIcons[i]}`)} alt="" className="ind__presence-icon h-6 w-6 shrink-0 object-contain" />
               {item}
             </li>
           ))}
@@ -141,7 +142,7 @@ export function IndustriasSection() {
       <ul className="ind__bar relative mx-auto mt-12 grid max-w-[44rem] grid-cols-2 gap-y-8 rounded-3xl px-4 py-8 sm:grid-cols-4 sm:px-2 sm:py-7">
         {s.list.map((label, i) => (
           <li key={industryIcons[i].src} className="ind__item relative flex flex-col items-center justify-end gap-2 text-center" style={{ '--h': industryIcons[i].h } as CSSProperties}>
-            <img loading="lazy" decoding="async" src={`/seccion03/svg/${industryIcons[i].src}`} alt="" className="ind__item-icon h-12 w-auto sm:h-14" />
+            <img loading="lazy" decoding="async" src={publicUrl(`/seccion03/svg/${industryIcons[i].src}`)} alt="" className="ind__item-icon h-12 w-auto sm:h-14" />
             <span className="ind__item-label font-exo text-[0.875rem] font-bold uppercase leading-none text-brand-orange">{label}</span>
           </li>
         ))}

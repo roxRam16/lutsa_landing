@@ -4,6 +4,7 @@ import { submitQuote, type QuotePayload } from '../services/quoteApi';
 import { ChipGroup } from './quote/ChipGroup';
 import { Recaptcha, type RecaptchaHandle } from './quote/Recaptcha';
 import { SearchSelect } from './quote/SearchSelect';
+import { publicUrl } from '../utils/publicUrl';
 
 type FormState = {
   name: string;
@@ -204,8 +205,8 @@ export function ContactoSection() {
           <h2 className="quote__title mt-3 font-exo text-[clamp(1.75rem,7.4cqw,3.25rem)] sm:text-[clamp(1.75rem,4.6cqw,2.375rem)] font-bold uppercase leading-[1.1] text-white">{q.title}</h2>
         </div>
         <div className="quote__truck-wrap pointer-events-none absolute bottom-0 right-[-4%] z-0 w-[min(62%,24rem)] sm:w-[48%] sm:max-w-[26rem]">
-          <img loading="lazy" decoding="async" src="/seccion07/circle-fondo.svg" alt="" className="quote__arc absolute bottom-0 left-[-30%] w-[125%] max-w-none" />
-          <img loading="lazy" decoding="async" src="/seccion07/camion-cotizacion.webp" alt={q.truckAlt} className="quote__truck relative block w-full" />
+          <img loading="lazy" decoding="async" src={publicUrl('/seccion07/circle-fondo.svg')} alt="" className="quote__arc absolute bottom-0 left-[-30%] w-[125%] max-w-none" />
+          <img loading="lazy" decoding="async" src={publicUrl('/seccion07/camion-cotizacion.webp')} alt={q.truckAlt} className="quote__truck relative block w-full" />
         </div>
       </div>
 
@@ -242,17 +243,6 @@ export function ContactoSection() {
           </span>
         </div>
 
-        <div className={`quote__captcha-wrap flex justify-center sm:col-span-2 ${isBad('captcha') ? '[&_.quote__recaptcha]:rounded-md [&_.quote__recaptcha]:ring-2 [&_.quote__recaptcha]:ring-[#e0464a]' : ''}`}>
-          <Recaptcha
-            ref={captchaRef}
-            lang={lang}
-            onToken={(token) => {
-              setCaptchaToken(token);
-              if (token) setInvalid((s) => { const n = new Set(s); n.delete('captcha'); return n; });
-            }}
-          />
-        </div>
-
         <div className="quote__submit-wrap sm:col-span-2">
           <button
             type="submit"
@@ -262,6 +252,17 @@ export function ContactoSection() {
             {sending && <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true" />}
             {sending ? q.sending : q.cta}
           </button>
+        </div>
+
+        <div className={`quote__captcha-wrap mt-2 flex justify-center sm:col-span-2 xl:mt-0 ${isBad('captcha') ? '[&_.quote__recaptcha]:rounded-md [&_.quote__recaptcha]:ring-2 [&_.quote__recaptcha]:ring-[#e0464a]' : ''}`}>
+          <Recaptcha
+            ref={captchaRef}
+            lang={lang}
+            onToken={(token) => {
+              setCaptchaToken(token);
+              if (token) setInvalid((s) => { const n = new Set(s); n.delete('captcha'); return n; });
+            }}
+          />
         </div>
 
         <div className="quote__status sm:col-span-2" role="status" aria-live="polite">

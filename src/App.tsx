@@ -1,16 +1,20 @@
 import { useCallback } from 'react';
+import { CertificacionesSection } from './components/CertificacionesSection';
 import { ContactoSection } from './components/ContactoSection';
 import { DesktopLines } from './components/DesktopLines';
+import { EcosistemaSection } from './components/EcosistemaSection';
+import { GaleriaSection } from './components/GaleriaSection';
 import { Header } from './components/Header';
-import { PlaceholderSections } from './components/PlaceholderSections';
+import { IndustriasSection } from './components/IndustriasSection';
 import { QuienesSomosSection } from './components/QuienesSomosSection';
 import { ScrollTruckNav } from './components/ScrollTruckNav';
 import { ServiciosSection } from './components/ServiciosSection';
 import { useLanguage } from './i18n/LanguageContext';
 import { pathFor } from './i18n/routes';
+import { publicUrl } from './utils/publicUrl';
 
 // Íconos en el mismo orden que t.hero.highlights
-const highlightIcons = ['/seccion00/svg/icono_conectamos.svg', '/seccion00/svg/icono_segur.svg', '/seccion00/svg/icono_veracruz.svg'];
+const highlightIcons = ['/seccion00/svg/icono_conectamos.svg', '/seccion00/svg/icono_segur.svg', '/seccion00/svg/icono_veracruz.svg'].map(publicUrl);
 
 function App() {
   const { t, lang } = useLanguage();
@@ -24,14 +28,14 @@ function App() {
       <Header onContact={scrollToContact} />
       {/* main se desplaza a la derecha del riel fijo en desktop */}
       <main className="lg:ml-[260px]">
-        <div id="inicio" className="relative min-h-screen bg-cover bg-[center_25%] bg-no-repeat" style={{ backgroundImage: "url('/seccion00/fondo_002.webp')" }}>
+        <div id="inicio" className="relative min-h-screen bg-cover bg-[center_25%] bg-no-repeat" style={{ backgroundImage: `url('${publicUrl('/seccion00/fondo_002.webp')}')` }}>
           {/* Móvil/tablet (<xl): columna centrada (logo → texto → highlights junto al camión).
               Escritorio (xl): rejilla de 12 columnas medida sobre el diseño de 1920px. */}
           {/* Velo claro para que el texto no se pierda sobre el arco naranja en móvil/tablet */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[60%] bg-gradient-to-b from-white/75 via-white/45 to-transparent xl:hidden" aria-hidden="true" />
           <div className="relative z-10 flex min-h-screen flex-col px-5 pb-[3.5rem] pt-20 short:pb-[3.75rem] sm:px-8 sm:pb-20 sm:pt-24 lg:px-10 lg:pb-3 lg:pt-20 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_1fr_auto] xl:gap-4 xl:pl-[clamp(2.5rem,4.9vw,6rem)] xl:pt-[clamp(6rem,5.6vw,8.5rem)] xl:pb-6">
             <div className="flex justify-center xl:col-span-4 xl:col-start-5 xl:row-start-1 xl:self-start">
-              <img src="/seccion00/svg/logotipo_lutsa.svg" alt="LUTSA Transportes" className="w-[clamp(8.5rem,28vw,13rem)] object-contain xl:w-[clamp(18rem,23vw,34rem)]" />
+              <img src={publicUrl('/seccion00/svg/logotipo_lutsa.svg')} alt="LUTSA Transportes" className="w-[clamp(8.5rem,28vw,13rem)] object-contain xl:w-[clamp(18rem,23vw,34rem)]" />
             </div>
 
             <div className="mx-auto mt-5 max-w-[36rem] text-center sm:mt-7 xl:col-span-4 xl:col-start-1 xl:row-start-1 xl:mx-0 xl:mt-0 xl:max-w-[480px] xl:self-start xl:text-left">
@@ -64,8 +68,11 @@ function App() {
         </div>
         <QuienesSomosSection />
         <ServiciosSection />
-        <PlaceholderSections />
+        <IndustriasSection />
+        <EcosistemaSection />
         <ContactoSection />
+        <CertificacionesSection />
+        <GaleriaSection />
       </main>
     </div>
   );

@@ -31,10 +31,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/submarcas" />
   </url>
   <url>
-    <loc>https://lutsa.mx/es/galeria</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/galeria" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/gallery" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/galeria" />
+    <loc>https://lutsa.mx/es/cotizacion</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/cotizacion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/quote" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/cotizacion" />
   </url>
   <url>
     <loc>https://lutsa.mx/es/certificaciones</loc>
@@ -43,10 +43,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/certificaciones" />
   </url>
   <url>
-    <loc>https://lutsa.mx/es/cotizacion</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/cotizacion" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/quote" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/cotizacion" />
+    <loc>https://lutsa.mx/es/galeria</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/galeria" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/gallery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/galeria" />
   </url>
   <url>
     <loc>https://lutsa.mx/en/</loc>
@@ -79,10 +79,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/submarcas" />
   </url>
   <url>
-    <loc>https://lutsa.mx/en/gallery</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/galeria" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/gallery" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/galeria" />
+    <loc>https://lutsa.mx/en/quote</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/cotizacion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/quote" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/cotizacion" />
   </url>
   <url>
     <loc>https://lutsa.mx/en/certifications</loc>
@@ -91,9 +91,9 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/certificaciones" />
   </url>
   <url>
-    <loc>https://lutsa.mx/en/quote</loc>
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/cotizacion" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/quote" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/cotizacion" />
+    <loc>https://lutsa.mx/en/gallery</loc>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://lutsa.mx/es/galeria" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lutsa.mx/en/gallery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lutsa.mx/es/galeria" />
   </url>
 </urlset>

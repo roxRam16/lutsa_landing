@@ -40,7 +40,7 @@ To test from a phone with ngrok: `ngrok http 5173` (a single tunnel; Vite proxie
 
 ```text
 src/
-├── components/        Sections (About, Services, Industries, Ecosystem, Certifications, Quote),
+├── components/        Sections (About, Services, Industries, Ecosystem, Quote, Certifications, Gallery),
 │                      header, kilometer bar and form components (quote/)
 ├── hooks/             useActiveSection · useAutoFlip (self-flipping cards)
 ├── styles/            One CSS per section (desktop replica); shared rules live in index.css

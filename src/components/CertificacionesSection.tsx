@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { useAutoFlip } from '../hooks/useAutoFlip';
 import { useLanguage } from '../i18n/LanguageContext';
 import { DesktopLines } from './DesktopLines';
+import { publicUrl } from '../utils/publicUrl';
 
 // Recursos de cada tarjeta (mismo orden que t.certifications.cards)
 const cardAssets = [
@@ -46,13 +47,13 @@ function CertCard({ asset, title, backTitle, text, logoAlt, autoFlipped }: CardP
     >
       <span className="flip-card-inner block">
         <span className="cert__face flip-card-face">
-          <img src="/seccion06/svg/recuadro%20frente.svg" alt="" className="cert__bg" />
-          <img src={`/seccion06/svg/${asset.icon}`} alt="" className="cert__icon" />
+          <img src={publicUrl('/seccion06/svg/recuadro%20frente.svg')} alt="" className="cert__bg" />
+          <img src={publicUrl(`/seccion06/svg/${asset.icon}`)} alt="" className="cert__icon" />
           <span className="cert__front-title"><Lines lines={title} /></span>
-          <img loading="lazy" decoding="async" src={`/seccion06/${asset.logo}`} width={asset.logoW} height={asset.logoH} alt={logoAlt} className="cert__logo" />
+          <img loading="lazy" decoding="async" src={publicUrl(`/seccion06/${asset.logo}`)} width={asset.logoW} height={asset.logoH} alt={logoAlt} className="cert__logo" />
         </span>
         <span className="cert__face flip-card-face flip-card-back">
-          <img src="/seccion06/svg/recuadro%20reverso.svg" alt="" className="cert__bg" />
+          <img src={publicUrl('/seccion06/svg/recuadro%20reverso.svg')} alt="" className="cert__bg" />
           <span className="cert__back-title"><Lines lines={backTitle} /></span>
           <span id={descId} className="cert__back-text"><Lines lines={text} /></span>
           <span className="cert__bar" aria-hidden="true" />
@@ -76,8 +77,8 @@ export function CertificacionesSection() {
   return (
     <section id="certificaciones" className="cert relative overflow-hidden pb-16 sm:pb-20">
       {/* Escritorio: foto con degradado hacia el blanco. Móvil/tablet: recorte de las personas */}
-      <img src="/seccion06/cert-foto.webp" alt={c.photoAlt} width={2400} height={1634} loading="lazy" decoding="async" className="cert__photo hidden xl:block" />
-      <img src="/seccion06/cert-gente.webp" alt={c.photoAlt} width={1500} height={839} loading="lazy" decoding="async" className="cert__people mx-auto block w-[min(100%,36rem)] px-5 pt-[4.5rem] xl:hidden" />
+      <img src={publicUrl('/seccion06/cert-foto.webp')} alt={c.photoAlt} width={2400} height={1634} loading="lazy" decoding="async" className="cert__photo hidden xl:block" />
+      <img src={publicUrl('/seccion06/cert-gente.webp')} alt={c.photoAlt} width={1500} height={839} loading="lazy" decoding="async" className="cert__people mx-auto block w-[min(100%,36rem)] px-5 pt-[4.5rem] xl:hidden" />
 
       <div className="cert__intro relative mx-auto max-w-[40rem] px-6 text-center sm:px-8">
         <h2 className="cert__title font-exo text-[clamp(1.75rem,7cqw,3rem)] uppercase leading-[1.12] text-brand-navy-deep">

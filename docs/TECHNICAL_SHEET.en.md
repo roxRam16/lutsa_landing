@@ -64,6 +64,7 @@ In production the API **refuses to start** with the reCAPTCHA test key or with C
 ## 5. Deployment
 
 **Landing**
+0. Test version in a subfolder (`https://lutsa.mx/prueba/`): `npm run build:pruebas` and upload the **contents** of `dist-pruebas/` to that folder (uses `.env.pruebas`; not indexed by Google). For the root, `npm run build`.
 1. `npm ci && npm run build` with `VITE_API_URL` and `VITE_RECAPTCHA_SITE_KEY` set.
 2. Publish the `dist/` folder (it already contains one page per route and language, `sitemap.xml` and `robots.txt`).
 3. The host must answer `index.html` for unknown routes (`/*  /index.html  200`).

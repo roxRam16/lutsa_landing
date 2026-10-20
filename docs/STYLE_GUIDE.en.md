@@ -24,6 +24,7 @@ Rules so anyone can change or add content without breaking the design. If anythi
 2. **Classes named per element** (`section__element`: `svc__sign`, `ind__bar`, `cert__card`). Tailwind classes give the
    **mobile and tablet** design; the section CSS gives the **desktop (≥1280 px)** replica, so it lives inside
    `@media (min-width: 1280px)` and outside `@layer` (so it wins over Tailwind).
+3. **Images from `public/`**: always via `publicUrl('/seccion01/x.svg')` (`src/utils/publicUrl.ts`), never a hand-written `src="/seccion…"`; that way they also work when the site is published in a subfolder. CSS ones don't need it.
 3. **Colors**: use `text-brand-navy`, `bg-brand-orange`… (TSX) or `theme('colors.brand.navy')` (CSS). Do not write loose
    hex values for brand colors. If a color is missing, **add it to `brand`** instead of hard-coding it.
 4. **Desktop measurements**: always `calc(var(--u) * N)`, where `N` is the design's pixels and

@@ -24,6 +24,7 @@ guía deja de ser cierto, **se corrige aquí en el mismo cambio**.
 2. **Clases con nombre por elemento** (`sección__elemento`: `svc__sign`, `ind__bar`, `cert__card`). Las clases de
    Tailwind dan el diseño de **celular y tablet**; el CSS de la sección da la réplica de **escritorio (≥1280 px)**
    y por eso va dentro de `@media (min-width: 1280px)` y fuera de `@layer` (así gana a Tailwind).
+3. **Imágenes de `public/`**: siempre con `publicUrl('/seccion01/x.svg')` (`src/utils/publicUrl.ts`), nunca `src="/seccion…"` a mano; así funcionan también si el sitio se publica en una subcarpeta. Las del CSS no lo necesitan.
 3. **Colores**: usa `text-brand-navy`, `bg-brand-orange`… (TSX) o `theme('colors.brand.navy')` (CSS). No escribas
    hex sueltos para los colores de marca. Si falta un color, se **agrega a `brand`**, no se escribe en el componente.
 4. **Medidas de escritorio**: siempre `calc(var(--u) * N)`, donde `N` son los píxeles del diseño y

@@ -40,7 +40,7 @@ Probar desde el celular con ngrok: `ngrok http 5173` (un solo túnel; Vite reenv
 
 ```text
 src/
-├── components/        Secciones (Quiénes somos, Servicios, Industrias, Ecosistema, Certificaciones, Cotización),
+├── components/        Secciones (Quiénes somos, Servicios, Industrias, Ecosistema, Cotización, Certificaciones, Galería),
 │                      header, barra de kilómetros y componentes del formulario (quote/)
 ├── hooks/             useActiveSection · useAutoFlip (tarjetas que giran solas)
 ├── styles/            Un CSS por sección (réplica de escritorio); lo común está en index.css
@@ -64,10 +64,10 @@ tiene su URL en cada idioma, definida en `src/i18n/routes.ts`:
 | Nosotros | `/es/nosotros` | `/en/about-us` |
 | Servicios | `/es/servicios` | `/en/services` |
 | Industrias | `/es/industrias` | `/en/industries` |
-| Submarcas | `/es/submarcas` | `/en/brands` |
-| Galería | `/es/galeria` | `/en/gallery` |
-| Certificaciones | `/es/certificaciones` | `/en/certifications` |
-| Cotización | `/es/cotizacion` | `/en/quote` |
+| Submarcas (40 km) | `/es/submarcas` | `/en/brands` |
+| Cotización (50 km) | `/es/cotizacion` | `/en/quote` |
+| Certificaciones (60 km) | `/es/certificaciones` | `/en/certifications` |
+| Galería (70 km) | `/es/galeria` | `/en/gallery` |
 
 La URL cambia sola al hacer scroll y al cambiar de idioma; al abrir una ruta directa, la página baja a
 su sección. **Para agregar un texto:** añádelo en `es` y en `en`. **Para cambiar una URL o un título

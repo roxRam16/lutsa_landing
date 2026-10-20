@@ -2,7 +2,7 @@
 // sección. El prerender (scripts/prerender.mjs) los deja ya escritos en el HTML de cada ruta para Google;
 // esto los actualiza al navegar dentro del sitio.
 import type { Lang } from './translations';
-import { SEO, SITE_URL, pathFor, type SectionId } from './routes';
+import { SEO, SITE_URL, ogImageUrl, pathFor, type SectionId } from './routes';
 
 function setMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
@@ -42,8 +42,8 @@ export function applySeo(lang: Lang, section: SectionId) {
   setMeta('property', 'og:description', page.description);
   setMeta('property', 'og:url', url);
   setMeta('property', 'og:locale', seo.ogLocale);
-  setMeta('property', 'og:image', SITE_URL + seo.ogImage);
+  setMeta('property', 'og:image', ogImageUrl(lang));
   setMeta('name', 'twitter:title', page.title);
   setMeta('name', 'twitter:description', page.description);
-  setMeta('name', 'twitter:image', SITE_URL + seo.ogImage);
+  setMeta('name', 'twitter:image', ogImageUrl(lang));
 }
